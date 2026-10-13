@@ -1,0 +1,98 @@
+---
+import '../../styles/pages/entrance.css';
+---
+
+<main class="entrance-scene" data-entrance-portal>
+  <div class="entrance-scene__halo" aria-hidden="true"></div>
+  <div class="entrance-scene__star entrance-scene__star--one" aria-hidden="true"></div>
+  <div class="entrance-scene__star entrance-scene__star--two" aria-hidden="true"></div>
+
+  <div class="entrance-stage">
+    <section class="portal-window" aria-labelledby="portal-title">
+      <header class="portal-titlebar">
+        <div class="portal-titlebar__branding">
+          <span class="portal-titlebar__symbol" aria-hidden="true">✦</span>
+          <span>FutureBeyond.exe</span>
+        </div>
+        <div class="portal-titlebar__controls" aria-hidden="true">
+          <span>_</span>
+          <span>□</span>
+          <span>×</span>
+        </div>
+      </header>
+
+      <div class="portal-content">
+        <div class="login-panel">
+          <p class="portal-kicker">[ TERMINAL DE ACESSO // 200X ]</p>
+          <h1 id="portal-title" class="portal-wordmark">Future<span>Beyond</span><span class="portal-wordmark__spark" aria-hidden="true">✦</span></h1>
+          <p class="login-panel__intro">
+            Sua próxima conexão começa aqui. Identifique-se para solicitar acesso ao sistema.
+          </p>
+
+          <form class="login-form" data-login-form autocomplete="off" novalidate>
+            <div class="form-field">
+              <label for="visitor-name">Identificação</label>
+              <input
+                id="visitor-name"
+                name="visitor-name"
+                type="text"
+                placeholder="Digite seu usuário"
+                autocomplete="off"
+                spellcheck="false"
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="visitor-password">Senha</label>
+              <input
+                id="visitor-password"
+                name="visitor-password"
+                type="password"
+                placeholder="••••••••••"
+                autocomplete="new-password"
+              />
+            </div>
+
+            <button class="glossy-button glossy-button--submit" type="submit">
+              <span>Solicitar acesso</span>
+              <span aria-hidden="true">↗</span>
+            </button>
+
+            <p class="login-feedback" data-login-feedback role="status" aria-live="polite" hidden>
+              <span aria-hidden="true">✕</span>
+              Você não pertence a essa era.
+            </p>
+          </form>
+
+          <p class="login-panel__note">Terminal fictício. Não use senhas reais.</p>
+        </div>
+
+        <aside class="guest-panel" aria-label="Acesso de convidado">
+          <div class="guest-panel__planet" aria-hidden="true"></div>
+          <div class="guest-panel__content">
+            <p class="guest-panel__status"><span aria-hidden="true"></span> GATEWAY DISPONÍVEL</p>
+            <span class="guest-panel__icon" aria-hidden="true">✧</span>
+            <h2>Não possui credenciais?</h2>
+            <p>Algumas portas não exigem identificação. Apenas curiosidade.</p>
+            <a class="glossy-button glossy-button--guest" href="/home" data-guest-access>
+              <span>Acessar como convidado</span>
+              <span aria-hidden="true">→</span>
+            </a>
+            <p class="guest-panel__footnote">SESSÃO ANÔNIMA · ACESSO TEMPORÁRIO</p>
+          </div>
+        </aside>
+      </div>
+
+      <footer class="portal-statusbar">
+        <span><span class="portal-statusbar__dot" aria-hidden="true"></span> CONEXÃO ATIVA</span>
+        <span>FB-OS v.0.1 · SIGNAL UNKNOWN</span>
+      </footer>
+    </section>
+
+    <p class="entrance-hint">Passe o mouse sobre a janela para estabilizar a transmissão.</p>
+  </div>
+</main>
+
+<script>
+  import '../../scripts/entrance';
+</script>
