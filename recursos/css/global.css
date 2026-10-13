@@ -1,0 +1,100 @@
+/* FUTUREBEYOND — Design tokens e estilos-base compartilhados */
+:root {
+  color-scheme: dark;
+
+  /* Fundos e superfícies */
+  --color-void: #17091f;
+  --color-void-soft: #260e37;
+  --color-violet-900: #321047;
+  --color-violet-800: #4a1a70;
+  --color-violet-600: #7936af;
+  --color-violet-500: #9951c7;
+  --color-violet-300: #c48be9;
+  --color-lavender: #e4c3fb;
+  --color-panel: #f4e9ff;
+  --color-white: #fffafd;
+
+  /* Contraste, acentos e estados */
+  --color-ink: #3c1956;
+  --color-muted: #87699e;
+  --color-cyan: #a6eef5;
+  --color-error: #ac2867;
+  --color-success: #77e9bb;
+  --color-outline: #b887d8;
+
+  /* Tipografia */
+  --font-ui: 'Trebuchet MS', 'Segoe UI', Verdana, sans-serif;
+  --font-mono: 'Courier New', Consolas, monospace;
+
+  /* Geometria */
+  --radius-sm: .5rem;
+  --radius-md: .85rem;
+  --radius-window: 1.35rem;
+  --content-width: 72rem;
+
+  /* Elevação e movimento */
+  --shadow-window: 0 28px 80px #0008, 0 0 45px #a35add45;
+  --shadow-glossy: inset 0 2px 2px #ffffffba, inset 0 -5px 10px #350e7052, 0 6px 0 #4a1b6a, 0 10px 20px #1e082f80;
+  --ease-out-back: cubic-bezier(.18, .8, .22, 1);
+  --duration-standard: 240ms;
+  --duration-portal: 680ms;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  min-height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-void);
+  color: var(--color-white);
+  font-family: var(--font-ui);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button { cursor: pointer; }
+a { color: inherit; }
+img, svg { display: block; max-width: 100%; }
+
+:focus-visible {
+  outline: 3px solid var(--color-cyan);
+  outline-offset: 4px;
+}
+
+[hidden] { display: none !important; }
+
+::selection {
+  color: var(--color-void);
+  background: var(--color-cyan);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
