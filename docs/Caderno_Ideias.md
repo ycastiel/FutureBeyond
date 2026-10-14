@@ -1,7 +1,7 @@
 # FutureBeyond — Caderno de ideias e decisões
 
 > Documento vivo de direção criativa e técnica. Atualizar a cada etapa do desenvolvimento.
-> **Estado:** protótipo frontend · **Atualizado:** 2026-10-13
+> **Estado:** protótipo frontend · **Atualizado:** 2026-10-13 (iteração da queda e da central)
 
 ## Conceito
 
@@ -23,15 +23,16 @@ Um blog/arquivo pessoal que imagina o futuro usando a linguagem visual da intern
 
 - [x] Entrada como janela retrofuturista com perspectiva 3D e interação ao focar/passar o mouse.
 - [x] Login cosmético: qualquer tentativa retorna “Você não pertence a essa era”.
-- [x] Acesso como convidado direcionado a `/home`.
-- [ ] **Implementar agora:** substituir a animação de queda por aproximação/mergulho no portal.
-- [ ] **Implementar agora:** transformar a Home temporária num cartão de transmissão danificado.
+- [x] Acesso como convidado direcionado a `/transmissao`, uma tela intermediária.
+- [x] Criada a transição híbrida: o portal recua, cede e sobe à medida que o visitante cai.
+- [x] Cartão de transmissão danificado mantido como rota `/transmissao`, com botão para a Home.
 
 ## Ideias de curto prazo
 
 - [ ] Refinar efeitos cromados dos botões (hover, pressionado, foco pelo teclado).
 - [ ] Testar transição entre portal e Home em desktop, celular e modo de movimento reduzido.
-- [ ] Construir a Home definitiva com header, sidebars, widgets e navegação Old Web.
+- [x] Primeiro esqueleto navegável da Home `/home` com header, três colunas, widgets e navegação Old Web.
+- [ ] Substituir os posts demonstrativos pelos conteúdos aprovados do cliente.
 - [ ] Projetar a área `/blog` em Y2K lilás, com posts e galerias.
 - [ ] Criar componentes reutilizáveis: `RetroWindow`, `GlossyButton`, `BlogCard`.
 - [ ] Testar legibilidade e contraste dos textos pequenos em telas móveis.
@@ -62,6 +63,17 @@ Um blog/arquivo pessoal que imagina o futuro usando a linguagem visual da intern
 - Definir no escopo do freela quantidade de páginas, animações personalizadas e revisões.
 - Não transformar ideias opcionais em requisitos antes de serem aprovadas pelo cliente.
 
-## Próxima decisão
+## Decisão de navegação (nova)
 
-Quando o cartão de transmissão estiver aprovado, definir se ele continua como tela intermediária ou se será incorporado à Home definitiva como um painel especial (por exemplo, uma primeira transmissão/alerta).
+`/` (terminal XP) → `/transmissao` (registro 001 danificado, após queda) → `/home` (central Old Web com sidebars). Na central, o arquivo 001 continua acessível como parte do universo narrativo.
+
+**Roteamento:** os arquivos Astro devem ficar em `start/pages/index.astro`, `start/pages/transmissao.astro` e `start/pages/home.astro`, sempre com nomes minúsculos. Os recursos compartilhados continuam em `recursos/`; sem necessidade de um novo global CSS.
+
+## Próximos refinamentos
+
+- [ ] Ajustar a intensidade e duração da queda depois do primeiro teste real em desktop e celular.
+- [ ] Adicionar a futura página `/blog` com estética Y2K clara; não mostrar links ativos para rotas inexistentes.
+- [ ] Personalizar a Home com wireframes, materiais gráficos e conteúdos enviados pelo cliente.
+- [ ] Transformar widgets e janelas repetidos em componentes Astro quando a identidade estiver estabilizada.
+- [ ] Opcional: criar uma passagem visual da transmissão danificada para a Home (estilo Windows XP), se agregar valor sem alongar demais a navegação.
+
