@@ -1,8 +1,3 @@
-/**
- * FutureBeyond — Portal de entrada
- * Destino: recursos/javascript/Entrance.ts
- * Login inteiramente cosmético; nenhuma credencial é enviada ou armazenada.
- */
 const portal = document.querySelector<HTMLElement>('[data-entrance-portal]');
 
 if (portal) {
