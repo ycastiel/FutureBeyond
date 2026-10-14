@@ -272,18 +272,63 @@
 .portal-statusbar__dot { width: 7px; height: 7px; border-radius: 50%; background: #32a572; }
 .entrance-hint { margin: 1.75rem 0 0; text-align: center; color: #bd9acd; font: .72rem var(--font-mono); letter-spacing: .04em; }
 
-.entrance-scene.is-leaving .portal-window {
+/* O portal avança em direção ao visitante antes da troca de rota. */
+.entrance-scene.is-entering .portal-window {
   pointer-events: none;
-  animation: portal-fall 760ms cubic-bezier(.5, 0, .8, .4) forwards;
+  animation: portalDive 1120ms cubic-bezier(.64, 0, .86, .43) both;
+  transform-origin: 50% 50%;
 }
-.entrance-scene.is-leaving .entrance-hint { opacity: 0; }
+
+.entrance-scene.is-entering .entrance-hint {
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.entrance-scene.is-entering::after {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  content: '';
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 50%, #fff7ff 0%, #d1acff 27%, #63309e 57%, #17091f 100%);
+  animation: portalFlash 1120ms linear both;
+}
 
 @keyframes star-breathe { from { opacity: .3; scale: .7; } to { opacity: 1; scale: 1.2; } }
 @keyframes feedback-appear { from { opacity: 0; translate: 0 -5px; } to { opacity: 1; translate: 0; } }
-@keyframes portal-fall {
-  0% { transform: rotateY(0) rotateX(0) rotateZ(0) scale(1); opacity: 1; }
-  22% { transform: translateY(-22px) rotateX(-5deg) scale(1.04); opacity: 1; }
-  100% { transform: translateY(120vh) rotateX(32deg) rotateZ(9deg) scale(.65); opacity: 0; }
+
+@keyframes portalDive {
+  0% {
+    transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) scale(1);
+    filter: blur(0);
+    opacity: 1;
+  }
+  22% {
+    transform: rotateY(0deg) rotateX(-2deg) rotateZ(0deg) scale(.97);
+    filter: blur(0);
+    opacity: 1;
+  }
+  48% {
+    transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) scale(1.22);
+    filter: blur(0);
+    opacity: 1;
+  }
+  78% {
+    transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) scale(2.65);
+    filter: blur(2px);
+    opacity: 1;
+  }
+  100% {
+    transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) scale(5.8);
+    filter: blur(11px);
+    opacity: 1;
+  }
+}
+
+@keyframes portalFlash {
+  0%, 52% { opacity: 0; }
+  78% { opacity: .12; }
+  96%, 100% { opacity: 1; }
 }
 
 @media (hover: none), (pointer: coarse) {
@@ -303,4 +348,12 @@
   .portal-titlebar__branding { font-size: .77rem; }
   .portal-titlebar__controls span { width: 22px; height: 21px; }
   .entrance-hint { display: none; }
+}
+
+/* Em telas sem hover, evita que o zoom herde uma inclinação não prevista. */
+@media (prefers-reduced-motion: reduce) {
+  .entrance-scene.is-entering .portal-window,
+  .entrance-scene.is-entering::after {
+    animation: none;
+  }
 }

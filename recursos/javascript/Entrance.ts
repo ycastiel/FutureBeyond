@@ -5,7 +5,6 @@ if (portal) {
   const feedback = portal.querySelector<HTMLElement>('[data-login-feedback]');
   const guestLink = portal.querySelector<HTMLAnchorElement>('[data-guest-access]');
 
-  // O formulário é apenas parte da narrativa: nada é enviado ou armazenado.
   loginForm?.addEventListener('submit', (event) => {
     event.preventDefault();
     loginForm.reset();
@@ -13,37 +12,58 @@ if (portal) {
     if (feedback) {
       feedback.hidden = false;
       feedback.classList.remove('login-feedback--shown');
-      void feedback.offsetWidth; // Reinicia a animação para tentativas consecutivas.
+      void feedback.offsetWidth; // Permite repetir a animação do aviso.
       feedback.classList.add('login-feedback--shown');
     }
   });
 
-  // Como é um <a href>, a rota continua funcionando mesmo sem JavaScript.
   guestLink?.addEventListener('click', (event) => {
-    if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) {
+    // Preserva Ctrl/Cmd + clique, abertura em nova aba e outros atalhos.
+    if (
+      event.button !== 0 ||
+      event.ctrlKey ||
+      event.metaKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
       return;
     }
 
-    if (portal.classList.contains('is-leaving')) {
-      event.preventDefault();
-      return;
-    }
-
-    // Navegação imediata para usuários que preferem movimento reduzido.
+    // O próprio <a href="/home"> funciona sem JavaScript ou com movimento reduzido.
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return;
     }
 
     event.preventDefault();
-    portal.classList.add('is-leaving');
 
-    window.setTimeout(() => {
+    if (portal.classList.contains('is-entering')) {
+      return;
+    }
+
+    portal.classList.add('is-entering');
+    guestLink.setAttribute('aria-disabled', 'true');
+
+    let hasNavigated = false;
+    const navigate = () => {
+      if (hasNavigated) return;
+      hasNavigated = true;
       window.location.assign(guestLink.href);
-    }, 760);
+    };
+
+    // Coordena a navegação com o término real da animação CSS.
+    portal.addEventListener('animationend', (animationEvent) => {
+      if (animationEvent.animationName === 'portalDive') {
+        navigate();
+      }
+    }, { once: false });
+
+    // Proteção caso o navegador não emita animationend.
+    window.setTimeout(navigate, 1500);
   });
 }
 
-// Evita manter a classe de saída quando a página é restaurada pelo histórico.
+// Quando o navegador restaura a página pelo histórico, reinicia o portal.
 window.addEventListener('pageshow', () => {
-  portal?.classList.remove('is-leaving');
+  portal?.classList.remove('is-entering');
+  portal?.querySelector('[data-guest-access]')?.removeAttribute('aria-disabled');
 });
