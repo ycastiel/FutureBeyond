@@ -1,7 +1,6 @@
 ---
-// start/pages/home.astro
 import Layout from '../views/layouts/Layout.astro';
-import '../../recursos/css/pages/home/home.css';
+import '../../recursos/css/pages/home/transmissao.css';
 ---
 
 <Layout title="FutureBeyond | Transmissão 001">
@@ -69,6 +68,14 @@ import '../../recursos/css/pages/home/home.css';
           <p>“Você chegou cedo demais.”</p>
           <small>ORIGEM DA MENSAGEM: <span>INDETERMINADA</span></small>
         </details>
+
+        <a class="signal-card__continue" href="/home">
+          <span>
+            <strong>PROSSEGUIR PARA A CENTRAL</strong>
+            <small>Uma porta foi liberada. Continue a exploração.</small>
+          </span>
+          <span class="signal-card__continue-arrow" aria-hidden="true">↗</span>
+        </a>
 
         <footer class="signal-card__footer">
           <a href="/" class="signal-card__return">← RETORNAR AO TERMINAL</a>
