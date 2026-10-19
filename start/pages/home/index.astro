@@ -1,7 +1,7 @@
 ---
-// start/pages/home.astro — Home Old Web / central do FutureBeyond
-import Layout from '../views/layouts/Layout.astro';
-import '../../recursos/css/pages/home/home.css';
+// start/pages/home/home.astro — Home Old Web / central do FutureBeyond
+import Layout from '../../views/layouts/Layout.astro';
+import '../../../recursos/css/pages/home/home.css';
 ---
 
 <Layout title="FutureBeyond | Central">
@@ -29,7 +29,7 @@ import '../../recursos/css/pages/home/home.css';
           <a href="#inicio" aria-current="page">⌂ <span>HOME</span></a>
           <a href="#arquivo">✦ <span>ARQUIVO</span></a>
           <a href="#mensagens">✉ <span>MENSAGENS</span></a>
-          <a href="/transmissao">◇ <span>TRANSMISSÃO 001</span></a>
+          <a href="/home/transmissao">◇ <span>TRANSMISSÃO 001</span></a>
           <span class="fb-nav__soon" title="Página em desenvolvimento">BLOG · EM BREVE</span>
         </nav>
       </header>
@@ -60,7 +60,7 @@ import '../../recursos/css/pages/home/home.css';
               <a href="#inicio">⌂ &nbsp; Página inicial</a>
               <a href="#arquivo">▧ &nbsp; Últimos registros</a>
               <a href="#mensagens">✉ &nbsp; Mural de recados</a>
-              <a href="/transmissao">◇ &nbsp; Arquivo recuperado</a>
+              <a href="/home/transmissao">◇ &nbsp; Arquivo recuperado</a>
             </div>
           </section>
 
@@ -105,7 +105,7 @@ import '../../recursos/css/pages/home/home.css';
                   <p class="fb-post__meta">ARQUIVO 001 <span>•</span> PRIMEIRO CONTATO</p>
                   <h3>Uma mensagem de um lugar distante</h3>
                   <p>Um sinal surgiu na borda da nossa pequena rede. Ainda não sabemos quem o enviou — ou quando.</p>
-                  <a href="/transmissao">Visualizar transmissão <span aria-hidden="true">↗</span></a>
+                  <a href="/home/transmissao">Visualizar transmissão <span aria-hidden="true">↗</span></a>
                 </div>
               </article>
               <article class="fb-post fb-post--muted">
@@ -167,7 +167,7 @@ import '../../recursos/css/pages/home/home.css';
             <div class="fb-corrupt">
               <span aria-hidden="true">⌁ ░▒▓ ? ◇</span>
               <p>Alguns registros não aparecem duas vezes.</p>
-              <a href="/transmissao">Abrir registro 001 →</a>
+              <a href="/home/transmissao">Abrir registro 001 →</a>
             </div>
           </section>
         </aside>
