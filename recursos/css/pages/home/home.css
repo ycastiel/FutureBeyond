@@ -1,10 +1,3 @@
-/* FutureBeyond | Home Old Web — Lavanda & Chrome (v2)
-   Destino: recursos/css/paginas/home.css
-   Mantem os componentes e classes da Home existente.
-   Tokens globais permanecem SOMENTE em recursos/css/global.css.
-*/
-
-/* Paleta local desta pagina: nao sao novos tokens globais. */
 .fb-home {
   --home-ink: #35204f;
   --home-ink-soft: #665379;
@@ -960,5 +953,64 @@
   .fb-button,
   .fb-post {
     transition: none;
+  }
+}
+
+
+/* H1 Produtora — integração visual localizada, sem alterar o global.css */
+.fb-welcome__art--h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: .7rem;
+  padding: 2.1rem .85rem 2rem;
+  background:
+    radial-gradient(circle at 48% 38%, #b3ecff8a, transparent 45%),
+    radial-gradient(circle at 30% 62%, #e6bdff4d, transparent 55%),
+    linear-gradient(160deg, #243161, #7242aa 57%, #1e153d);
+}
+
+.fb-welcome__art--h1::before {
+  content: "";
+  position: absolute;
+  width: 65%;
+  aspect-ratio: 1;
+  border: 1px solid #d4ebff60;
+  border-radius: 50%;
+  box-shadow: 0 0 0 18px #dbf7ff0b, 0 0 0 42px #f6d4ff0b;
+  pointer-events: none;
+}
+
+.fb-h1-poster__seal {
+  z-index: 1;
+  color: #d6f6ff;
+  font: 700 .52rem var(--font-mono);
+  letter-spacing: .09em;
+  text-align: center;
+}
+
+.fb-h1-poster__logo {
+  z-index: 1;
+  width: min(100%, 350px);
+  height: auto;
+  filter: drop-shadow(0 8px 16px #0a0a3666);
+}
+
+.fb-welcome__art--h1 .fb-welcome__art-label {
+  z-index: 1;
+}
+
+.fb-nav__soon {
+  user-select: none;
+}
+
+@media (max-width: 510px) {
+  .fb-welcome__art--h1 {
+    min-height: 220px;
+  }
+
+  .fb-h1-poster__logo {
+    width: min(85%, 320px);
   }
 }
