@@ -1,79 +1,72 @@
-# FutureBeyond — Caderno de ideias e decisões
+# FutureBeyond × H1 Produtora — decisões e ideias
 
-> Documento vivo de direção criativa e técnica. Atualizar a cada etapa do desenvolvimento.
-> **Estado:** protótipo frontend · **Atualizado:** 2026-10-13 (iteração da queda e da central)
+> Documento vivo do projeto. Atualizado em 2026-10-19.
+> **IMPORTANTE:** distinguir decisões do cliente (fonte: `PI2.pdf`), protótipos implementados e ideias de frontend sujeitas a aprovação.
 
-## Conceito
+## Conceito e relação entre as marcas
 
-Um blog/arquivo pessoal que imagina o futuro usando a linguagem visual da internet dos anos 2000. A interface mistura *Old Web*, MSN, Orkut, Y2K, gradientes cromados, roxo/lilás e elementos de Frutiger Aero. Quanto mais o visitante explora, mais sinais de uma transmissão desconhecida aparecem.
+- **FutureBeyond:** universo digital e portal de exploração; mantém a estética Old Web / Y2K / Frutiger Aero, a entrada XP e a transmissão rachada.
+- **H1 Produtora:** empresa fictícia encontrada dentro do FutureBeyond. A marca e os integrantes têm papéis narrativos.
+- **Premissa do roteiro (PI2, p. 1):** o site é feito por extraterrestres tentando parecer humanos e interpretando mal a cultura. A origem extraterrestre é uma *revelação*; não deve aparecer explicitamente nas páginas públicas iniciais.
+- **Tom:** sátira midiática e corporativa + mistério gradual. Evitar jumpscares e mensagens de terror excessivamente óbvias.
+- **Princípio de escrita:** cada seção pode refletir a voz de quem supostamente a escreveu, sem revelar cedo demais o segredo.
 
-**Regra narrativa:** o site não deve revelar imediatamente que é estranho; ele começa acolhedor, e a anomalia surge em detalhes.
+## Personagens do roteiro (PI2, pp. 3–4)
 
-## Decisões técnicas atuais
+| Integrante | Papel no site | Voz narrativa / oportunidades |
+|---|---|---|
+| Benedito Silva (Benê) | Técnico e programador da página | Comunicados secos; mensagens de manutenção; comentários internos e bugs *intencionais* claramente delimitados |
+| Jeff Grease | Produção e negócios | Avisos exageradamente corporativos; loja e financiamento coletivo absurdos; obsessão com propriedade |
+| Leonardo Fábio (Berinjela) | Desenvolvimento criativo | Descrições surpreendentemente longas, arte, conceitos estranhos e digressões |
+| Zezinho | Criador de vídeos externo à produtora | Trama transmídia, vídeos, pistas e futura rota oculta; verificar o nome *Wolfheus* do fluxograma com a equipe |
 
-- **Astro + TypeScript** para rotas, conteúdo e componentes estáticos.
-- **React** instalado, mas reservado para ilhas realmente interativas no futuro.
-- **CSS personalizado** e tokens unificados em `recursos/css/global.css`.
-- Código-fonte do Astro em `start/` (`srcDir`); arquivos públicos em `recursos/publico/` (`publicDir`).
-- Arquivos de rota em `start/pages/`, com nomes minúsculos: `index.astro`, `home.astro` etc.
-- **Sem backend/CMS por enquanto**: o desenvolvedor publica as alterações a partir dos arquivos recebidos do cliente.
-- Sem envio ou armazenamento das credenciais fictícias do portal.
+## Implementado / entregue para integrar
 
-## Implementado / pronto para integração
+- [x] Portal `/` com efeito de queda e acesso de convidado.
+- [x] Transmissão danificada `/home/transmissao` como experiência intermediária.
+- [x] Home `/home` com três colunas e visual Lavanda & Chrome.
+- [x] Blog `/blog` com conteúdo de demonstração (páginas de post ainda pendentes).
+- [x] Adaptação da Home para apresentar a H1, anúncios de produções em preparação e links institucionais.
+- [x] Página `/sobre` com apresentações resumidas de Benê, Jeff e Berinjela.
+- [x] Logotipos enviados pela equipe integrados ao protótipo (cópias apenas com margens transparentes aparadas).
 
-- [x] Entrada como janela retrofuturista com perspectiva 3D e interação ao focar/passar o mouse.
-- [x] Login cosmético: qualquer tentativa retorna “Você não pertence a essa era”.
-- [x] Acesso como convidado direcionado a `/transmissao`, uma tela intermediária.
-- [x] Criada a transição híbrida: o portal recua, cede e sobe à medida que o visitante cai.
-- [x] Cartão de transmissão danificado mantido como rota `/transmissao`, com botão para a Home.
+## Organização técnica
 
-## Ideias de curto prazo
+- Astro + TypeScript, com React instalado para futuras ilhas realmente interativas.
+- `srcDir: './start'` e `publicDir: './recursos/publico'`.
+- Rotas: `start/pages/index.astro`, `start/pages/home/index.astro`, `start/pages/home/transmissao.astro`, `start/pages/sobre.astro`, `/blog`.
+- CSS compartilhado/tokens no **único** `recursos/css/global.css`. CSS local por página em `recursos/css/paginas/`.
+- Logos: `recursos/publico/imagens/h1/h1-horizontal.png` e `h1-vertical.png`, acessíveis por `/imagens/h1/...`.
+- Sem banco de dados, CMS, autenticação real ou armazenamento de senhas.
+- Hospedagem sugerida: Cloudflare Pages + GitHub, com preview de branch para cliente e branch principal para produção; conteúdo não publicado deve ser protegido se sigiloso.
 
-- [ ] Refinar efeitos cromados dos botões (hover, pressionado, foco pelo teclado).
-- [ ] Testar transição entre portal e Home em desktop, celular e modo de movimento reduzido.
-- [x] Primeiro esqueleto navegável da Home `/home` com header, três colunas, widgets e navegação Old Web.
-- [ ] Substituir os posts demonstrativos pelos conteúdos aprovados do cliente.
-- [ ] Projetar a área `/blog` em Y2K lilás, com posts e galerias.
-- [ ] Criar componentes reutilizáveis: `RetroWindow`, `GlossyButton`, `BlogCard`.
-- [ ] Testar legibilidade e contraste dos textos pequenos em telas móveis.
+## Próximas páginas, conforme PDF
 
-## Ideias de médio prazo — imersão narrativa
+1. **Produções:** catálogo; documentário com pôster, sinopse, créditos e extras; podcasts curtos. Não inventar títulos, elenco, duração final ou materiais não recebidos.
+2. **Fórum fictício:** conversas previamente escritas pelos produtores, sem conta nem publicação real nesta fase. Não exibir posts supostamente reais de visitantes.
+3. **Login narrativo:** página separada do portal inicial; tentativas comuns falham, algumas combinações de ARG desbloqueiam rotas ocultas. Se for exclusivamente frontend, todo o código do puzzle é inspecionável — não tratar como segurança.
+4. **Sobre:** desenvolver posteriormente backstory falso e texto de propósito institucional **a partir de material aprovado**. A versão presente é protótipo demonstrativo.
+5. **Merch + financiamento coletivo absurdo:** pendentes de conteúdo, viabilidade e alinhamento de escopo. Não ativar pagamentos de demonstração.
+6. **Blog:** alinhar com a equipe se continuará como diário/arquivo narrativo complementar ou parte oficial das seções da produtora.
 
-- [ ] Relógio que parece contar normalmente e ocasionalmente muda de direção.
-- [ ] Mensagem estilo MSN que aparece após o visitante encontrar uma pista.
-- [ ] Frases com lacunas, arquivos incompletos e símbolos recorrentes entre páginas.
-- [ ] Pistas escondidas em ilustrações e painéis, sem depender exclusivamente de hover.
-- [ ] Sistema de descobertas com `localStorage` (sem coleta de informações pessoais).
-- [ ] Registro de transmissão com diferentes estágios de integridade visual.
-- [ ] Sons leves e opcionais de interface antiga, com controle para silenciar.
-- [ ] Uma porta que parece erro 404, mas é uma peça narrativa intencional (nunca usada no lugar dos erros reais).
-- [ ] Login fictício reagindo a uma palavra-chave apenas como easter egg — sem contas reais.
+## Ideias opcionais para review
 
-## Futuro, apenas se o cliente solicitar
+- Alterar discretamente os textos institucionais conforme o visitante percorre as páginas; evitar revelar demais no primeiro acesso.
+- Mensagens de sistema atribuídas a Benê com gramática objetiva e pouquíssima paciência para layout.
+- Promoções de Jeff com preços contraditórios e textos corporativos, sem simular cobranças reais.
+- Postagens mais criativas de Berinjela, com uma estranheza visual sutil que não comprometa legibilidade.
+- Referências aos vídeos de Zezinho em forma de recortes, links e notas de rodapé, quando conteúdos estiverem prontos.
+- Animações e segredos com alternativas acessíveis para teclado e toque; respeitar `prefers-reduced-motion`.
 
-- [ ] CMS para publicação de posts pelo cliente.
-- [ ] Contas reais e persistência de progresso; exigiria backend e discussão de privacidade.
-- [ ] Galeria com filtros, personagens, timelines e sistema de arquivos narrativos.
+## Pendências para confirmar com a equipe
 
-## Cuidados de UX e escopo
+- O fluxograma (p. 7) usa **Wolfheus**: é Zezinho, outro nome de personagem ou outra conta?
+- Quais textos e ilustrações estão efetivamente aprovados e quais são placeholders?
+- O documentário e o podcast são as primeiras páginas públicas planejadas?
+- Qual papel oficial de `/blog` na navegação final?
+- Quando liberar os elementos de ARG e em quais condições?
+- Qual será o marco real de apresentação/lançamento? As datas do calendário do pitch ainda precisam ser alinhadas.
 
-- Manter caminho claro de convidado: o mistério não pode parecer site quebrado.
-- Animações devem respeitar `prefers-reduced-motion`; não depender de efeitos piscantes.
-- Segredos acessíveis também pelo teclado e em dispositivos touch.
-- Definir no escopo do freela quantidade de páginas, animações personalizadas e revisões.
-- Não transformar ideias opcionais em requisitos antes de serem aprovadas pelo cliente.
+## Regra de escopo
 
-## Decisão de navegação (nova)
-
-`/` (terminal XP) → `/transmissao` (registro 001 danificado, após queda) → `/home` (central Old Web com sidebars). Na central, o arquivo 001 continua acessível como parte do universo narrativo.
-
-**Roteamento:** os arquivos Astro devem ficar em `start/pages/index.astro`, `start/pages/transmissao.astro` e `start/pages/home.astro`, sempre com nomes minúsculos. Os recursos compartilhados continuam em `recursos/`; sem necessidade de um novo global CSS.
-
-## Próximos refinamentos
-
-- [ ] Ajustar a intensidade e duração da queda depois do primeiro teste real em desktop e celular.
-- [ ] Adicionar a futura página `/blog` com estética Y2K clara; não mostrar links ativos para rotas inexistentes.
-- [ ] Personalizar a Home com wireframes, materiais gráficos e conteúdos enviados pelo cliente.
-- [ ] Transformar widgets e janelas repetidos em componentes Astro quando a identidade estiver estabilizada.
-- [ ] Opcional: criar uma passagem visual da transmissão danificada para a Home (estilo Windows XP), se agregar valor sem alongar demais a navegação.
-
+Textos engraçados adicionados pelo desenvolvedor são **rascunhos**, não cânone. Diferenciar conteúdo aprovado, placeholder e sugestão, e manter links não desenvolvidos inativos até haver uma página funcional.

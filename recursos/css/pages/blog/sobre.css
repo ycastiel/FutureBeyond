@@ -1,0 +1,449 @@
+.h1-about {
+    min-height: 100svh;
+    padding: clamp(.7rem, 3vw, 2.3rem);
+    color: #3c285a;
+    background:
+        radial-gradient(circle at 6% 18%, #a58fcd30, transparent 28%),
+        radial-gradient(circle at 88% 5%, #75ccfa27, transparent 30%),
+        linear-gradient(140deg, #130d22, #20112f 60%, #142035);
+}
+
+.h1-about__shell {
+    max-width: 1160px;
+    margin-inline: auto;
+    overflow: hidden;
+    border: 1px solid #cabbe8;
+    background: #ede9f7;
+    box-shadow: 0 24px 75px #0009, 0 0 42px #c5a4f426;
+}
+
+.h1-about__chrome {
+    display: flex;
+    gap: .7rem;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 36px;
+    padding: .45rem .85rem;
+    border-bottom: 1px solid #ffffff94;
+    color: #fff;
+    background: linear-gradient(#f5d8ff 0%, #a96ccf 38%, #692b96 54%, #371452 100%);
+    font: 700 .63rem var(--font-mono);
+    text-shadow: 0 1px 2px #270a40;
+}
+
+.h1-about__lights {
+    display: inline-flex;
+    gap: 5px;
+    flex: 0 0 auto;
+}
+
+.h1-about__lights i {
+    width: 9px;
+    height: 9px;
+    border: 1px solid #fff9;
+    border-radius: 50%;
+    background: #ff86b2;
+}
+
+.h1-about__lights i:nth-child(2) {
+    background: #ffe99e;
+}
+
+.h1-about__lights i:nth-child(3) {
+    background: #9bf3db;
+}
+
+.h1-about__status {
+    color: #e6fff9;
+}
+
+.h1-about__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    padding: .78rem 1rem;
+    border-bottom: 1px solid #c3a7df;
+    background: linear-gradient(#fffcff, #e6d8fa 45%, #c8b9e9);
+}
+
+.h1-about__nav a,
+.h1-about__button {
+    display: inline-flex;
+    gap: .55rem;
+    justify-content: center;
+    align-items: center;
+    min-height: 36px;
+    padding: .55rem 1rem;
+    border: 1px solid #d9c2ef;
+    border-radius: 50px;
+    color: #fff;
+    background: linear-gradient(180deg, #e2b4ff, #9e69d1 46%, #6436a1 52%, #63389a);
+    box-shadow: inset 0 2px 1px #fffc, 0 3px 0 #522b78, 0 6px 12px #65427a43;
+    font: 800 .68rem var(--font-ui);
+    text-decoration: none;
+    text-shadow: 0 1px #4b1f77;
+    transition: translate 170ms, filter 170ms;
+}
+
+.h1-about__nav a:hover,
+.h1-about__button:hover {
+    filter: brightness(1.12);
+    translate: 0 -2px;
+}
+
+.h1-about__nav a[aria-current] {
+    color: #453665;
+    background: linear-gradient(#fff, #effaff 48%, #cce5fb 52%, #d8c6f1);
+    text-shadow: 0 1px #fff;
+}
+
+.h1-about__hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, .9fr);
+    min-height: 350px;
+    background: #f7f1fe;
+}
+
+.h1-about__intro {
+    padding: clamp(1.6rem, 4.2vw, 3.5rem);
+    background: radial-gradient(circle at 9% 6%, #e5fbff, transparent 48%), linear-gradient(145deg, #fffefa, #f1e5fc 80%);
+}
+
+.h1-about__eyebrow {
+    margin: 0 0 .65rem;
+    color: #73519a;
+    font: 800 .64rem var(--font-mono);
+    letter-spacing: .06em;
+}
+
+.h1-about__intro h1 {
+    margin: 0 0 1rem;
+    color: #422867;
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+    letter-spacing: -.06em;
+    line-height: 1.1;
+}
+
+.h1-about__intro h1 em {
+    color: #a85ec9;
+    font-style: normal;
+}
+
+.h1-about__intro>p:not(.h1-about__eyebrow) {
+    max-width: 52ch;
+    margin: 0 0 1.3rem;
+    color: #685678;
+    font-size: .92rem;
+    line-height: 1.75;
+}
+
+.h1-about__button {
+    padding-inline: 1.2rem;
+    border-color: #c4eeff;
+    color: #274970;
+    background: linear-gradient(#fff, #e3f9ff 47%, #a7dcef 52%, #9cbee9);
+    box-shadow: inset 0 2px 1px #fff, 0 4px 0 #647ba9, 0 8px 14px #647ba94c;
+    text-shadow: 0 1px #fff;
+}
+
+.h1-about__intro>small {
+    display: block;
+    margin-top: 1rem;
+    color: #847492;
+    font: .65rem var(--font-mono);
+}
+
+.h1-about__brand {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.1rem;
+    min-width: 0;
+    padding: 2.2rem 1rem;
+    background:
+        repeating-linear-gradient(0deg, #e9d5ff0c 0 1px, transparent 1px 5px),
+        radial-gradient(circle at 53% 44%, #9e88f370, transparent 55%),
+        linear-gradient(130deg, #4b2480, #211a53 73%);
+}
+
+.h1-about__brand::before {
+    position: absolute;
+    content: '';
+    inset: 16% 8%;
+    border: 1px solid #c8e5ff40;
+    border-radius: 50%;
+    transform: rotate(-12deg);
+    pointer-events: none;
+}
+
+.h1-about__brand img {
+    position: relative;
+    width: min(100%, 490px);
+    height: auto;
+    filter: drop-shadow(0 15px 18px #160e2b90);
+}
+
+.h1-about__brand-sub {
+    position: relative;
+    color: #cdf6ff;
+    font: 800 .55rem var(--font-mono);
+    letter-spacing: .12em;
+    text-align: center;
+}
+
+.h1-about__content {
+    display: grid;
+    gap: 1rem;
+    padding: clamp(.7rem, 2vw, 1.2rem);
+}
+
+.h1-about__window {
+    min-width: 0;
+    border: 1px solid #ada4cd;
+    background: #fffdfd;
+    box-shadow: 0 4px 17px #33315b22, inset 0 1px #fff;
+}
+
+.h1-about__window-head {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: .3rem;
+    padding: .65rem .9rem;
+    border-bottom: 1px solid #b8b1d9;
+    color: #4b3367;
+    background: linear-gradient(#fff, #f3eaff 43%, #cac6ed 54%, #eee7f7);
+    text-shadow: 0 1px #fff;
+    font: 800 .68rem var(--font-mono);
+}
+
+.h1-about__window-head>span:last-child {
+    font-size: .6rem;
+    opacity: .76;
+}
+
+.h1-about__window-body {
+    padding: clamp(1rem, 3vw, 2rem);
+    background: linear-gradient(135deg, #fffefa, #f9f5ff 65%, #f3fcff);
+}
+
+.h1-about__window-body h2 {
+    margin: 0 0 .7rem;
+    color: #4f366e;
+    font-size: clamp(1.3rem, 2.8vw, 1.85rem);
+}
+
+.h1-about__window-body p {
+    color: #665779;
+    font-size: .87rem;
+    line-height: 1.7;
+}
+
+.h1-about__purpose {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr);
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.h1-about__notice {
+    display: grid;
+    gap: .5rem;
+    padding: 1.3rem;
+    border: 1px dashed #a9c8e6;
+    background: linear-gradient(#e8faff, #edf0ff);
+    box-shadow: inset 0 1px #fff;
+}
+
+.h1-about__notice span,
+.h1-about__notice small {
+    color: #497496;
+    font: 800 .63rem var(--font-mono);
+}
+
+.h1-about__notice strong {
+    color: #3c5788;
+    font: 800 1rem var(--font-ui);
+}
+
+.h1-about__notice p {
+    margin: 0;
+}
+
+.h1-about__section-intro {
+    margin: 0 0 1.3rem;
+}
+
+.h1-about__team {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .9rem;
+}
+
+.h1-about__person {
+    min-width: 0;
+    border: 1px solid #cbb9df;
+    background: #fff;
+    box-shadow: 0 4px 0 #e8e0f2;
+}
+
+.h1-about__portrait {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 125px;
+    background: radial-gradient(circle at 50% 35%, #e7ffffc4, transparent 40%), linear-gradient(140deg, #9f71dc, #54448d);
+}
+
+.h1-about__portrait span {
+    color: #fff;
+    font-size: 3.4rem;
+    text-shadow: 0 0 22px #fff;
+}
+
+.h1-about__portrait small {
+    position: absolute;
+    right: .6rem;
+    bottom: .5rem;
+    color: #f6e4ff;
+    font: 700 .57rem var(--font-mono);
+}
+
+.h1-about__person--jeff .h1-about__portrait {
+    background: radial-gradient(circle at 50% 25%, #fff3bdbc, transparent 40%), linear-gradient(135deg, #d495c3, #714ca5);
+}
+
+.h1-about__person--berinjela .h1-about__portrait {
+    background: radial-gradient(circle at 50% 25%, #dbffeeaa, transparent 42%), linear-gradient(145deg, #539bb1, #6750aa);
+}
+
+.h1-about__person-content {
+    padding: 1rem;
+}
+
+.h1-about__role {
+    margin: 0 0 .5rem;
+    color: #457894 !important;
+    font: 800 .58rem var(--font-mono) !important;
+}
+
+.h1-about__person h3 {
+    margin: 0 0 .6rem;
+    font-size: 1.1rem;
+    line-height: 1.22;
+    color: #432965;
+}
+
+.h1-about__person h3 span {
+    display: block;
+    margin-top: .25rem;
+    color: #a361c3;
+    font-size: .81rem;
+}
+
+.h1-about__person p {
+    margin: 0 0 .55rem;
+    font-size: .78rem;
+    line-height: 1.65;
+}
+
+.h1-about__person-note {
+    padding-top: .6rem;
+    border-top: 1px dashed #d9c8ea;
+}
+
+.h1-about__project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .9rem;
+}
+
+.h1-about__project-grid article {
+    padding: 1.1rem;
+    border: 1px solid #c9c1e1;
+    background: linear-gradient(140deg, #fff, #eff8ff);
+}
+
+.h1-about__project-grid article>span {
+    color: #547ba0;
+    font: 800 .63rem var(--font-mono);
+}
+
+.h1-about__project-grid h3 {
+    margin: .65rem 0 .4rem;
+    color: #4d3270;
+}
+
+.h1-about__project-grid p {
+    margin: 0;
+}
+
+.h1-about__footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: .8rem;
+    padding: 1rem;
+    color: #d5cced;
+    background: #1c1b39;
+    font: 700 .62rem var(--font-mono);
+}
+
+.h1-about__footer a {
+    color: #b6f2ff;
+}
+
+@media (max-width: 850px) {
+    .h1-about__hero {
+        grid-template-columns: 1fr;
+    }
+
+    .h1-about__brand {
+        min-height: 220px;
+    }
+
+    .h1-about__purpose {
+        grid-template-columns: 1fr;
+    }
+
+    .h1-about__team {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .h1-about__chrome {
+        font-size: .53rem;
+    }
+
+    .h1-about__status {
+        display: none;
+    }
+
+    .h1-about__team,
+    .h1-about__project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .h1-about__intro {
+        padding: 1.3rem;
+    }
+
+    .h1-about__brand {
+        padding: 1rem;
+    }
+
+    .h1-about__nav a {
+        padding: .45rem .7rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .h1-about__nav a,
+    .h1-about__button {
+        transition: none;
+    }
+}

@@ -1,10 +1,10 @@
 ---
-// start/pages/home/home.astro — Home Old Web / central do FutureBeyond
+// start/pages/home.astro — Home Old Web / central do FutureBeyond
 import Layout from '../../views/layouts/Layout.astro';
 import '../../../recursos/css/pages/home/home.css';
 ---
 
-<Layout title="FutureBeyond | Central">
+<Layout title="FutureBeyond | H1 Produtora" description="Explore o FutureBeyond e conheça a H1 Produtora, suas produções e sua equipe." >
   <main class="fb-home" id="topo">
     <div class="fb-home__stars" aria-hidden="true"></div>
 
@@ -12,34 +12,35 @@ import '../../../recursos/css/pages/home/home.css';
       <header class="fb-header">
         <div class="fb-header__chrome">
           <span class="fb-header__lights" aria-hidden="true"><i></i><i></i><i></i></span>
-          <span>futurebeyond.net // visitor terminal</span>
-          <span class="fb-header__right">CONNECTED ✦ FB-OS</span>
+          <span>futurebeyond.net // central de visitantes</span>
+          <span class="fb-header__right">H1 PRODUTORA ✦ ESTAMOS ONLINE</span>
         </div>
 
         <div class="fb-header__hero">
           <div class="fb-header__identity">
-            <p>✦ &nbsp; SUA JANELA PARA O QUE AINDA NÃO EXISTE</p>
+            <p>✦ &nbsp; PORTAL DE ACESSO À H1 PRODUTORA</p>
             <h1>Future<span>Beyond</span><b aria-hidden="true">✧</b></h1>
-            <span class="fb-header__subtitle">Um pequeno canto da internet, perdido entre tempos.</span>
+            <span class="fb-header__subtitle">Sua janela para uma produtora de ideias extraordinariamente humanas.</span>
           </div>
           <div class="fb-header__orb" aria-hidden="true"><span>FB/01</span></div>
         </div>
 
         <nav class="fb-nav" aria-label="Navegação principal">
-          <a href="#inicio" aria-current="page">⌂ <span>HOME</span></a>
-          <a href="#arquivo">✦ <span>ARQUIVO</span></a>
-          <a href="#mensagens">✉ <span>MENSAGENS</span></a>
-          <a href="/home/transmissao">◇ <span>TRANSMISSÃO 001</span></a>
-          <a href="/blog">✿ <span>BLOG</span></a>
+          <a href="/home" aria-current="page">⌂ <span>INÍCIO</span></a>
+          <a href="/blog/sobre">✧ <span>SOBRE A H1</span></a>
+          <a href="#producoes">▧ <span>PRODUÇÕES</span></a>
+          <a href="/blog">♡ <span>BLOG</span></a>
+          <a href="#mensagens">✉ <span>RECADOS</span></a>
+          <span class="fb-nav__soon" title="Área de discussão planejada">FÓRUM · EM BREVE</span>
         </nav>
       </header>
 
       <div class="fb-ticker" aria-label="Mensagem de boas-vindas">
         <span>✧ VOCÊ ESTÁ ONLINE ✧</span>
         <span>—</span>
-        <span>CONEXÃO INTERTEMPORAL ESTABELECIDA</span>
+        <span>H1 PRODUTORA RECEBE VISITANTES</span>
         <span>✦</span>
-        <span>ALGUNS ARQUIVOS PODEM ESTAR INCOMPLETOS</span>
+        <span>ALGUMAS EXPLICAÇÕES ESTÃO EM REVISÃO</span>
       </div>
 
       <div class="fb-columns">
@@ -49,7 +50,7 @@ import '../../../recursos/css/pages/home/home.css';
             <div class="fb-profile">
               <div class="fb-profile__avatar" aria-hidden="true"><span>✧</span></div>
               <strong>visitante_001</strong>
-              <p>um rosto entre muitos mundos...</p>
+              <p>um visitante perfeitamente regular...</p>
               <div class="fb-profile__online"><span aria-hidden="true">●</span> DISPONÍVEL NO SISTEMA</div>
             </div>
           </section>
@@ -58,8 +59,9 @@ import '../../../recursos/css/pages/home/home.css';
             <h2 class="fb-widget__bar">✧ NAVEGAÇÃO RÁPIDA</h2>
             <div class="fb-shortcuts">
               <a href="#inicio">⌂ &nbsp; Página inicial</a>
-              <a href="#arquivo">▧ &nbsp; Últimos registros</a>
-              <a href="#mensagens">✉ &nbsp; Mural de recados</a>
+              <a href="/blog/sobre">✧ &nbsp; Conheça a H1</a>
+              <a href="#producoes">▧ &nbsp; Nossas produções</a>
+              <a href="/blog">♡ &nbsp; Diário digital</a>
               <a href="/home/transmissao">◇ &nbsp; Arquivo recuperado</a>
             </div>
           </section>
@@ -68,53 +70,52 @@ import '../../../recursos/css/pages/home/home.css';
             <h2 class="fb-widget__bar">◷ CONTADOR DE ERA</h2>
             <div class="fb-era">
               <strong>20<span>XX</span></strong>
-              <small>DATA LOCAL INDETERMINADA</small>
+              <small>ANO DE FUNDAÇÃO EM REVISÃO</small>
             </div>
           </section>
         </aside>
 
         <div class="fb-main-column">
           <section class="fb-window" id="inicio" aria-labelledby="fb-welcome-title">
-            <div class="fb-window__bar"><span>✦ &nbsp; FutureBeyond — Início</span><span aria-hidden="true">_ □ ×</span></div>
+            <div class="fb-window__bar"><span>✦ &nbsp; H1 Produtora — Bem-vindos</span><span aria-hidden="true">_ □ ×</span></div>
             <div class="fb-welcome">
               <div class="fb-welcome__copy">
-                <p class="fb-kicker">// VOCÊ ENCONTROU A CENTRAL</p>
-                <h2 id="fb-welcome-title">Welcome to<br /><em>tomorrow</em> ✧</h2>
-                <p>Bem-vindo ao FutureBeyond! Arquivos, lembranças, imagens e pequenas descobertas vivem por aqui. Explore sem pressa — este lugar parece ter esperado muito tempo por você.</p>
-                <a class="fb-button" href="#arquivo"><span>Explorar os registros</span><span aria-hidden="true">→</span></a>
+                <p class="fb-kicker">// APRESENTAMOS: H1 PRODUTORA</p>
+                <h2 id="fb-welcome-title">Histórias feitas<br />por <em>pessoas.</em> ✧</h2>
+                <p>Bem-vindo ao FutureBeyond, a janela digital da H1 Produtora. Aqui reunimos nossos projetos, ideias e tentativas muito dedicadas de compreender o público. Somos profissionais. Gostamos de entretenimento.</p>
+                <a class="fb-button" href="/blog/sobre"><span>Conheça a produtora</span><span aria-hidden="true">→</span></a>
               </div>
-              <div class="fb-welcome__art" aria-label="Ilustração decorativa de um planeta violeta em um céu estrelado" role="img">
-                <div class="fb-welcome__planet"></div>
-                <span class="fb-welcome__twinkle fb-welcome__twinkle--a" aria-hidden="true">✦</span>
-                <span class="fb-welcome__twinkle fb-welcome__twinkle--b" aria-hidden="true">✧</span>
-                <span class="fb-welcome__art-label">TO ANOTHER TIMELINE_</span>
+              <div class="fb-welcome__art fb-welcome__art--h1">
+                <span class="fb-h1-poster__seal" aria-hidden="true">✦ ESTÚDIO AUTORIZADO ✦</span>
+                <img class="fb-h1-poster__logo" src="/imagens/h1/h1-vertical.png" alt="H1 Produtora — logotipo holográfico em tons lilás" width="1253" height="621" loading="eager" />
+                <span class="fb-welcome__art-label">VISIT US. WE ARE FRIENDLY._</span>
               </div>
             </div>
           </section>
 
-          <section class="fb-window" id="arquivo" aria-labelledby="fb-archive-title">
-            <div class="fb-window__bar"><span>▧ &nbsp; Registros recentes</span><span>02 ARQUIVOS</span></div>
+          <section class="fb-window" id="producoes" aria-labelledby="fb-archive-title">
+            <div class="fb-window__bar"><span>▧ &nbsp; Catálogo da H1</span><span>EM DESENVOLVIMENTO</span></div>
             <div class="fb-archive">
               <div class="fb-section-title">
-                <h2 id="fb-archive-title">✧ Últimas transmissões</h2>
-                <span>ARQUIVO / PREVIEW</span>
+                <h2 id="fb-archive-title">✧ Nossas produções</h2>
+                <span>CATÁLOGO / PRÉVIA</span>
               </div>
               <article class="fb-post">
                 <div class="fb-post__art fb-post__art--space" aria-hidden="true"><span>✦</span></div>
                 <div class="fb-post__body">
-                  <p class="fb-post__meta">ARQUIVO 001 <span>•</span> PRIMEIRO CONTATO</p>
-                  <h3>Uma mensagem de um lugar distante</h3>
-                  <p>Um sinal surgiu na borda da nossa pequena rede. Ainda não sabemos quem o enviou — ou quando.</p>
-                  <a href="/home/transmissao">Visualizar transmissão <span aria-hidden="true">↗</span></a>
+                  <p class="fb-post__meta">PRODUÇÃO 001 <span>•</span> DOCUMENTÁRIO</p>
+                  <h3>Projeto audiovisual da H1</h3>
+                  <p>Em breve: sinopse, pôster, créditos e materiais de divulgação do documentário da produtora.</p>
+                  <a href="/blog/sobre">Conheça a equipe <span aria-hidden="true">↗</span></a>
                 </div>
               </article>
               <article class="fb-post fb-post--muted">
                 <div class="fb-post__art fb-post__art--disc" aria-hidden="true"><span>◈</span></div>
                 <div class="fb-post__body">
-                  <p class="fb-post__meta">ARQUIVO 002 <span>•</span> EM PREPARAÇÃO</p>
-                  <h3>Memórias que ainda não aconteceram</h3>
-                  <p>Um espaço reservado para os conteúdos, artes e histórias que o cliente enviar no futuro.</p>
-                  <span class="fb-post__pending">[ AGUARDANDO TRANSMISSÃO ]</span>
+                  <p class="fb-post__meta">PRODUÇÃO 002 <span>•</span> PODCAST</p>
+                  <h3>Conversas da nossa equipe</h3>
+                  <p>Uma série curta de áudios sobre a produtora e seus integrantes está em planejamento.</p>
+                  <span class="fb-post__pending">[ MATERIAL EM PREPARAÇÃO ]</span>
                 </div>
               </article>
             </div>
@@ -123,10 +124,10 @@ import '../../../recursos/css/pages/home/home.css';
           <section class="fb-window" id="mensagens" aria-labelledby="fb-messages-title">
             <div class="fb-window__bar"><span>✉ &nbsp; Mural de recados</span><span>READ ONLY</span></div>
             <div class="fb-message">
-              <p class="fb-kicker">TRANSMISSÃO DO ADMINISTRADOR // 000</p>
-              <h2 id="fb-messages-title">Olá, pessoa do outro lado da tela! ♡</h2>
-              <p>Este pequeno universo ainda está sendo construído. Novas portas vão aparecer em breve. Enquanto isso, aproveite a visita e tente não se perder pelo caminho...</p>
-              <div class="fb-message__signature">— Equipe FutureBeyond <span aria-hidden="true">✧</span></div>
+              <p class="fb-kicker">COMUNICADO DEMONSTRATIVO // DEPARTAMENTO DE PRODUÇÃO</p>
+              <h2 id="fb-messages-title">Prezados clientes e demais humanos. ♡</h2>
+              <p>A H1 agradece seu interesse em nossos serviços culturais. Estamos organizando nosso catálogo para oferecer uma experiência de qualidade, custo e outros conceitos empresariais relevantes. Acompanhe nossas próximas atualizações.</p>
+              <div class="fb-message__signature">— Departamento de Produção · H1 <span aria-hidden="true">✧</span></div>
             </div>
           </section>
         </div>
@@ -136,8 +137,8 @@ import '../../../recursos/css/pages/home/home.css';
             <h2 class="fb-widget__bar">◈ ESTADO DO SISTEMA</h2>
             <div class="fb-system">
               <p><span>CONEXÃO</span><strong class="fb-system__good">● ONLINE</strong></p>
-              <p><span>ORIGEM</span><strong>DESCONHECIDA</strong></p>
-              <p><span>ERRO</span><strong>0X00?1</strong></p>
+              <p><span>ACESSO</span><strong>PÚBLICO</strong></p>
+              <p><span>STATUS</span><strong>0X0001</strong></p>
               <div class="fb-system__meter" role="img" aria-label="Integridade fictícia do sinal: parcialmente estável"><span></span></div>
               <small>INTEGRIDADE DO SINAL: PARCIAL</small>
             </div>
@@ -147,8 +148,8 @@ import '../../../recursos/css/pages/home/home.css';
             <h2 class="fb-widget__bar">✦ AVISOS IMPORTANTES</h2>
             <div class="fb-note">
               <span aria-hidden="true">✧</span>
-              <p>Não acredite em todas as datas que encontrar por aqui.</p>
-              <small>FB-SYSTEM / MEMO 03</small>
+              <p>Todos os departamentos confirmam que a reunião de hoje ocorreu normalmente.</p>
+              <small>H1 / COMUNICADO INTERNO 03</small>
             </div>
           </section>
 
@@ -157,25 +158,25 @@ import '../../../recursos/css/pages/home/home.css';
             <div class="fb-stickers" aria-label="Etiquetas decorativas do site">
               <span>♡ OLD WEB</span>
               <span>✧ Y2K</span>
-              <span>◈ FB-OS</span>
+              <span>◈ H1 FANS</span>
               <span>✿ ONLINE</span>
             </div>
           </section>
 
           <section class="fb-widget fb-widget--dark">
-            <h2 class="fb-widget__bar">▣ ARQUIVO CORROMPIDO</h2>
+            <h2 class="fb-widget__bar">▣ REGISTRO ANTERIOR</h2>
             <div class="fb-corrupt">
               <span aria-hidden="true">⌁ ░▒▓ ? ◇</span>
-              <p>Alguns registros não aparecem duas vezes.</p>
-              <a href="/home/transmissao">Abrir registro 001 →</a>
+              <p>O visitante parece ter atravessado uma página antes de chegar aqui.</p>
+              <a href="/home/transmissao">Rever registro 001 →</a>
             </div>
           </section>
         </aside>
       </div>
 
       <footer class="fb-footer">
-        <span>✦ FutureBeyond — Est. 20XX</span>
-        <span>Feito para visitantes de qualquer era.</span>
+        <span>✦ FutureBeyond × H1 Produtora</span>
+        <span>Um portal. Uma produtora. Muitas ideias.</span>
         <a href="#topo">↑ VOLTAR AO TOPO</a>
       </footer>
     </div>
