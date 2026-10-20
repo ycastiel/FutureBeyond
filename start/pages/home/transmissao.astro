@@ -1,0 +1,88 @@
+---
+import Layout from '../../views/layouts/Layout.astro';
+import '../../../recursos/css/pages/home/transmissao.css';
+---
+
+<Layout title="FutureBeyond | Transmissão 001">
+  <main class="signal-home">
+    <div class="signal-home__orbit" aria-hidden="true"></div>
+    <div class="signal-home__star signal-home__star--a" aria-hidden="true"></div>
+    <div class="signal-home__star signal-home__star--b" aria-hidden="true"></div>
+
+    <div class="signal-card-frame">
+      <article class="signal-card" aria-labelledby="signal-title">
+        <!-- Microtextura, fraturas e fragmentos são elementos decorativos. -->
+        <div class="signal-card__scratch" aria-hidden="true"></div>
+        <svg
+          class="signal-card__cracks"
+          viewBox="0 0 800 560"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path d="M771 0 753 25 763 47 737 72 741 91 716 111 725 135 699 158" />
+          <path d="M737 72 700 67 683 84" />
+          <path d="M0 382 31 394 44 425 73 434 87 463 121 476 139 503" />
+          <path d="M73 434 98 414 117 418" />
+        </svg>
+
+        <div class="signal-card__topline">
+          <span class="signal-card__channel">◈ CANAL: FB / 001</span>
+          <span class="signal-card__stamp"><span aria-hidden="true">●</span> TRANSMISSÃO RECUPERADA</span>
+        </div>
+
+        <p class="signal-card__eyebrow">[ COMUNICAÇÃO ESTABELECIDA <span>//</span> SETOR 00 ]</p>
+        <h1 id="signal-title" class="signal-card__title">
+          Bem-vindo ao<br />
+          <span class="signal-card__wordmark" data-echo="FutureBeyond">FutureBeyond</span><span class="signal-card__period">.</span>
+        </h1>
+
+        <p class="signal-card__intro">
+          Sessão de convidado iniciada. Algumas informações deste arquivo
+          podem ter sido <span class="signal-card__missing">apag▯das</span> durante a transmissão.
+        </p>
+
+        <div class="signal-card__divider" aria-hidden="true"><span>✦</span></div>
+
+        <dl class="signal-card__telemetry">
+          <div>
+            <dt>TIPO DE ACESSO</dt>
+            <dd>CONVIDADO <span class="signal-card__cyan">/ TEMPORÁRIO</span></dd>
+          </div>
+          <div>
+            <dt>ORIGEM</dt>
+            <dd>[ <span class="signal-card__redaction" aria-label="dados indisponíveis">██████</span> ]</dd>
+          </div>
+          <div>
+            <dt>INTEGRIDADE DO SINAL</dt>
+            <dd><span class="signal-card__signal-dot" aria-hidden="true"></span> PARCIALMENTE ESTÁVEL</dd>
+          </div>
+        </dl>
+
+        <details class="signal-card__secret">
+          <summary>
+            <span class="signal-card__secret-icon" aria-hidden="true">✳</span>
+            <span>FRAGMENTO 002 — VISUALIZAR REGISTRO DANIFICADO</span>
+            <span class="signal-card__secret-arrow" aria-hidden="true">⌄</span>
+          </summary>
+          <p>“Você chegou cedo demais.”</p>
+          <small>ORIGEM DA MENSAGEM: <span>INDETERMINADA</span></small>
+        </details>
+
+        <a class="signal-card__continue" href="/home">
+          <span>
+            <strong>PROSSEGUIR PARA A CENTRAL</strong>
+            <small>Uma porta foi liberada. Continue a exploração.</small>
+          </span>
+          <span class="signal-card__continue-arrow" aria-hidden="true">↗</span>
+        </a>
+
+        <footer class="signal-card__footer">
+          <a href="/" class="signal-card__return">← RETORNAR AO TERMINAL</a>
+          <span>FB-OS / ARQUIVO 001 <span aria-hidden="true">✧</span></span>
+        </footer>
+      </article>
+      <p class="signal-home__caption">REGISTRO INCOMPLETO · ALGUNS SETORES PERMANECEM INACESSÍVEIS</p>
+    </div>
+  </main>
+</Layout>

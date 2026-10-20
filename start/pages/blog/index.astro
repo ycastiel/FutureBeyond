@@ -1,0 +1,153 @@
+---
+import Layout from '../../views/layouts/Layout.astro';
+import BlogPost from '../../views/componentes/blog/blogPost.astro';
+import '../../../recursos/css/pages/blog/blog.css';
+
+// CONTEÚDO DEMONSTRATIVO: substituiremos pelos textos e mídias do cliente.
+// Sem banco ou CMS: por enquanto, editar este array é suficiente.
+const posts = [
+  {
+    numero: '001',
+    data: '14.06.20XX',
+    categoria: 'ARTES & IDEIAS',
+    tema: 'horizonte',
+    titulo: 'Cartões-postais de um amanhã distante',
+    resumo: 'Guardei algumas paisagens de um lugar que talvez ainda não exista. Ou será que já estivemos lá?',
+    conteudo: [
+      'Hoje tentei desenhar o que vi quando a conexão se abriu: um horizonte violeta, reflexos metálicos e duas pequenas luas se olhando.',
+      'Não sei se é uma lembrança ou um sonho emprestado. Por enquanto, vou deixar tudo salvo aqui, caso a imagem desapareça outra vez.'
+    ]
+  },
+  {
+    numero: '002',
+    data: '10.06.20XX',
+    categoria: 'MÚSICA & MEMÓRIAS',
+    tema: 'discos',
+    titulo: 'Arquivos encontrados em um CD sem nome',
+    resumo: 'Três faixas sem autor, uma capa holográfica e um som que lembra a internet discada.',
+    conteudo: [
+      'Às vezes uma música parece carregar um lugar inteiro dentro dela. Encontrei um disco que não lembrava ter guardado.',
+      'A última faixa termina abruptamente. Depois de alguns segundos de silêncio, escuta-se algo parecido com uma mensagem — mas pode ser só ruído.'
+    ]
+  },
+  {
+    numero: '003',
+    data: '07.06.20XX',
+    categoria: 'DIÁRIO',
+    tema: 'estrelas',
+    titulo: 'A primeira mensagem deste pequeno universo',
+    resumo: 'Um espaço para guardar coisas bonitas, esquisitas, esquecidas e ainda não descobertas.',
+    conteudo: [
+      'Se você chegou até aqui, seja bem-vindo. Este blog ainda está sendo montado, pedacinho por pedacinho.',
+      'Pode explorar à vontade. Só não estranhe se alguma coisa mudar de lugar enquanto você não estiver olhando.'
+    ]
+  },
+] as const;
+---
+
+<Layout
+  title="FutureBeyond | Blog"
+  description="O diário digital do FutureBeyond: um pequeno canto Y2K para artes, memórias e transmissões de outro tempo."
+>
+  <main class="fb-blog" id="topo">
+    <div class="fb-blog__stars" aria-hidden="true"></div>
+
+    <div class="fb-blog__shell">
+      <header class="fb-blog__browser">
+        <div class="fb-blog__titlebar">
+          <span class="fb-blog__window-lights" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="fb-blog__titlebar-name">✧ FUTUREBEYOND BLOG ✧</span>
+          <span class="fb-blog__address">futurebeyond.net/blog</span>
+        </div>
+
+        <div class="fb-blog__intro">
+          <div class="fb-blog__mascot" aria-hidden="true"><span>✦</span><i></i></div>
+          <div class="fb-blog__intro-copy">
+            <p class="fb-blog__eyebrow">✧ WELCOME TO MY LITTLE CORNER OF THE INTERNET ✧</p>
+            <h1>my little <span>future</span> blog <b aria-hidden="true">✳</b></h1>
+            <p>Arte, memórias, música e outras coisinhas que atravessaram o tempo para chegar aqui. ♡</p>
+            <div class="fb-blog__tags" aria-label="Temas do blog">
+              <span>♡ old web</span>
+              <span>✦ pixel dreams</span>
+              <span>✿ art & music</span>
+              <span>◈ y2k vibes</span>
+            </div>
+          </div>
+          <div class="fb-blog__intro-orbit" aria-hidden="true"><span>FB/200X</span></div>
+        </div>
+
+        <nav class="fb-blog__nav" aria-label="Navegação do blog">
+          <a href="/home">⌂ CENTRAL</a>
+          <a href="#postagens" aria-current="page">✎ POSTS</a>
+          <a href="#sobre">♡ SOBRE</a>
+          <a href="#arquivo">✧ ARQUIVO</a>
+          <a href="/home/transmissao">◈ SINAL 001</a>
+        </nav>
+        <div class="fb-blog__marquee" aria-label="Mensagem do blog">
+          <span>✦ VOCÊ ESTÁ VISITANDO UMA PÁGINA DA WEB ANTIGA ✦ AINDA ESTAMOS AQUI ✦ NÃO FECHE ESTA JANELA ✦</span>
+        </div>
+      </header>
+
+      <div class="fb-blog__columns">
+        <section class="fb-blog__feed" id="postagens" aria-labelledby="posts-titulo">
+          <div class="fb-blog__section-heading">
+            <div>
+              <p class="fb-blog__eyebrow">✧ DEAR DIGITAL DIARY</p>
+              <h2 id="posts-titulo">Últimas postagens <span>♡</span></h2>
+            </div>
+            <span class="fb-blog__post-count">{String(posts.length).padStart(2, '0')} POSTS</span>
+          </div>
+
+          {posts.map((post) => <BlogPost {...post} />)}
+        </section>
+
+        <aside class="fb-blog__aside" aria-label="Widgets do blog">
+          <section class="fb-blog__widget" id="sobre">
+            <h2 class="fb-blog__widget-bar">✿ ABOUT THIS PLACE</h2>
+            <div class="fb-blog__widget-body fb-blog__about">
+              <div class="fb-blog__avatar" aria-hidden="true">✧</div>
+              <strong>futurebeyond.exe</strong>
+              <p>Um blog perdido entre o ontem e o amanhã. Feito para visitantes curiosos.</p>
+              <div class="fb-blog__mood"><span>STATUS</span><b>● ONLINE-ish</b></div>
+            </div>
+          </section>
+
+          <section class="fb-blog__widget" id="arquivo">
+            <h2 class="fb-blog__widget-bar">▧ MINI ARQUIVO</h2>
+            <div class="fb-blog__widget-body fb-blog__archive">
+              <span>JUNHO // 20XX</span>
+              {posts.map((post) => <a href={`#post-${post.numero}`}>✧ registro {post.numero}</a>)}
+            </div>
+          </section>
+
+          <section class="fb-blog__widget">
+            <h2 class="fb-blog__widget-bar">♡ BLINKIES & STICKERS</h2>
+            <div class="fb-blog__widget-body fb-blog__stickers" aria-label="Adesivos decorativos">
+              <span>✳ INTERNET ANGEL</span>
+              <span>★ FUTURE FRIEND ★</span>
+              <span>♡ MADE OF STARDUST</span>
+              <span>✿ CONNECTED ✿</span>
+            </div>
+          </section>
+
+          <section class="fb-blog__widget fb-blog__widget--secret">
+            <h2 class="fb-blog__widget-bar">◈ ANOTAÇÃO DO SISTEMA</h2>
+            <div class="fb-blog__widget-body">
+              <p>Alguns arquivos podem conter informações fora de ordem.</p>
+              <details class="fb-blog__secret">
+                <summary>ver nota recuperada ▾</summary>
+                <p>“Este blog foi atualizado amanhã.”</p>
+              </details>
+            </div>
+          </section>
+        </aside>
+      </div>
+
+      <footer class="fb-blog__footer">
+        <span>✦ FUTUREBEYOND — MY LITTLE CORNER ON THE WEB</span>
+        <a href="#topo">↑ VOLTAR AO TOPO</a>
+        <a href="/home">← VOLTAR À CENTRAL</a>
+      </footer>
+    </div>
+  </main>
+</Layout>

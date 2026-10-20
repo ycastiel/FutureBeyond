@@ -272,18 +272,91 @@
 .portal-statusbar__dot { width: 7px; height: 7px; border-radius: 50%; background: #32a572; }
 .entrance-hint { margin: 1.75rem 0 0; text-align: center; color: #bd9acd; font: .72rem var(--font-mono); letter-spacing: .04em; }
 
-.entrance-scene.is-leaving .portal-window {
+/*
+ * Entrada: a janela recua e sofre um pequeno solavanco.
+ * Em seguida, o observador despenca: a janela SOBE e desaparece no alto.
+ * O overlay escurece a cena no último instante, escondendo a troca de rota.
+ */
+.entrance-scene.is-entering .portal-window {
   pointer-events: none;
-  animation: portal-fall 760ms cubic-bezier(.5, 0, .8, .4) forwards;
+  transform-origin: 50% 42%;
+  animation: portalFallAway 1350ms cubic-bezier(.36, .02, .73, .58) both;
 }
-.entrance-scene.is-leaving .entrance-hint { opacity: 0; }
 
-@keyframes star-breathe { from { opacity: .3; scale: .7; } to { opacity: 1; scale: 1.2; } }
-@keyframes feedback-appear { from { opacity: 0; translate: 0 -5px; } to { opacity: 1; translate: 0; } }
-@keyframes portal-fall {
-  0% { transform: rotateY(0) rotateX(0) rotateZ(0) scale(1); opacity: 1; }
-  22% { transform: translateY(-22px) rotateX(-5deg) scale(1.04); opacity: 1; }
-  100% { transform: translateY(120vh) rotateX(32deg) rotateZ(9deg) scale(.65); opacity: 0; }
+.entrance-scene.is-entering .entrance-hint {
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.entrance-scene.is-entering .entrance-scene__halo,
+.entrance-scene.is-entering .entrance-scene__star {
+  animation: sceneryRises 1350ms cubic-bezier(.52, .06, .9, .42) both;
+}
+
+.entrance-scene.is-entering::after {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  content: '';
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, #13091b00 0%, #25103445 65%, #14081ef5 100%),
+    radial-gradient(ellipse at 50% 0%, #c89cff55, #1a092d 80%);
+  animation: fallVeil 1350ms ease-in both;
+}
+
+@keyframes star-breathe {
+  from { opacity: .3; scale: .7; }
+  to { opacity: 1; scale: 1.2; }
+}
+
+@keyframes feedback-appear {
+  from { opacity: 0; translate: 0 -5px; }
+  to { opacity: 1; translate: 0; }
+}
+
+@keyframes portalFallAway {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(0) scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+  22% { /* A tela se afasta um pouquinho. */
+    transform: rotateX(3deg) rotateY(-4deg) rotateZ(-2deg) translateY(18px) scale(.88);
+    opacity: 1;
+    filter: blur(0);
+  }
+  39% { /* Ela cede — mas não chega a cair. */
+    transform: rotateX(8deg) rotateY(-6deg) rotateZ(2deg) translateY(50px) scale(.82);
+    opacity: 1;
+    filter: blur(0);
+  }
+  52% { /* A câmera começa a cair: a tela parece subir. */
+    transform: rotateX(-3deg) rotateY(-3deg) rotateZ(-2deg) translateY(-12px) scale(.83);
+    opacity: 1;
+    filter: blur(0);
+  }
+  77% {
+    transform: rotateX(-10deg) rotateY(3deg) rotateZ(-5deg) translateY(-47vh) scale(.75);
+    opacity: 1;
+    filter: blur(1px);
+  }
+  100% {
+    transform: rotateX(-17deg) rotateY(5deg) rotateZ(-7deg) translateY(-145vh) scale(.66);
+    opacity: .65;
+    filter: blur(8px);
+  }
+}
+
+@keyframes sceneryRises {
+  0%, 39% { translate: 0 0; opacity: .8; }
+  100% { translate: 0 -80vh; opacity: 0; }
+}
+
+@keyframes fallVeil {
+  0%, 52% { opacity: 0; }
+  78% { opacity: .18; }
+  100% { opacity: 1; }
 }
 
 @media (hover: none), (pointer: coarse) {
@@ -303,4 +376,12 @@
   .portal-titlebar__branding { font-size: .77rem; }
   .portal-titlebar__controls span { width: 22px; height: 21px; }
   .entrance-hint { display: none; }
+}
+
+/* Em telas sem hover, evita que o zoom herde uma inclinação não prevista. */
+@media (prefers-reduced-motion: reduce) {
+  .entrance-scene.is-entering .portal-window,
+  .entrance-scene.is-entering::after {
+    animation: none;
+  }
 }

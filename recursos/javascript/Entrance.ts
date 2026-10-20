@@ -4,8 +4,8 @@ if (portal) {
   const loginForm = portal.querySelector<HTMLFormElement>('[data-login-form]');
   const feedback = portal.querySelector<HTMLElement>('[data-login-feedback]');
   const guestLink = portal.querySelector<HTMLAnchorElement>('[data-guest-access]');
+  const portalWindow = portal.querySelector<HTMLElement>('.portal-window');
 
-  // O formulário é apenas parte da narrativa: nada é enviado ou armazenado.
   loginForm?.addEventListener('submit', (event) => {
     event.preventDefault();
     loginForm.reset();
@@ -13,37 +13,59 @@ if (portal) {
     if (feedback) {
       feedback.hidden = false;
       feedback.classList.remove('login-feedback--shown');
-      void feedback.offsetWidth; // Reinicia a animação para tentativas consecutivas.
+      void feedback.offsetWidth;
       feedback.classList.add('login-feedback--shown');
     }
   });
 
-  // Como é um <a href>, a rota continua funcionando mesmo sem JavaScript.
   guestLink?.addEventListener('click', (event) => {
-    if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) {
+    // Preserva atalhos do navegador e abertura em nova aba.
+    if (
+      event.button !== 0 ||
+      event.ctrlKey ||
+      event.metaKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
       return;
     }
 
-    if (portal.classList.contains('is-leaving')) {
-      event.preventDefault();
-      return;
-    }
-
-    // Navegação imediata para usuários que preferem movimento reduzido.
+    // Sem animação para pessoas que preferem movimento reduzido.
+    // Nesse caso, o link HTML navega normalmente.
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return;
     }
 
     event.preventDefault();
-    portal.classList.add('is-leaving');
+    if (portal.classList.contains('is-entering')) return;
 
-    window.setTimeout(() => {
+    portal.classList.add('is-entering');
+    guestLink.setAttribute('aria-disabled', 'true');
+
+    let navigated = false;
+    const navigate = () => {
+      if (navigated) return;
+      navigated = true;
       window.location.assign(guestLink.href);
-    }, 760);
+    };
+
+    // A animação pertence à janela, não ao container nem ao overlay.
+    portalWindow?.addEventListener('animationend', (animationEvent) => {
+      if (
+        animationEvent.target === portalWindow &&
+        animationEvent.animationName === 'portalFallAway'
+      ) {
+        navigate();
+      }
+    });
+
+    // Fallback caso a animação seja interrompida.
+    window.setTimeout(navigate, 1700);
   });
 }
 
-// Evita manter a classe de saída quando a página é restaurada pelo histórico.
+// Restaurar o estado quando a página voltar do histórico (BFCache).
 window.addEventListener('pageshow', () => {
-  portal?.classList.remove('is-leaving');
+  portal?.classList.remove('is-entering');
+  portal?.querySelector('[data-guest-access]')?.removeAttribute('aria-disabled');
 });

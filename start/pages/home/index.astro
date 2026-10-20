@@ -1,0 +1,183 @@
+---
+// start/pages/home/home.astro — Home Old Web / central do FutureBeyond
+import Layout from '../../views/layouts/Layout.astro';
+import '../../../recursos/css/pages/home/home.css';
+---
+
+<Layout title="FutureBeyond | Central">
+  <main class="fb-home" id="topo">
+    <div class="fb-home__stars" aria-hidden="true"></div>
+
+    <div class="fb-site">
+      <header class="fb-header">
+        <div class="fb-header__chrome">
+          <span class="fb-header__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>futurebeyond.net // visitor terminal</span>
+          <span class="fb-header__right">CONNECTED ✦ FB-OS</span>
+        </div>
+
+        <div class="fb-header__hero">
+          <div class="fb-header__identity">
+            <p>✦ &nbsp; SUA JANELA PARA O QUE AINDA NÃO EXISTE</p>
+            <h1>Future<span>Beyond</span><b aria-hidden="true">✧</b></h1>
+            <span class="fb-header__subtitle">Um pequeno canto da internet, perdido entre tempos.</span>
+          </div>
+          <div class="fb-header__orb" aria-hidden="true"><span>FB/01</span></div>
+        </div>
+
+        <nav class="fb-nav" aria-label="Navegação principal">
+          <a href="#inicio" aria-current="page">⌂ <span>HOME</span></a>
+          <a href="#arquivo">✦ <span>ARQUIVO</span></a>
+          <a href="#mensagens">✉ <span>MENSAGENS</span></a>
+          <a href="/home/transmissao">◇ <span>TRANSMISSÃO 001</span></a>
+          <a href="/blog">✿ <span>BLOG</span></a>
+        </nav>
+      </header>
+
+      <div class="fb-ticker" aria-label="Mensagem de boas-vindas">
+        <span>✧ VOCÊ ESTÁ ONLINE ✧</span>
+        <span>—</span>
+        <span>CONEXÃO INTERTEMPORAL ESTABELECIDA</span>
+        <span>✦</span>
+        <span>ALGUNS ARQUIVOS PODEM ESTAR INCOMPLETOS</span>
+      </div>
+
+      <div class="fb-columns">
+        <aside class="fb-sidebar fb-sidebar--left" aria-label="Informações do visitante">
+          <section class="fb-widget">
+            <h2 class="fb-widget__bar">✿ PERFIL DO VISITANTE</h2>
+            <div class="fb-profile">
+              <div class="fb-profile__avatar" aria-hidden="true"><span>✧</span></div>
+              <strong>visitante_001</strong>
+              <p>um rosto entre muitos mundos...</p>
+              <div class="fb-profile__online"><span aria-hidden="true">●</span> DISPONÍVEL NO SISTEMA</div>
+            </div>
+          </section>
+
+          <section class="fb-widget">
+            <h2 class="fb-widget__bar">✧ NAVEGAÇÃO RÁPIDA</h2>
+            <div class="fb-shortcuts">
+              <a href="#inicio">⌂ &nbsp; Página inicial</a>
+              <a href="#arquivo">▧ &nbsp; Últimos registros</a>
+              <a href="#mensagens">✉ &nbsp; Mural de recados</a>
+              <a href="/home/transmissao">◇ &nbsp; Arquivo recuperado</a>
+            </div>
+          </section>
+
+          <section class="fb-widget fb-widget--mini">
+            <h2 class="fb-widget__bar">◷ CONTADOR DE ERA</h2>
+            <div class="fb-era">
+              <strong>20<span>XX</span></strong>
+              <small>DATA LOCAL INDETERMINADA</small>
+            </div>
+          </section>
+        </aside>
+
+        <div class="fb-main-column">
+          <section class="fb-window" id="inicio" aria-labelledby="fb-welcome-title">
+            <div class="fb-window__bar"><span>✦ &nbsp; FutureBeyond — Início</span><span aria-hidden="true">_ □ ×</span></div>
+            <div class="fb-welcome">
+              <div class="fb-welcome__copy">
+                <p class="fb-kicker">// VOCÊ ENCONTROU A CENTRAL</p>
+                <h2 id="fb-welcome-title">Welcome to<br /><em>tomorrow</em> ✧</h2>
+                <p>Bem-vindo ao FutureBeyond! Arquivos, lembranças, imagens e pequenas descobertas vivem por aqui. Explore sem pressa — este lugar parece ter esperado muito tempo por você.</p>
+                <a class="fb-button" href="#arquivo"><span>Explorar os registros</span><span aria-hidden="true">→</span></a>
+              </div>
+              <div class="fb-welcome__art" aria-label="Ilustração decorativa de um planeta violeta em um céu estrelado" role="img">
+                <div class="fb-welcome__planet"></div>
+                <span class="fb-welcome__twinkle fb-welcome__twinkle--a" aria-hidden="true">✦</span>
+                <span class="fb-welcome__twinkle fb-welcome__twinkle--b" aria-hidden="true">✧</span>
+                <span class="fb-welcome__art-label">TO ANOTHER TIMELINE_</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="fb-window" id="arquivo" aria-labelledby="fb-archive-title">
+            <div class="fb-window__bar"><span>▧ &nbsp; Registros recentes</span><span>02 ARQUIVOS</span></div>
+            <div class="fb-archive">
+              <div class="fb-section-title">
+                <h2 id="fb-archive-title">✧ Últimas transmissões</h2>
+                <span>ARQUIVO / PREVIEW</span>
+              </div>
+              <article class="fb-post">
+                <div class="fb-post__art fb-post__art--space" aria-hidden="true"><span>✦</span></div>
+                <div class="fb-post__body">
+                  <p class="fb-post__meta">ARQUIVO 001 <span>•</span> PRIMEIRO CONTATO</p>
+                  <h3>Uma mensagem de um lugar distante</h3>
+                  <p>Um sinal surgiu na borda da nossa pequena rede. Ainda não sabemos quem o enviou — ou quando.</p>
+                  <a href="/home/transmissao">Visualizar transmissão <span aria-hidden="true">↗</span></a>
+                </div>
+              </article>
+              <article class="fb-post fb-post--muted">
+                <div class="fb-post__art fb-post__art--disc" aria-hidden="true"><span>◈</span></div>
+                <div class="fb-post__body">
+                  <p class="fb-post__meta">ARQUIVO 002 <span>•</span> EM PREPARAÇÃO</p>
+                  <h3>Memórias que ainda não aconteceram</h3>
+                  <p>Um espaço reservado para os conteúdos, artes e histórias que o cliente enviar no futuro.</p>
+                  <span class="fb-post__pending">[ AGUARDANDO TRANSMISSÃO ]</span>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="fb-window" id="mensagens" aria-labelledby="fb-messages-title">
+            <div class="fb-window__bar"><span>✉ &nbsp; Mural de recados</span><span>READ ONLY</span></div>
+            <div class="fb-message">
+              <p class="fb-kicker">TRANSMISSÃO DO ADMINISTRADOR // 000</p>
+              <h2 id="fb-messages-title">Olá, pessoa do outro lado da tela! ♡</h2>
+              <p>Este pequeno universo ainda está sendo construído. Novas portas vão aparecer em breve. Enquanto isso, aproveite a visita e tente não se perder pelo caminho...</p>
+              <div class="fb-message__signature">— Equipe FutureBeyond <span aria-hidden="true">✧</span></div>
+            </div>
+          </section>
+        </div>
+
+        <aside class="fb-sidebar fb-sidebar--right" aria-label="Widgets e informações da transmissão">
+          <section class="fb-widget">
+            <h2 class="fb-widget__bar">◈ ESTADO DO SISTEMA</h2>
+            <div class="fb-system">
+              <p><span>CONEXÃO</span><strong class="fb-system__good">● ONLINE</strong></p>
+              <p><span>ORIGEM</span><strong>DESCONHECIDA</strong></p>
+              <p><span>ERRO</span><strong>0X00?1</strong></p>
+              <div class="fb-system__meter" role="img" aria-label="Integridade fictícia do sinal: parcialmente estável"><span></span></div>
+              <small>INTEGRIDADE DO SINAL: PARCIAL</small>
+            </div>
+          </section>
+
+          <section class="fb-widget">
+            <h2 class="fb-widget__bar">✦ AVISOS IMPORTANTES</h2>
+            <div class="fb-note">
+              <span aria-hidden="true">✧</span>
+              <p>Não acredite em todas as datas que encontrar por aqui.</p>
+              <small>FB-SYSTEM / MEMO 03</small>
+            </div>
+          </section>
+
+          <section class="fb-widget">
+            <h2 class="fb-widget__bar">♡ ADESIVOS DIGITAIS</h2>
+            <div class="fb-stickers" aria-label="Etiquetas decorativas do site">
+              <span>♡ OLD WEB</span>
+              <span>✧ Y2K</span>
+              <span>◈ FB-OS</span>
+              <span>✿ ONLINE</span>
+            </div>
+          </section>
+
+          <section class="fb-widget fb-widget--dark">
+            <h2 class="fb-widget__bar">▣ ARQUIVO CORROMPIDO</h2>
+            <div class="fb-corrupt">
+              <span aria-hidden="true">⌁ ░▒▓ ? ◇</span>
+              <p>Alguns registros não aparecem duas vezes.</p>
+              <a href="/home/transmissao">Abrir registro 001 →</a>
+            </div>
+          </section>
+        </aside>
+      </div>
+
+      <footer class="fb-footer">
+        <span>✦ FutureBeyond — Est. 20XX</span>
+        <span>Feito para visitantes de qualquer era.</span>
+        <a href="#topo">↑ VOLTAR AO TOPO</a>
+      </footer>
+    </div>
+  </main>
+</Layout>
