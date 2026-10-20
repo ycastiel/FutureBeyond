@@ -1,0 +1,43 @@
+---
+interface Props {
+  numero: string;
+  data: string;
+  categoria: string;
+  tema: 'horizonte' | 'discos' | 'estrelas';
+  titulo: string;
+  resumo: string;
+  conteudo: readonly string[];
+}
+
+const { numero, data, categoria, tema, titulo, resumo, conteudo } = Astro.props;
+---
+
+<article class="fb-blog-post" id={`post-${numero}`}>
+  <div class="fb-blog-post__bar">
+    <span>▧ BLOG POST // {numero}</span>
+    <time>{data}</time>
+  </div>
+  <div class="fb-blog-post__body">
+    <div class="fb-blog-post__meta">
+      <span>{data}</span>
+      <span>✿ {categoria}</span>
+    </div>
+    <div class={`fb-blog-post__art fb-blog-post__art--${tema}`} role="img" aria-label={tema === 'horizonte' ? 'Paisagem cósmica ilustrada em degradê lilás e azul' : tema === 'discos' ? 'Discos holográficos ilustrados em tons pastel' : 'Céu estrelado em tons violeta e azul'}>
+      <span class="fb-blog-post__art-sparkle" aria-hidden="true">✦</span>
+      <span class="fb-blog-post__art-caption" aria-hidden="true">FUTUREBEYOND // {numero}</span>
+    </div>
+    <h3>{titulo}</h3>
+    <p class="fb-blog-post__summary">{resumo}</p>
+    <details class="fb-blog-post__details">
+      <summary>LER POST COMPLETO <span aria-hidden="true">→</span></summary>
+      <div class="fb-blog-post__expanded">
+        {conteudo.map((paragrafo) => <p>{paragrafo}</p>)}
+        <p class="fb-blog-post__signoff">✧ fim da transmissão {numero} ✧</p>
+      </div>
+    </details>
+    <div class="fb-blog-post__footer">
+      <span>♡ ARQUIVADO COM CARINHO</span>
+      <span>✧ {numero}/003</span>
+    </div>
+  </div>
+</article>
