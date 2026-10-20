@@ -1,0 +1,127 @@
+---
+import Layout from '../views/layouts/Layout.astro';
+import '../../recursos/css/pages/blog/sobre.css';
+
+// Apresentações sintéticas baseadas no roteiro PI2, sujeitas à aprovação da equipe.
+// A revelação sobre a verdadeira natureza dos personagens NÃO deve aparecer aqui.
+const equipe = [
+  {
+    id: 'bene',
+    numero: '01',
+    nome: 'Benedito Silva',
+    apelido: 'Benê',
+    funcao: 'TECNOLOGIA & INFRAESTRUTURA',
+    resumo: 'Responsável pelos aspectos técnicos das produções e pelo funcionamento deste site.',
+    detalhe: 'Prefere instruções objetivas, decisões simples e tarefas que não exijam reuniões adicionais.',
+    simbolo: '⌘',
+  },
+  {
+    id: 'jeff',
+    numero: '02',
+    nome: 'Jeff Grease',
+    apelido: 'Jeff',
+    funcao: 'PRODUÇÃO & ESTRATÉGIA',
+    resumo: 'Organiza os projetos, coordena as produções e dedica atenção especial aos assuntos financeiros.',
+    detalhe: 'Seu interesse por modelos de negócios continua crescendo. As políticas de preços estão sob análise.',
+    simbolo: '$',
+  },
+  {
+    id: 'berinjela',
+    numero: '03',
+    nome: 'Leonardo Fábio',
+    apelido: 'Berinjela',
+    funcao: 'CRIAÇÃO & DESENVOLVIMENTO',
+    resumo: 'Responsável por ideias e propostas artísticas para as produções da H1.',
+    detalhe: 'Encontra inspiração em detalhes cotidianos que a maioria das pessoas deixaria passar.',
+    simbolo: '✿',
+  },
+] as const;
+---
+
+<Layout title="FutureBeyond | Sobre a H1 Produtora" description="Conheça a H1 Produtora, os projetos em desenvolvimento e sua equipe.">
+  <main class="h1-about" id="topo">
+    <div class="h1-about__shell">
+      <div class="h1-about__chrome" aria-label="Janela institucional H1">
+        <span class="h1-about__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>H1 PRODUTORA // INFORMAÇÕES INSTITUCIONAIS</span>
+        <span class="h1-about__status">ONLINE ✦</span>
+      </div>
+
+      <nav class="h1-about__nav" aria-label="Navegação da produtora">
+        <a href="/home">⌂ CENTRAL</a>
+        <a href="/sobre" aria-current="page">✧ SOBRE</a>
+        <a href="/blog">♡ BLOG</a>
+        <a href="#equipe">✿ EQUIPE</a>
+      </nav>
+
+      <header class="h1-about__hero">
+        <div class="h1-about__intro">
+          <p class="h1-about__eyebrow">✦ APRESENTAÇÃO INSTITUCIONAL // H1.001</p>
+          <h1>Uma produtora.<br /><em>Muitas ideias.</em></h1>
+          <p>A H1 Produtora é uma equipe criativa dedicada a desenvolver conteúdos para o entretenimento do público. Ocasionalmente, precisamos pesquisar o significado de palavras muito comuns. Isso não afeta a qualidade dos serviços.</p>
+          <a class="h1-about__button" href="#equipe">Conheça nossa equipe <span aria-hidden="true">↗</span></a>
+          <small>Texto de apresentação provisório para validação da equipe.</small>
+        </div>
+        <div class="h1-about__brand">
+          <img src="/imagens/h1/h1-horizontal.png" width="1991" height="400" alt="H1 Produtora, logotipo holográfico lilás" />
+          <span class="h1-about__brand-sub">H1 PRODUTORA — SUA PRODUTORA DE CONFIANÇA</span>
+        </div>
+      </header>
+
+      <div class="h1-about__content">
+        <section class="h1-about__window" aria-labelledby="h1-purpose-title">
+          <div class="h1-about__window-head"><span>✧ &nbsp; Sobre nós</span><span aria-hidden="true">_ □ ×</span></div>
+          <div class="h1-about__window-body h1-about__purpose">
+            <div>
+              <p class="h1-about__eyebrow">01 / NOSSA APRESENTAÇÃO</p>
+              <h2 id="h1-purpose-title">Criatividade para todos os públicos.</h2>
+              <p>Nosso espaço digital reúne notícias e informações sobre as produções da H1. Estamos preparando conteúdos audiovisuais, conversas em áudio e outras iniciativas.</p>
+              <p>As informações sobre nossa história institucional e nosso propósito definitivo serão publicadas após a revisão do material de apresentação.</p>
+            </div>
+            <div class="h1-about__notice" role="note">
+              <span>◈ INFORMAÇÃO PARA VISITANTES</span>
+              <strong>ATENDIMENTO EM OPERAÇÃO</strong>
+              <p>O departamento técnico confirmou que este endereço é um site.</p>
+              <small>H1 / COMUNICADO DEMONSTRATIVO</small>
+            </div>
+          </div>
+        </section>
+
+        <section class="h1-about__window" id="equipe" aria-labelledby="h1-team-title">
+          <div class="h1-about__window-head"><span>✿ &nbsp; Diretório de integrantes</span><span>03 PERFIS</span></div>
+          <div class="h1-about__window-body">
+            <p class="h1-about__eyebrow">02 / PESSOAS RESPONSÁVEIS</p>
+            <h2 id="h1-team-title">Conheça a equipe H1</h2>
+            <p class="h1-about__section-intro">Três áreas distintas, uma produtora e um número razoável de reuniões sobre como funcionam as produtoras.</p>
+            <div class="h1-about__team">
+              {equipe.map((pessoa) => (
+                <article class={`h1-about__person h1-about__person--${pessoa.id}`}>
+                  <div class="h1-about__portrait" aria-hidden="true"><span>{pessoa.simbolo}</span><small>H1 / {pessoa.numero}</small></div>
+                  <div class="h1-about__person-content">
+                    <p class="h1-about__role">{pessoa.funcao}</p>
+                    <h3>{pessoa.nome} <span>({pessoa.apelido})</span></h3>
+                    <p>{pessoa.resumo}</p>
+                    <p class="h1-about__person-note">{pessoa.detalhe}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section class="h1-about__window" aria-labelledby="h1-content-title">
+          <div class="h1-about__window-head"><span>▧ &nbsp; Em produção</span><span>PREVISÕES SUJEITAS À REVISÃO</span></div>
+          <div class="h1-about__window-body">
+            <h2 id="h1-content-title">Projetos em preparação</h2>
+            <div class="h1-about__project-grid">
+              <article><span>🎞 DOCUMENTÁRIO</span><h3>Filme e materiais extras</h3><p>Espaço planejado para sinopse, pôster, créditos e peças promocionais.</p></article>
+              <article><span>◉ PODCASTS</span><h3>Conversas em áudio</h3><p>Uma área reservada aos episódios curtos ligados aos integrantes da produtora.</p></article>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <footer class="h1-about__footer"><span>✦ H1 PRODUTORA × FUTUREBEYOND</span><a href="/home">← VOLTAR PARA A CENTRAL</a><a href="#topo">↑ TOPO</a></footer>
+    </div>
+  </main>
+</Layout>
