@@ -74,16 +74,28 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
-button { cursor: pointer; }
-a { color: inherit; }
-img, svg { display: block; max-width: 100%; }
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
 
 :focus-visible {
   outline: 3px solid var(--color-cyan);
   outline-offset: 4px;
 }
 
-[hidden] { display: none !important; }
+[hidden] {
+  display: none !important;
+}
 
 ::selection {
   color: var(--color-void);
@@ -91,10 +103,167 @@ img, svg { display: block; max-width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
+  }
+}
+
+/* ============================================================
+   FUTUREBEYOND / FB-OS — WINDOW TRANSFER v2
+   Recuo de janela, sincronização cromada e materialização.
+   Anima apenas durante uma navegação do Astro ClientRouter.
+   ============================================================ */
+
+:root {
+  --fb-transfer-time: 1350ms;
+  --fb-transfer-ease: cubic-bezier(.22, .72, .22, 1);
+}
+
+/* O fundo pertence à camada temporária de View Transition. Ele
+   só existe visualmente durante a navegação, não fica sobre o site. */
+::view-transition {
+  background-color: #070a16;
+  background-image:
+    /* faixa cromada / scanner de transferência */
+    linear-gradient(90deg,
+      transparent 0%,
+      transparent 46%,
+      #5de7f922 48.25%,
+      #90f5ffac 49.20%,
+      #f6ffff 49.70%,
+      #f2d2ff 50.05%,
+      #aa82faaa 50.55%,
+      #678ce52e 52%,
+      transparent 54%,
+      transparent 100%),
+    /* linhas de monitor discretas */
+    repeating-linear-gradient(0deg,
+      transparent 0 3px,
+      #cde8ff0b 3px 4px),
+    radial-gradient(ellipse at 50% 50%, #392255, #11101f 72%, #070a16);
+  background-size: 240% 100%, auto, auto;
+  background-position: 100% 0, center, center;
+  background-repeat: no-repeat, repeat, no-repeat;
+  animation: fb-chrome-scan var(--fb-transfer-time) linear both;
+}
+
+/* Evita interpolação inesperada de transformações no grupo raiz. */
+::view-transition-group(root),
+::view-transition-image-pair(root) {
+  animation-duration: var(--fb-transfer-time);
+  animation-timing-function: linear;
+}
+
+/* A página atual recua, revelando o espaço escuro do FB-OS.
+   A moldura é feita com sombra na captura — sem mover a DOM real. */
+::view-transition-old(root) {
+  transform-origin: center;
+  backface-visibility: hidden;
+  animation: fb-window-dock var(--fb-transfer-time) var(--fb-transfer-ease) both;
+}
+
+/* A página seguinte surge somente depois da varredura cromada. */
+::view-transition-new(root) {
+  transform-origin: center;
+  backface-visibility: hidden;
+  animation: fb-window-restore var(--fb-transfer-time) var(--fb-transfer-ease) both;
+}
+
+@keyframes fb-window-dock {
+  0% {
+    opacity: 1;
+    transform: perspective(1400px) translate3d(0, 0, 0) scale(1) rotateX(0);
+    filter: brightness(1);
+    box-shadow: none;
+  }
+
+  22% {
+    opacity: 1;
+    transform: perspective(1400px) translate3d(0, 7px, 0) scale(.973) rotateX(1.1deg);
+    filter: brightness(.93);
+    box-shadow: 0 0 0 1px #e0c4ffb8, 0 0 34px #9d7ffb5a;
+  }
+
+  38% {
+    opacity: .92;
+    transform: perspective(1400px) translate3d(0, -4px, 0) scale(.925) rotateX(2deg);
+    filter: brightness(.72);
+    box-shadow: 0 0 0 1px #8ff4ffcc, 0 0 52px #72d6ff64;
+  }
+
+  53% {
+    opacity: 0;
+    transform: perspective(1400px) translate3d(0, -12px, 0) scale(.90) rotateX(2.5deg);
+    filter: brightness(.55);
+  }
+
+  100% {
+    opacity: 0;
+    transform: perspective(1400px) translate3d(0, -12px, 0) scale(.90) rotateX(2.5deg);
+  }
+}
+
+@keyframes fb-chrome-scan {
+
+  0%,
+  26% {
+    background-position: 100% 0, center, center;
+  }
+
+  78%,
+  100% {
+    background-position: 0% 0, center, center;
+  }
+}
+
+@keyframes fb-window-restore {
+
+  0%,
+  47% {
+    opacity: 0;
+    transform: perspective(1400px) translate3d(0, 15px, 0) scale(.94) rotateX(-1.4deg);
+    filter: brightness(.65);
+  }
+
+  62% {
+    opacity: .26;
+    transform: perspective(1400px) translate3d(0, 6px, 0) scale(.956) rotateX(-.6deg);
+    filter: brightness(1.28);
+    box-shadow: 0 0 0 1px #b3f9ffdb, 0 0 52px #93eaff61;
+  }
+
+  82% {
+    opacity: 1;
+    transform: perspective(1400px) translate3d(0, 0, 0) scale(1.008) rotateX(0);
+    filter: brightness(1.09);
+    box-shadow: 0 0 0 1px #ddc1ff88, 0 0 28px #b68eff30;
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: brightness(1);
+    box-shadow: none;
+  }
+}
+
+/* Respeita quem prefere menos movimento e evita animações longas
+   quando o navegador já pediu uma experiência estática. */
+@media (prefers-reduced-motion: reduce) {
+
+  ::view-transition,
+  ::view-transition-group(root),
+  ::view-transition-image-pair(root),
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
   }
 }
