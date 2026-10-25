@@ -1099,41 +1099,118 @@
 }
 
 /* Carrossel H1 — roda automaticamente após escolher o anúncio inicial aleatório. */
-.fb-advert { min-width: 0; padding: .68rem; }
-.fb-advert__viewport { width: 100%; min-width: 0; overflow: hidden; }
+.fb-advert {
+  min-width: 0;
+  padding: .68rem;
+}
+
+.fb-advert__viewport {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
 .fb-advert__card {
-  width: 100%; min-width: 0; max-width: 100%; min-height: 154px;
-  padding: .9rem .45rem; gap: .45rem; overflow: hidden;
-  overflow-wrap: anywhere; hyphens: auto;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 154px;
+  padding: .9rem .45rem;
+  gap: .45rem;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
-.fb-advert__card.is-current { animation: fb-ad-enter 350ms ease-out both; }
+
+.fb-advert__card.is-current {
+  animation: fb-ad-enter 350ms ease-out both;
+}
+
 .fb-advert__card strong {
-  max-width: 100%; font-size: clamp(.86rem, 1.15vw, 1.1rem);
-  line-height: 1.18; letter-spacing: .025em;
+  max-width: 100%;
+  font-size: clamp(.86rem, 1.15vw, 1.1rem);
+  line-height: 1.18;
+  letter-spacing: .025em;
 }
-.fb-advert__overline { max-width: 100%; font-size: .54rem; }
-.fb-advert__subtitle { font-size: .72rem; line-height: 1.32; }
+
+.fb-advert__overline {
+  max-width: 100%;
+  font-size: .54rem;
+}
+
+.fb-advert__subtitle {
+  font-size: .72rem;
+  line-height: 1.32;
+}
+
 .fb-advert__card--documentary {
   background: radial-gradient(circle at 62% 20%, #b8eafc88, transparent 42%), linear-gradient(155deg, #513682, #241334);
 }
+
 .fb-advert__controls {
-  display: flex; justify-content: center; align-items: center;
-  gap: .65rem; padding: .6rem 0 .2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .65rem;
+  padding: .6rem 0 .2rem;
 }
+
 .fb-advert__control {
-  display: grid; place-items: center; width: 32px; height: 30px;
-  border-radius: 8px; border: 1px solid #c5a3e7;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid #c5a3e7;
   background: linear-gradient(#f9e5ff, #ad7dd5 55%, #6a3c95);
   box-shadow: inset 0 1px #fff, 0 2px 0 #4f2874;
-  color: #2d1744; font-size: 1.25rem; font-weight: 800;
-  line-height: 1; cursor: pointer;
+  color: #2d1744;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
 }
-.fb-advert__control:hover { filter: brightness(1.1); }
-.fb-advert__control:focus-visible { outline: 2px solid #a6eef5; outline-offset: 3px; }
-.fb-advert__count { min-width: 3rem; text-align: center; font: 700 .65rem var(--font-mono); color: #e4cafd; }
-.fb-advert__footnote { font-size: .52rem; line-height: 1.35; text-align: center; overflow-wrap: anywhere; }
-@keyframes fb-ad-enter { from { opacity: .35; transform: translateY(7px) scale(.985); } to { opacity: 1; transform: none; } }
-@media (prefers-reduced-motion: reduce) { .fb-advert__card.is-current { animation: none; } }
+
+.fb-advert__control:hover {
+  filter: brightness(1.1);
+}
+
+.fb-advert__control:focus-visible {
+  outline: 2px solid #a6eef5;
+  outline-offset: 3px;
+}
+
+.fb-advert__count {
+  min-width: 3rem;
+  text-align: center;
+  font: 700 .65rem var(--font-mono);
+  color: #e4cafd;
+}
+
+.fb-advert__footnote {
+  font-size: .52rem;
+  line-height: 1.35;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+@keyframes fb-ad-enter {
+  from {
+    opacity: .35;
+    transform: translateY(7px) scale(.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fb-advert__card.is-current {
+    animation: none;
+  }
+}
 
 
 /* Ajustes finos v4 arcade: sem feixe de luz, com estrelas-símbolo, brilho vivo e meteoros verticais laterais. */
@@ -1149,16 +1226,16 @@
   pointer-events: none;
   mix-blend-mode: screen;
   background:
-    radial-gradient(circle at 5% 10%, rgba(255,255,255,.9) 0 1.2px, transparent 2.5px),
-    radial-gradient(circle at 9% 23%, rgba(193,241,255,.82) 0 1.5px, transparent 2.8px),
-    radial-gradient(circle at 13% 42%, rgba(245,224,255,.76) 0 1.4px, transparent 2.6px),
-    radial-gradient(circle at 8% 63%, rgba(255,255,255,.72) 0 1.1px, transparent 2.4px),
-    radial-gradient(circle at 12% 84%, rgba(193,241,255,.78) 0 1.3px, transparent 2.6px),
-    radial-gradient(circle at 88% 9%, rgba(255,255,255,.88) 0 1.2px, transparent 2.5px),
-    radial-gradient(circle at 94% 27%, rgba(193,241,255,.84) 0 1.5px, transparent 2.8px),
-    radial-gradient(circle at 90% 48%, rgba(245,224,255,.76) 0 1.4px, transparent 2.6px),
-    radial-gradient(circle at 96% 70%, rgba(255,255,255,.72) 0 1.1px, transparent 2.4px),
-    radial-gradient(circle at 91% 89%, rgba(193,241,255,.78) 0 1.3px, transparent 2.6px);
+    radial-gradient(circle at 5% 10%, rgba(255, 255, 255, .9) 0 1.2px, transparent 2.5px),
+    radial-gradient(circle at 9% 23%, rgba(193, 241, 255, .82) 0 1.5px, transparent 2.8px),
+    radial-gradient(circle at 13% 42%, rgba(245, 224, 255, .76) 0 1.4px, transparent 2.6px),
+    radial-gradient(circle at 8% 63%, rgba(255, 255, 255, .72) 0 1.1px, transparent 2.4px),
+    radial-gradient(circle at 12% 84%, rgba(193, 241, 255, .78) 0 1.3px, transparent 2.6px),
+    radial-gradient(circle at 88% 9%, rgba(255, 255, 255, .88) 0 1.2px, transparent 2.5px),
+    radial-gradient(circle at 94% 27%, rgba(193, 241, 255, .84) 0 1.5px, transparent 2.8px),
+    radial-gradient(circle at 90% 48%, rgba(245, 224, 255, .76) 0 1.4px, transparent 2.6px),
+    radial-gradient(circle at 96% 70%, rgba(255, 255, 255, .72) 0 1.1px, transparent 2.4px),
+    radial-gradient(circle at 91% 89%, rgba(193, 241, 255, .78) 0 1.3px, transparent 2.6px);
   animation: fb-starfield-float 11s ease-in-out infinite alternate;
 }
 
@@ -1191,7 +1268,7 @@
     95vw 57vh 0 #ffffff,
     90vw 74vh 0 #d6f8ff,
     94vw 91vh 0 #ffffff;
-  filter: drop-shadow(0 0 6px rgba(255,255,255,.5));
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, .5));
   opacity: .95;
   animation: fb-symbol-stars 5.4s ease-in-out infinite alternate;
 }
@@ -1199,13 +1276,13 @@
 /* Meteoros verticais nas laterais, vivos porém sem cruzar o conteúdo. */
 .fb-home__stars::after {
   background-image:
-    linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(193,241,255,.22) 18%, rgba(255,255,255,1) 55%, rgba(255,255,255,0) 100%),
-    linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(240,220,255,.18) 18%, rgba(255,255,255,.98) 55%, rgba(255,255,255,0) 100%),
-    linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(193,241,255,.16) 18%, rgba(255,255,255,.88) 55%, rgba(255,255,255,0) 100%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(193, 241, 255, .22) 18%, rgba(255, 255, 255, 1) 55%, rgba(255, 255, 255, 0) 100%),
+    linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(240, 220, 255, .18) 18%, rgba(255, 255, 255, .98) 55%, rgba(255, 255, 255, 0) 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(193, 241, 255, .16) 18%, rgba(255, 255, 255, .88) 55%, rgba(255, 255, 255, 0) 100%);
   background-repeat: no-repeat;
   background-size: 2px 22vh, 3px 29vh, 1.5px 16vh;
   background-position: 7% -30vh, 92% 120vh, 96% -20vh;
-  filter: drop-shadow(0 0 8px rgba(193,241,255,.55));
+  filter: drop-shadow(0 0 8px rgba(193, 241, 255, .55));
   animation: fb-meteor-vertical-arcade 12.5s linear infinite;
 }
 
@@ -1225,14 +1302,14 @@
 /* Brilhos internos mais vivos, só na Home. */
 .fb-site::before {
   background:
-    radial-gradient(circle at 7% 10%, rgba(255,255,255,.55) 0 1.2px, transparent 2.4px),
-    radial-gradient(circle at 14% 58%, rgba(193,241,255,.48) 0 1.4px, transparent 2.8px),
-    radial-gradient(circle at 31% 22%, rgba(255,255,255,.36) 0 1.2px, transparent 2.4px),
-    radial-gradient(circle at 48% 15%, rgba(255,255,255,.42) 0 1.2px, transparent 2.4px),
-    radial-gradient(circle at 66% 26%, rgba(240,220,255,.38) 0 1.3px, transparent 2.6px),
-    radial-gradient(circle at 78% 64%, rgba(193,241,255,.32) 0 1.2px, transparent 2.4px),
-    radial-gradient(circle at 87% 14%, rgba(193,241,255,.4) 0 1.2px, transparent 2.4px),
-    radial-gradient(circle at 93% 61%, rgba(255,255,255,.34) 0 1.1px, transparent 2.2px);
+    radial-gradient(circle at 7% 10%, rgba(255, 255, 255, .55) 0 1.2px, transparent 2.4px),
+    radial-gradient(circle at 14% 58%, rgba(193, 241, 255, .48) 0 1.4px, transparent 2.8px),
+    radial-gradient(circle at 31% 22%, rgba(255, 255, 255, .36) 0 1.2px, transparent 2.4px),
+    radial-gradient(circle at 48% 15%, rgba(255, 255, 255, .42) 0 1.2px, transparent 2.4px),
+    radial-gradient(circle at 66% 26%, rgba(240, 220, 255, .38) 0 1.3px, transparent 2.6px),
+    radial-gradient(circle at 78% 64%, rgba(193, 241, 255, .32) 0 1.2px, transparent 2.4px),
+    radial-gradient(circle at 87% 14%, rgba(193, 241, 255, .4) 0 1.2px, transparent 2.4px),
+    radial-gradient(circle at 93% 61%, rgba(255, 255, 255, .34) 0 1.1px, transparent 2.2px);
   opacity: .68;
   animation: fb-inner-sparkle 6.4s ease-in-out infinite alternate;
 }
@@ -1246,56 +1323,95 @@
   line-height: 1;
   color: #eaffff;
   text-shadow:
-    9vw 14vh 0 rgba(255,255,255,.85),
-    17vw 66vh 0 rgba(193,241,255,.75),
-    42vw 18vh 0 rgba(255,255,255,.55),
-    58vw 55vh 0 rgba(240,220,255,.5),
-    82vw 20vh 0 rgba(193,241,255,.7),
-    91vw 72vh 0 rgba(255,255,255,.75);
-  filter: drop-shadow(0 0 5px rgba(255,255,255,.35));
+    9vw 14vh 0 rgba(255, 255, 255, .85),
+    17vw 66vh 0 rgba(193, 241, 255, .75),
+    42vw 18vh 0 rgba(255, 255, 255, .55),
+    58vw 55vh 0 rgba(240, 220, 255, .5),
+    82vw 20vh 0 rgba(193, 241, 255, .7),
+    91vw 72vh 0 rgba(255, 255, 255, .75);
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, .35));
   opacity: .68;
   animation: fb-inner-symbols 8.2s ease-in-out infinite alternate;
 }
 
 @keyframes fb-starfield-float {
-  from { transform: translate3d(0, 0, 0); opacity: .94; }
-  to { transform: translate3d(0, -5px, 0); opacity: 1; }
+  from {
+    transform: translate3d(0, 0, 0);
+    opacity: .94;
+  }
+
+  to {
+    transform: translate3d(0, -5px, 0);
+    opacity: 1;
+  }
 }
 
 @keyframes fb-symbol-stars {
-  0% { opacity: .52; filter: drop-shadow(0 0 2px rgba(255,255,255,.2)); transform: translate3d(0,0,0) scale(.97); }
-  40% { opacity: 1; filter: drop-shadow(0 0 10px rgba(255,255,255,.42)); }
-  70% { opacity: .72; filter: drop-shadow(0 0 12px rgba(193,241,255,.5)); }
-  100% { opacity: .96; filter: drop-shadow(0 0 6px rgba(255,255,255,.28)); transform: translate3d(0,-4px,0) scale(1.02); }
+  0% {
+    opacity: .52;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, .2));
+    transform: translate3d(0, 0, 0) scale(.97);
+  }
+
+  40% {
+    opacity: 1;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, .42));
+  }
+
+  70% {
+    opacity: .72;
+    filter: drop-shadow(0 0 12px rgba(193, 241, 255, .5));
+  }
+
+  100% {
+    opacity: .96;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, .28));
+    transform: translate3d(0, -4px, 0) scale(1.02);
+  }
 }
 
 @keyframes fb-meteor-vertical-arcade {
-  0%, 10% {
+
+  0%,
+  10% {
     background-position: 7% -30vh, 92% 120vh, 96% -20vh;
     opacity: 0;
   }
-  16% { opacity: .95; }
+
+  16% {
+    opacity: .95;
+  }
+
   30% {
     background-position: 7% 24vh, 92% 88vh, 96% 16vh;
     opacity: 1;
   }
+
   38% {
     background-position: 7% 48vh, 92% 66vh, 96% 35vh;
     opacity: 0;
   }
-  39%, 55% {
+
+  39%,
+  55% {
     background-position: 11% -26vh, 89% 118vh, 5% 116vh;
     opacity: 0;
   }
-  62% { opacity: .8; }
+
+  62% {
+    opacity: .8;
+  }
+
   76% {
     background-position: 11% 20vh, 89% 84vh, 5% 79vh;
     opacity: .9;
   }
+
   86% {
     background-position: 11% 44vh, 89% 63vh, 5% 54vh;
     opacity: 0;
   }
+
   100% {
     background-position: 11% 44vh, 89% 63vh, 5% 54vh;
     opacity: 0;
@@ -1303,16 +1419,31 @@
 }
 
 @keyframes fb-inner-sparkle {
-  from { opacity: .34; transform: translate3d(0, 0, 0); }
-  to { opacity: .78; transform: translate3d(0, -4px, 0); }
+  from {
+    opacity: .34;
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    opacity: .78;
+    transform: translate3d(0, -4px, 0);
+  }
 }
 
 @keyframes fb-inner-symbols {
-  from { opacity: .42; transform: translate3d(0,0,0) scale(.98); }
-  to { opacity: .82; transform: translate3d(0,-3px,0) scale(1.03); }
+  from {
+    opacity: .42;
+    transform: translate3d(0, 0, 0) scale(.98);
+  }
+
+  to {
+    opacity: .82;
+    transform: translate3d(0, -3px, 0) scale(1.03);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .fb-home__stars,
   .fb-home__stars::before,
   .fb-home__stars::after,
@@ -1320,4 +1451,26 @@
   .fb-site::after {
     animation: none !important;
   }
+}
+
+
+/* H1 - Produtora | Avatar de convidado estilo mensageiro 2000s */
+.fb-profile--guest .fb-profile__avatar--messenger {
+  width: 106px;
+  height: 106px;
+  margin: 0 auto .3rem;
+  border: 3px ridge #d9bdff;
+  border-radius: 13px;
+  background: radial-gradient(circle at 30% 20%, #dcfaff9c, transparent 37%),
+    linear-gradient(145deg, #6b3a9d, #251a58 78%);
+  box-shadow: inset 0 2px #fff8, 0 0 18px #c595fa6e, 0 6px 12px #150a267a;
+}
+
+.fb-header__identity h1 {
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  letter-spacing: -.065em;
+}
+
+.fb-header__identity h1 span {
+  color: #e7bdff;
 }

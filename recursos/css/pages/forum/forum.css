@@ -970,3 +970,16 @@
         transition: none;
     }
 }
+
+
+/* H1 - Produtora | Avatar compartilhado com a Home */
+.h1-forum__guest-avatar {
+    padding: .2rem;
+    border-radius: 12px;
+    overflow: visible;
+}
+
+.h1-forum__guest-avatar .msn-buddy {
+    width: 100%;
+    height: 100%;
+}
