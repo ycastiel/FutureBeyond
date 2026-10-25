@@ -1,11 +1,11 @@
-# FutureBeyond × H1 Produtora — Caderno de ideias
+# H1 Produtora — Caderno de ideias
 
 > **Atualizado em 25/10/2026.** Documento vivo. Distinguir **pedido do cliente**, **implementado** e **ideia opcional**.
 > Fonte principal de conteúdo: `PI2 - Transcrição Site(2).pdf`, fornecido pela equipe.
 
 ## 1. Identidade e narrativa
 
-- **FutureBeyond** é o universo digital/portal; **H1 Produtora** é a produtora fictícia dentro dele.
+- **H1 - Produtora** é o universo digital/portal; **H1 Produtora** é a produtora fictícia dentro dele.
 - O site é produzido por alienígenas que procuram soar humanos. Humor corporativo, sátira e estranheza gradual, sem revelar a premissa cedo demais.
 - Estilo visual: Old Web / Y2K / Frutiger Aero, painéis cromados, lilás claro + roxo noturno + detalhes ciano.
 - Arte e textos oficiais prevalecem sobre placeholders e sugestões do desenvolvedor.
