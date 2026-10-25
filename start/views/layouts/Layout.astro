@@ -1,5 +1,6 @@
 ---
 import '../../../recursos/css/global.css';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title: string;
@@ -19,8 +20,9 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#17091f" />
-    <link rel="icon" type="image/x-icon" href="/icones/favicon.ico" />
     <title>{title}</title>
+    <link rel="icon" href="/icones/favicon.ico" sizes="any" />
+    <ClientRouter fallback="swap" />
   </head>
   <body>
     <slot />
