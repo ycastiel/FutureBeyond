@@ -56,12 +56,45 @@
 }
 
 .h1-alienados__hero {
+    position: relative;
+    overflow: hidden;
     display: grid;
-    grid-template-columns: 1.4fr .6fr;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr);
     align-items: center;
-    gap: 1.5rem;
+    gap: clamp(1.2rem, 3vw, 2rem);
     padding: clamp(1.4rem, 4vw, 3rem);
-    background: radial-gradient(circle at 10% 8%, #fff, transparent 50%), linear-gradient(120deg, #fff8ff, #e0d1fa);
+    background:
+      radial-gradient(circle at 14% 8%, #ffffffeb, transparent 32%),
+      radial-gradient(circle at 74% 24%, #cbb7fb92, transparent 36%),
+      radial-gradient(circle at 26% 78%, #c4eeff52, transparent 43%),
+      linear-gradient(115deg, #fff8ff 0%, #f0e7fd 54%, #ded2fa 100%);
+}
+
+.h1-alienados__hero::before,
+.h1-alienados__hero::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    border-radius: 999px;
+    filter: blur(1px);
+}
+
+.h1-alienados__hero::before {
+    width: 210px;
+    height: 210px;
+    right: -55px;
+    top: -30px;
+    opacity: .42;
+    background: radial-gradient(circle, #f0dcff 0%, #e7d3ff66 42%, transparent 72%);
+}
+
+.h1-alienados__hero::after {
+    width: 170px;
+    height: 170px;
+    left: -70px;
+    bottom: -65px;
+    opacity: .34;
+    background: radial-gradient(circle, #cef1ff 0%, #cef1ff55 40%, transparent 74%);
 }
 
 .h1-alienados__hero h1 {
@@ -72,6 +105,8 @@
 }
 
 .h1-alienados__hero p {
+    position: relative;
+    z-index: 1;
     max-width: 65ch;
     font-size: .94rem;
     line-height: 1.75;
@@ -82,9 +117,112 @@
     color: #9a5bbe;
 }
 
-.h1-alienados__hero img {
-    max-width: 100%;
-    filter: drop-shadow(0 14px 18px #8f5c9e66);
+.h1-alienados__hero-art {
+    position: relative;
+    justify-self: center;
+    width: min(100%, 316px);
+    min-height: 245px;
+    padding: 1rem 1rem 1.2rem;
+    overflow: hidden;
+    border: 2px solid #d4bbed;
+    border-radius: 9px;
+    background:
+      radial-gradient(circle at 50% 45%, #e3d1ff6f 0%, transparent 47%),
+      repeating-linear-gradient(0deg, #ffffff33 0 1px, transparent 1px 7px),
+      linear-gradient(155deg, #f7f1ff 0%, #e1cff7 60%, #d6ebff 100%);
+    box-shadow:
+      inset 0 0 0 1px #ffffffa8,
+      inset 0 8px 22px #ffffff65,
+      0 16px 35px #8465b54d,
+      0 0 32px #c7affc55;
+}
+
+.h1-alienados__hero-art::before {
+    content: "";
+    position: absolute;
+    inset: .5rem;
+    border: 1px solid #c2a9ebc9;
+    border-radius: 5px;
+    pointer-events: none;
+}
+
+.h1-alienados__hero-art img {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: min(100%, 244px);
+    height: auto;
+    max-height: 140px;
+    object-fit: contain;
+    aspect-ratio: auto;
+    margin: 2.55rem auto 1.15rem;
+    animation: none;
+    transform: none;
+    filter: drop-shadow(0 8px 15px #8f5c9e3e);
+}
+
+.h1-alienados__badge,
+.h1-alienados__frame-note {
+    position: absolute;
+    z-index: 2;
+    font: 700 .58rem var(--font-mono, monospace);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.h1-alienados__badge {
+    top: .72rem;
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    padding: .35rem .55rem;
+    border: 1px solid #d4c4ee;
+    background: #fff9ffde;
+    color: #6e4b89;
+    box-shadow: 0 3px 8px #69448a12;
+}
+
+.h1-alienados__badge--rec {
+    left: .8rem;
+    color: #9b396b;
+}
+
+.h1-alienados__badge--label {
+    right: .8rem;
+    color: #5b6695;
+}
+
+.h1-alienados__frame-note {
+    right: .9rem;
+    bottom: .78rem;
+    color: #71588f;
+}
+
+.h1-alienados__spark {
+    position: absolute;
+    z-index: 2;
+    color: #edfaff;
+    text-shadow: 0 0 7px #ffffff, 0 0 13px #81dfff;
+    opacity: .95;
+    animation: h1-alienados-sparkle 4.4s ease-in-out infinite alternate;
+}
+
+.h1-alienados__spark--a {
+    top: 2.7rem;
+    right: 1.25rem;
+    font-size: 1.25rem;
+}
+
+.h1-alienados__spark--b {
+    left: 1.1rem;
+    bottom: 1.7rem;
+    font-size: 1rem;
+}
+
+.h1-alienados__spark--c {
+    right: 1.45rem;
+    bottom: 4.1rem;
+    font-size: 1.45rem;
 }
 
 .h1-alienados__episodes {
@@ -127,40 +265,43 @@
     color: #543375;
 }
 
+/* Visualizer radial: arte oficial como base + ondas decorativas independentes. */
 .h1-alienados__visualizer {
-    position: relative;
-    min-height: 210px;
-    display: grid;
-    place-items: center;
-    gap: .7rem;
-    padding: 1.4rem;
-    background: radial-gradient(ellipse at 50% 30%, #9960d87a, transparent 55%), linear-gradient(135deg, #24133e, #47306c);
-    color: #f6eaff;
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 0;
+  padding: 0;
+  aspect-ratio: 800 / 466;
+  overflow: hidden;
+  container-type: inline-size;
+  background: #08080c;
 }
-
-.h1-alienados__bars {
-    display: flex;
-    gap: 5px;
-    height: 75px;
-    align-items: center;
+.h1-alienados__visualizer-art {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; max-width: none;
 }
-
-.h1-alienados__bars i {
-    display: block;
-    width: 7px;
-    height: calc(18px + (var(--i) * 3px));
-    max-height: 72px;
-    background: linear-gradient(#bcf2ff, #a970eb);
-    border-radius: 5px;
-    opacity: .8;
-    animation: alien-wave 1.2s ease-in-out infinite alternate;
-    animation-delay: calc(var(--i) * -70ms);
+.h1-alienados__radial { position: absolute; inset: 0; pointer-events: none; }
+.h1-alienados__ray {
+  position: absolute; top: 50%; left: 50%; width: 0; height: 0;
+  transform: rotate(var(--ang)) translateY(-21.9cqw);
 }
-
-.h1-alienados__visualizer p {
-    margin: 0;
-    color: #d3bce8;
-    font-size: .78rem;
+.h1-alienados__ray i {
+  display: block; width: clamp(1.5px, .33cqw, 3.5px);
+  height: clamp(4px, var(--len), 32px);
+  margin-left: -1.4px;
+  border-radius: 4px;
+  background: linear-gradient(0deg, #bcf0ff, #f1deff);
+  box-shadow: 0 0 7px #bfeaff99;
+  transform-origin: center bottom;
+  animation: alien-radial-wave 1050ms ease-in-out infinite alternate;
+  animation-delay: var(--delay);
+  animation-play-state: paused;
+}
+.h1-alienados__visualizer.is-visible .h1-alienados__ray i { animation-play-state: running; }
+.h1-alienados__visualizer-caption {
+  margin: .45rem 1rem .75rem; color: #715b8b;
+  font: .65rem/1.4 var(--font-mono,monospace);
 }
 
 .h1-alienados__footer {
@@ -178,28 +319,52 @@
     color: #fff;
 }
 
-@keyframes alien-wave {
-    from {
-        transform: scaleY(.45)
-    }
-
-    to {
-        transform: scaleY(1)
-    }
+@keyframes alien-radial-wave {
+  from { opacity: .23; transform: scaleY(.25); }
+  to { opacity: 1; transform: scaleY(1); }
 }
 
 @media(max-width:700px) {
     .h1-alienados__hero {
-        grid-template-columns: 1fr
+        grid-template-columns: 1fr;
     }
 
-    .h1-alienados__hero img {
-        max-width: 230px;
+    .h1-alienados__hero-art {
+        width: min(100%, 294px);
     }
 }
 
 @media(prefers-reduced-motion:reduce) {
-    .h1-alienados__bars i {
-        animation: none;
+    .h1-alienados__ray i {
+        animation: none !important;
+        opacity: .7;
+        transform: scaleY(.65);
     }
+}
+
+/* Detalhes de gravação e moldura (sem giro da logo nessa página). */
+.h1-alienados__badge--rec::first-letter {
+  color: #e15191;
+}
+.h1-alienados__frequency {
+  position: absolute;
+  left: 1rem;
+  bottom: .75rem;
+  color: #78639e;
+  font: 700 .55rem var(--font-mono, monospace);
+  letter-spacing: .12em;
+  opacity: .8;
+}
+.h1-alienados__spark--b { animation-delay: -1.7s; }
+.h1-alienados__spark--c { animation-delay: -3.1s; }
+@keyframes h1-alienados-sparkle {
+  0%, 100% { opacity: .58; transform: scale(.86); }
+  55% { opacity: 1; transform: scale(1.13); }
+}
+@media (max-width: 380px) {
+  .h1-alienados__badge { font-size: .47rem; padding: .3rem .38rem; }
+  .h1-alienados__hero-art { min-height: 225px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .h1-alienados__spark { animation: none !important; }
 }

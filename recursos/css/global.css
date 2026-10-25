@@ -267,3 +267,17 @@ svg {
     animation: none !important;
   }
 }
+
+/* Giro 3D OPT-IN: usado somente nos elementos com .h1-logo--rotate (Home). */
+.h1-logo--rotate {
+  transform-origin: center center;
+  backface-visibility: visible;
+  animation: h1-logo-spin-3d 14s linear infinite;
+}
+@keyframes h1-logo-spin-3d {
+  from { transform: perspective(950px) rotateY(0deg); }
+  to { transform: perspective(950px) rotateY(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .h1-logo--rotate { animation: none !important; }
+}
