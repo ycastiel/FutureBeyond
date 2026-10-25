@@ -267,3 +267,26 @@ svg {
     animation: none !important;
   }
 }
+
+/* Selo H1 em rotação lenta, estilo arcade / interface Y2K. */
+.h1-logo--rotate {
+  transform-origin: center center;
+  backface-visibility: visible;
+  animation: h1-logo-spin-3d 6s linear infinite;
+}
+
+@keyframes h1-logo-spin-3d {
+  from {
+    transform: perspective(950px) rotateY(0deg);
+  }
+
+  to {
+    transform: perspective(950px) rotateY(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .h1-logo--rotate {
+    animation: none !important;
+  }
+}
