@@ -1,10 +1,11 @@
 ---
-// start/pages/home.astro — Home Old Web / central do FutureBeyond
+// Home Old Web / central da H1 - Produtora
 import Layout from '../../views/layouts/Layout.astro';
+import MessengerBuddy from '../../views/componentes/utils/MessengerBuddy.astro';
 import '../../../recursos/css/pages/home/home.css';
 ---
 
-<Layout title="FutureBeyond | H1 Produtora" description="Explore o FutureBeyond e conheça a H1 Produtora, suas produções e sua equipe." >
+<Layout title="H1 - Produtora | Início" description="Conheça a H1 - Produtora, suas produções e sua equipe." >
   <main class="fb-home" id="topo">
     <div class="fb-home__stars" aria-hidden="true"></div>
 
@@ -12,17 +13,17 @@ import '../../../recursos/css/pages/home/home.css';
       <header class="fb-header">
         <div class="fb-header__chrome">
           <span class="fb-header__lights" aria-hidden="true"><i></i><i></i><i></i></span>
-          <span>futurebeyond.net // central de visitantes</span>
+          <span>H1 - Produtora // central de visitantes</span>
           <span class="fb-header__right">H1 PRODUTORA ✦ ESTAMOS ONLINE</span>
         </div>
 
         <div class="fb-header__hero">
           <div class="fb-header__identity">
             <p>✦ &nbsp; PORTAL DA H1 PRODUTORA</p>
-            <h1>Future<span>Beyond</span><b aria-hidden="true">✧</b></h1>
+            <h1>H1 <span>- Produtora</span><b aria-hidden="true">✧</b></h1>
             <span class="fb-header__subtitle">Conheça nossos projetos, novidades e nossa equipe.</span>
           </div>
-          <div class="fb-header__orb" aria-hidden="true"><span>FB/01</span></div>
+          <div class="fb-header__orb" aria-hidden="true"><span>H1/01</span></div>
         </div>
 
         <nav class="fb-nav" aria-label="Navegação principal">
@@ -47,6 +48,9 @@ import '../../../recursos/css/pages/home/home.css';
           <section class="fb-widget">
             <h2 class="fb-widget__bar">✿ PERFIL DO VISITANTE</h2>
             <div class="fb-profile fb-profile--guest">
+              <div class="fb-profile__avatar fb-profile__avatar--messenger">
+                <MessengerBuddy className="msn-buddy--home" idPrefix="h1-home-visitante" title="Avatar do visitante convidado" />
+              </div>
               <strong>Você está visitando como convidado.</strong>
               <p>Já possui uma conta?</p>
               <a href="/" class="fb-profile__login">Ir para o login ↗</a>
@@ -158,7 +162,7 @@ import '../../../recursos/css/pages/home/home.css';
       </div>
 
       <footer class="fb-footer">
-        <span>✦ FutureBeyond × H1 Produtora</span>
+        <span>✦ H1 - Produtora</span>
         <span>Um portal. Uma produtora. Muitas ideias.</span>
         <a href="#topo">↑ VOLTAR AO TOPO</a>
       </footer>

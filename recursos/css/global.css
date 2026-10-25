@@ -281,3 +281,56 @@ svg {
 @media (prefers-reduced-motion: reduce) {
   .h1-logo--rotate { animation: none !important; }
 }
+
+
+/* ================================================
+   H1 - Produtora | MessengerBuddy compartilhado
+   Visual retrô, sem bibliotecas e sem novos scripts.
+   ================================================ */
+.msn-buddy {
+  display: inline-grid;
+  position: relative;
+  place-items: center;
+  flex: none;
+  width: 100%;
+  height: 100%;
+  border-radius: 9px;
+  isolation: isolate;
+}
+.msn-buddy svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 4px rgba(206, 241, 255, .25));
+  transition: transform 220ms ease, filter 220ms ease;
+}
+.msn-buddy:hover svg {
+  transform: translateY(-2px) scale(1.045);
+  filter: drop-shadow(0 0 9px rgba(206, 241, 255, .55));
+}
+.msn-buddy::after {
+  content: '';
+  position: absolute;
+  right: 5%;
+  bottom: 7%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #edfdff;
+  background: #54ec92;
+  box-shadow: 0 0 8px #71ffc3b0;
+  pointer-events: none;
+}
+.msn-buddy--home {
+  width: 90px;
+  height: 90px;
+}
+.msn-buddy--forum {
+  width: 72px;
+  height: 72px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .msn-buddy svg { transition: none !important; }
+  .msn-buddy:hover svg { transform: none; }
+}

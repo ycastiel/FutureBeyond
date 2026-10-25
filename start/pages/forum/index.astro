@@ -1,5 +1,6 @@
 ---
 import Layout from '../../views/layouts/Layout.astro';
+import MessengerBuddy from '../../views/componentes/utils/MessengerBuddy.astro';
 import '../../../recursos/css/pages/forum/forum.css';
 
 // Textos fornecidos no roteiro oficial da H1. Não alterar falas sem aprovação.
@@ -168,15 +169,15 @@ const avatarTema = (nome: string) => {
 };
 const avatarLetra = (nome: string) => nome.replace(/^zZ_/, '').charAt(0).toUpperCase();
 ---
-<Layout title="FutureBeyond | Fórum da H1" description="Fórum retrô da H1 Produtora, com conversas e comunicados da comunidade.">
+<Layout title="H1 - Produtora | Fórum" description="Fórum retrô da H1 - Produtora, com conversas e comunicados da comunidade.">
   <main class="h1-forum" id="topo">
     <div class="h1-forum__sky" aria-hidden="true"></div>
     <div class="h1-forum__shell">
       <header class="h1-forum__browser">
         <div class="h1-forum__titlebar">
           <span class="h1-forum__window-buttons" aria-hidden="true"><i></i><i></i><i></i></span>
-          <span class="h1-forum__window-name">futurebeyond.net // comunidade.h1</span>
-          <span class="h1-forum__online">✦ FB-OS CONNECTED</span>
+          <span class="h1-forum__window-name">H1 - Produtora // comunidade</span>
+          <span class="h1-forum__online">✦ H1 ONLINE</span>
         </div>
         <div class="h1-forum__banner">
           <div class="h1-forum__banner-copy">
@@ -205,7 +206,9 @@ const avatarLetra = (nome: string) => nome.replace(/^zZ_/, '').charAt(0).toUpper
           <section class="h1-forum__widget">
             <h2 class="h1-forum__widget-title">✿ Perfil do visitante</h2>
             <div class="h1-forum__guest">
-              <div class="h1-forum__guest-avatar" aria-hidden="true">✧</div>
+              <div class="h1-forum__guest-avatar">
+                <MessengerBuddy className="msn-buddy--forum" idPrefix="h1-forum-visitante" title="Avatar do visitante convidado" />
+              </div>
               <strong>visitante_001</strong>
               <span class="h1-forum__guest-label">acesso como convidado</span>
               <p>Você está visitando como convidado.</p>
@@ -307,7 +310,7 @@ const avatarLetra = (nome: string) => nome.replace(/^zZ_/, '').charAt(0).toUpper
           </section>
         </aside>
       </div>
-      <footer class="h1-forum__footer"><span>✦ H1 PRODUTORA × FUTUREBEYOND</span><a href="#topo">↑ VOLTAR AO TOPO</a></footer>
+      <footer class="h1-forum__footer"><span>✦ H1 - PRODUTORA · ARQUIVO DA COMUNIDADE</span><a href="#topo">↑ VOLTAR AO TOPO</a></footer>
     </div>
   </main>
 </Layout>
