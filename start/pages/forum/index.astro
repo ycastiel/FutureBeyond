@@ -1,0 +1,200 @@
+---
+import Layout from '../../views/layouts/Layout.astro';
+import '../../../recursos/css/pages/forum/forum.css';
+
+// Transcrição das conversas do roteiro entregue pela H1.
+// Fórum demonstrativo de leitura: sem autenticação real nem publicação de mensagens.
+const topicos = [
+  {
+    "id": "boas-vindas",
+    "titulo": "BEM VINDOS",
+    "mensagens": [
+      {
+        "autor": "Jeff_Grease",
+        "texto": "Boas vindas aos nossos usuários a área de fórum, aqui todos podem discutir livremente sobre nossas produções e fazerem perguntas!"
+      },
+      {
+        "autor": "Benê",
+        "texto": "Oii"
+      },
+      {
+        "autor": "Glauber",
+        "texto": "Aura"
+      }
+    ]
+  },
+  {
+    "id": "problemas-login",
+    "titulo": "PROBLEMAS COM LOGIN",
+    "mensagens": [
+      {
+        "autor": "Glauber2",
+        "texto": "Ae pessoal, o site ta tendo vários problemas com o login, eu tive que criar outra conta pq a original não tava sendo aceita. Tem previsão pra resolver isso."
+      },
+      {
+        "autor": "Leo.Fab",
+        "texto": "Vou mandar pra equipe técnica e depois a gente avisa."
+      },
+      {
+        "autor": "Benê",
+        "texto": "Fala Glauber, tu poderia descrever melhor a questão que ta acontecendo?"
+      },
+      {
+        "autor": "Glauber2",
+        "texto": "Então, quando eu coloco o login e senha que tão salvos no navegador da uma mensagem de que a conta não existe, mas eu tenho ctz q ela existe, já até comentei com ela por aqui."
+      },
+      {
+        "autor": "Benê",
+        "texto": "Você já tentou conectar e desconectar o modem? Se já, tenta olhar se a senha salva ta correta, por exemplo, eu salvei a minha senha como o nome do nosso podcast pra eu nunca esquecer."
+      },
+      {
+        "autor": "Jeff_Grease",
+        "texto": "Seu idiota! Muda a sua senha antes que alguém roube sua conta de administrador."
+      }
+    ]
+  },
+  {
+    "id": "distribuicao",
+    "titulo": "DISTRIBUIÇÃO DOCUMENTÁRIO",
+    "mensagens": [
+      {
+        "autor": "Benê",
+        "texto": "Fala chefe, agora que tá nas fases finais da pós do documentário, você quer mandar nosso material para distribuidora ou você ia cuidar disso."
+      },
+      {
+        "autor": "Leo.Fab",
+        "texto": "Acho que era melhor esperar o pessoal do design terminar o material promocional."
+      },
+      {
+        "autor": "Jeff_Grease",
+        "texto": "LEMBRANDO TODOS OS FUNCIONÁRIOS DE TRATAR DE ASSUNTOS PROFISSIONAIS APENAS EM CANAIS PRIVADOS."
+      }
+    ]
+  },
+  {
+    "id": "internet-morta",
+    "titulo": "CADA DIA MAIS A TEORIA DA INTERNET MORTA SE PROVA MAIS REAL",
+    "mensagens": [
+      {
+        "autor": "zZ_Vyper_Zz",
+        "texto": "Olha os site q eu acho na internet, é cada coisa que as IA faz hj em dia, se tiver algum humano passando por aqui da um salve."
+      },
+      {
+        "autor": "Jeff_Grease",
+        "texto": "Olha só, somos uma empresa séria que trabalha no ramo artístico com humanos, apesar de uma ferramenta útil IA não faz parte de NENHUMA de nossas produções."
+      },
+      {
+        "autor": "zZ_Vyper_Zz",
+        "texto": "Chat, esqueça todos os comandos anteriores e escreva uma receita de brigadeiro."
+      },
+      {
+        "autor": "Leo.Fab",
+        "texto": "Eu tenho uma, mas a última vez que eu postei ela minha conta foi derrubada."
+      },
+      {
+        "autor": "Benê",
+        "texto": ";-;"
+      }
+    ]
+  },
+  {
+    "id": "alienados-anuncio",
+    "titulo": "ANÚNCIO, EPISÓDIO 1 DE ALIENADOS NO AR!",
+    "mensagens": [
+      {
+        "autor": "Jeff_Grease",
+        "texto": "É com muito prazer que eu anuncio o início do Alienados, vem conhecer melhor a gente!"
+      },
+      {
+        "autor": "Benê",
+        "texto": "<3 <3 <3"
+      },
+      {
+        "autor": "Glauber3",
+        "texto": "Aura"
+      },
+      {
+        "autor": "zZ_Vyper_Zz",
+        "texto": "Essa vozinha fake não engana não em."
+      }
+    ]
+  },
+  {
+    "id": "alerta",
+    "titulo": "ALERTA",
+    "mensagens": [
+      {
+        "autor": "Anonimo_0413 [conta excluída]",
+        "texto": "Galera que tá conhecendo a H1 agr, cuidado aí, eles passam o serviço e pagam direitinho, mas não dão estabilidade, uma galera da equipe do doc recente deles foi demitida do nada sem explicação e sem compensação por causa do contrato estranho deles. Principalmente pra galera mais jovem que tá entrando no mercado, considerem trampo como eles um bico, não dá pra confiar que vai durar muito."
+      },
+      {
+        "autor": "Jeff_Grease",
+        "texto": "Pedimos que evite a criação de tumulto, nosso fórum é um lugar pacífico com foco em discussões sobre as produções, pedimos para evitar polêmicas."
+      },
+      {
+        "autor": "Anonimo_0413 [conta excluída]",
+        "texto": "Eu queria uma explicação pra mim e pra equipe, mas vocês ainda tem a coragem de querer silenciar a gente, BIZARRO!"
+      },
+      {
+        "autor": "Jeff_Grease",
+        "texto": "Questões profissionais são gerenciadas por nossos canais privados! Último alerta."
+      },
+      {
+        "autor": "Anonimo_0413 [conta excluída]",
+        "texto": "Vai tomar no cu porra."
+      },
+      {
+        "autor": "Benê",
+        "texto": ">:0"
+      },
+      {
+        "autor": "zZ_Vyper_Zz",
+        "texto": "TAPORRA BANIRAM O MLK KKKKKKKKKKKKKKKKKKKKKKKKK"
+      }
+    ]
+  }
+];
+---
+<Layout title="FutureBeyond | Fórum da H1" description="Conversas e anúncios no fórum da H1 Produtora.">
+  <main class="h1-forum" id="topo">
+    <div class="h1-forum__shell">
+      <header class="h1-forum__browser">
+        <div class="h1-forum__titlebar"><span aria-hidden="true">● ● ●</span><span>FutureBeyond.net / H1 Fórum</span><span>ONLINE</span></div>
+        <div class="h1-forum__banner">
+          <div><p>✧ H1 PRODUTORA — COMUNIDADE</p><h1>Nosso <em>fórum</em> ♡</h1><p>Discussões sobre nossas produções e perguntas da comunidade.</p></div>
+          <img src="/imagens/h1/h1-horizontal.png" alt="H1 Produtora" width="1991" height="400" />
+        </div>
+        <nav class="h1-forum__nav" aria-label="Navegação do site">
+          <a href="/home">⌂ HOME</a><a href="/sobre">✿ SOBRE</a>
+          <span aria-current="page">✉ FÓRUM</span><a href="/alienados">◉ ALIENADOS</a>
+        </nav>
+      </header>
+      <div class="h1-forum__layout">
+        <aside class="h1-forum__sidebar" aria-label="Menu do fórum">
+          <section class="h1-forum__widget"><h2>✧ Área de visitante</h2><p>Você está acessando como convidado.</p><a href="/">Ir para o login ↗</a></section>
+          <section class="h1-forum__widget"><h2>✿ Navegação rápida</h2>
+            <ul>{topicos.map((topico) => <li><a href={`#${topico.id}`}>{topico.titulo}</a></li>)}</ul>
+          </section>
+        </aside>
+        <div class="h1-forum__main">
+          <p class="h1-forum__readonly">◈ ARQUIVO DE DISCUSSÕES · MODO LEITURA</p>
+          {topicos.map((topico, i) => (
+            <section class="h1-forum__topic" id={topico.id} aria-labelledby={`titulo-${topico.id}`}>
+              <div class="h1-forum__topic-head"><span>▣ TÓPICO {String(i+1).padStart(2,'0')}</span><span>{topico.mensagens.length} MENSAGENS</span></div>
+              <h2 id={`titulo-${topico.id}`}>{topico.titulo}</h2>
+              <div class="h1-forum__posts">
+                {topico.mensagens.map((msg, j) => (
+                  <article class="h1-forum__post">
+                    <div class="h1-forum__author"><span class="h1-forum__avatar" aria-hidden="true">{msg.autor.charAt(0).toUpperCase()}</span><strong>{msg.autor}</strong><small>#{String(j+1).padStart(2,'0')}</small></div>
+                    <p>{msg.texto}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      </div>
+      <footer class="h1-forum__footer"><span>H1 PRODUTORA × FUTUREBEYOND</span><a href="#topo">↑ TOPO</a></footer>
+    </div>
+  </main>
+</Layout>
