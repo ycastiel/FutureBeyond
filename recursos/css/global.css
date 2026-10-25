@@ -1,4 +1,4 @@
-/* FUTUREBEYOND — Design tokens e estilos-base compartilhados */
+/* H1Produtora — Design tokens e estilos-base compartilhados */
 :root {
   color-scheme: dark;
 
@@ -117,7 +117,7 @@ svg {
 }
 
 /* ============================================================
-   FUTUREBEYOND / FB-OS — WINDOW TRANSFER v2
+   H1Produtora / H1-TC — WINDOW TRANSFER v2
    Recuo de janela, sincronização cromada e materialização.
    Anima apenas durante uma navegação do Astro ClientRouter.
    ============================================================ */
@@ -162,7 +162,7 @@ svg {
   animation-timing-function: linear;
 }
 
-/* A página atual recua, revelando o espaço escuro do FB-OS.
+/* A página atual recua, revelando o espaço escuro do H1-TC.
    A moldura é feita com sombra na captura — sem mover a DOM real. */
 ::view-transition-old(root) {
   transform-origin: center;

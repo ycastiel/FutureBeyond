@@ -1,4 +1,4 @@
-/** FutureBeyond · Carrossel de anúncios da Home.
+/** H1Produtora · Carrossel de anúncios da Home.
  * Inicia num slide aleatório e depois avança em sequência.
  */
 const INTERVALO_BANNERS = 5200;
