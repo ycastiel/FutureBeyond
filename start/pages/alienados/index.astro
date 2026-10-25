@@ -1,0 +1,39 @@
+---
+import Layout from '../../views/layouts/Layout.astro';
+import '../../../recursos/css/pages/alienados/alienados.css';
+
+// O roteiro ainda não fornece os áudios, capas nem visualizers dos episódios.
+const episodios = [
+  { numero: '01', titulo: 'Teorias da Conspiração' },
+  { numero: '02', titulo: 'Trabalho' },
+  { numero: '03', titulo: null },
+  { numero: '04', titulo: null },
+] as const;
+---
+<Layout title="FutureBeyond | Alienados" description="Alienados, o podcast da H1 Produtora.">
+  <main class="h1-alienados">
+    <div class="h1-alienados__shell">
+      <div class="h1-alienados__chrome"><span aria-hidden="true">● ● ●</span><span>H1 PRODUTORA / ALIENADOS</span><span>ONLINE</span></div>
+      <nav class="h1-alienados__nav" aria-label="Navegação da produtora">
+        <a href="/home">⌂ HOME</a><a href="/sobre">✿ SOBRE</a><a href="/forum">✉ FÓRUM</a><span aria-current="page">◉ ALIENADOS</span>
+      </nav>
+      <header class="h1-alienados__hero">
+        <div><p>◉ UMA PRODUÇÃO H1</p><h1>Alienados</h1><p>Nós da H1 temos o prazer de trazer ao público nosso novo podcast, o Alienados. Nosso objetivo é trazer nossa audiência para mais próxima de nosso time, mostrando quem somos e como pensamos por meio de discussões e assuntos diversos.</p></div>
+        <img src="/imagens/h1/h1-vertical.png" alt="H1 Produtora" width="1253" height="621" />
+      </header>
+      <div class="h1-alienados__episodes">
+        <h2>✦ Episódios</h2>
+        {episodios.map(ep => (
+          <section class="h1-alienados__episode" aria-label={`Episódio ${ep.numero}`}>
+            <div class="h1-alienados__episode-title"><span>EP. {ep.numero}</span><h3>{ep.titulo ?? `Episódio ${Number(ep.numero)}`}</h3></div>
+            <div class="h1-alienados__visualizer" aria-label="Espaço reservado ao visualizer oficial do episódio">
+              <div class="h1-alienados__bars" aria-hidden="true">{Array.from({length:17},(_,i)=><i style={`--i:${i}`}></i>)}</div>
+              <p>Áudio e visualizer em preparação</p>
+            </div>
+          </section>
+        ))}
+      </div>
+      <footer class="h1-alienados__footer"><span>H1 PRODUTORA × FUTUREBEYOND</span><a href="/home">← VOLTAR PARA A CENTRAL</a></footer>
+    </div>
+  </main>
+</Layout>
