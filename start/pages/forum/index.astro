@@ -2,8 +2,8 @@
 import Layout from '../../views/layouts/Layout.astro';
 import '../../../recursos/css/pages/forum/forum.css';
 
-// Transcrição das conversas do roteiro entregue pela H1.
-// Fórum demonstrativo de leitura: sem autenticação real nem publicação de mensagens.
+// Textos fornecidos no roteiro oficial da H1. Não alterar falas sem aprovação.
+// Arquivo de discussões estático: os visitantes não publicam novas mensagens.
 const topicos = [
   {
     "id": "boas-vindas",
@@ -154,47 +154,164 @@ const topicos = [
     ]
   }
 ];
+
+const categorias = ['Boas-vindas', 'Ajuda', 'Produções', 'Discussão', 'Comunicado', 'Comunidade'];
+const totalMensagens = topicos.reduce((n, topico) => n + topico.mensagens.length, 0);
+const participantes = [...new Set(topicos.flatMap(topico => topico.mensagens.map(mensagem => mensagem.autor)))];
+
+const avatarTema = (nome: string) => {
+  if (nome === 'Jeff_Grease') return 'ceo';
+  if (nome === 'Benê') return 'tech';
+  if (nome === 'Leo.Fab') return 'creative';
+  if (nome.includes('excluída')) return 'deleted';
+  return 'visitor';
+};
+const avatarLetra = (nome: string) => nome.replace(/^zZ_/, '').charAt(0).toUpperCase();
 ---
-<Layout title="FutureBeyond | Fórum da H1" description="Conversas e anúncios no fórum da H1 Produtora.">
+<Layout title="FutureBeyond | Fórum da H1" description="Fórum retrô da H1 Produtora, com conversas e comunicados da comunidade.">
   <main class="h1-forum" id="topo">
+    <div class="h1-forum__sky" aria-hidden="true"></div>
     <div class="h1-forum__shell">
       <header class="h1-forum__browser">
-        <div class="h1-forum__titlebar"><span aria-hidden="true">● ● ●</span><span>FutureBeyond.net / H1 Fórum</span><span>ONLINE</span></div>
-        <div class="h1-forum__banner">
-          <div><p>✧ H1 PRODUTORA — COMUNIDADE</p><h1>Nosso <em>fórum</em> ♡</h1><p>Discussões sobre nossas produções e perguntas da comunidade.</p></div>
-          <img src="/imagens/h1/h1-horizontal.png" alt="H1 Produtora" width="1991" height="400" />
+        <div class="h1-forum__titlebar">
+          <span class="h1-forum__window-buttons" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="h1-forum__window-name">futurebeyond.net // comunidade.h1</span>
+          <span class="h1-forum__online">✦ FB-OS CONNECTED</span>
         </div>
-        <nav class="h1-forum__nav" aria-label="Navegação do site">
-          <a href="/home">⌂ HOME</a><a href="/sobre">✿ SOBRE</a>
-          <span aria-current="page">✉ FÓRUM</span><a href="/alienados">◉ ALIENADOS</a>
+        <div class="h1-forum__banner">
+          <div class="h1-forum__banner-copy">
+            <p class="h1-forum__kicker">✧ H1 PRODUTORA / ÁREA SOCIAL</p>
+            <h1>H1 <span>Community</span><span class="h1-forum__star" aria-hidden="true">✦</span></h1>
+            <p>Conversas, comunicados e outras coisas que aparecem por aqui.</p>
+            <span class="h1-forum__banner-note">★ VOCÊ ENCONTROU UM CANTINHO DA INTERNET ★</span>
+          </div>
+          <img class="h1-forum__brand" src="/imagens/h1/h1-horizontal.png" alt="H1 Produtora" width="1991" height="400" loading="eager" />
+        </div>
+        <nav class="h1-forum__nav" aria-label="Navegação principal">
+          <a href="/home">⌂ <span>HOME</span></a>
+          <a href="/blog/sobre">✿ <span>SOBRE</span></a>
+          <span class="h1-forum__nav-current" aria-current="page">✉ <span>FÓRUM</span></span>
+          <a href="/alienados">◉ <span>ALIENADOS</span></a>
         </nav>
+        <div class="h1-forum__ticker" aria-label="Aviso da comunidade">
+          <span>✧ CENTRAL DE CONVERSAS ✧</span>
+          <span>ARQUIVO DE DISCUSSÕES</span>
+          <span>✦ H1 PRODUTORA ✦</span>
+        </div>
       </header>
+
       <div class="h1-forum__layout">
-        <aside class="h1-forum__sidebar" aria-label="Menu do fórum">
-          <section class="h1-forum__widget"><h2>✧ Área de visitante</h2><p>Você está acessando como convidado.</p><a href="/">Ir para o login ↗</a></section>
-          <section class="h1-forum__widget"><h2>✿ Navegação rápida</h2>
-            <ul>{topicos.map((topico) => <li><a href={`#${topico.id}`}>{topico.titulo}</a></li>)}</ul>
+        <aside class="h1-forum__sidebar" aria-label="Perfil e atalhos">
+          <section class="h1-forum__widget">
+            <h2 class="h1-forum__widget-title">✿ Perfil do visitante</h2>
+            <div class="h1-forum__guest">
+              <div class="h1-forum__guest-avatar" aria-hidden="true">✧</div>
+              <strong>visitante_001</strong>
+              <span class="h1-forum__guest-label">acesso como convidado</span>
+              <p>Você está visitando como convidado.</p>
+              <a class="h1-forum__side-button" href="/">↗ Ir para o login</a>
+            </div>
+          </section>
+          <section class="h1-forum__widget">
+            <h2 class="h1-forum__widget-title">✦ Tópicos do fórum</h2>
+            <ul class="h1-forum__shortcut-list">
+              {topicos.map((topico, i) => <li><a href={`#${topico.id}`} data-forum-topic-link><span>✧</span> {topico.titulo}</a></li>)}
+            </ul>
+          </section>
+          <section class="h1-forum__widget h1-forum__widget--small">
+            <h2 class="h1-forum__widget-title">◈ Navegação rápida</h2>
+            <div class="h1-forum__widget-body h1-forum__quick-links">
+              <a href="/home">⌂ Página inicial</a>
+              <a href="/alienados">◉ Podcast Alienados</a>
+              <a href="/blog/sobre">✿ Conheça a H1</a>
+            </div>
           </section>
         </aside>
-        <div class="h1-forum__main">
-          <p class="h1-forum__readonly">◈ ARQUIVO DE DISCUSSÕES · MODO LEITURA</p>
-          {topicos.map((topico, i) => (
-            <section class="h1-forum__topic" id={topico.id} aria-labelledby={`titulo-${topico.id}`}>
-              <div class="h1-forum__topic-head"><span>▣ TÓPICO {String(i+1).padStart(2,'0')}</span><span>{topico.mensagens.length} MENSAGENS</span></div>
-              <h2 id={`titulo-${topico.id}`}>{topico.titulo}</h2>
-              <div class="h1-forum__posts">
-                {topico.mensagens.map((msg, j) => (
-                  <article class="h1-forum__post">
-                    <div class="h1-forum__author"><span class="h1-forum__avatar" aria-hidden="true">{msg.autor.charAt(0).toUpperCase()}</span><strong>{msg.autor}</strong><small>#{String(j+1).padStart(2,'0')}</small></div>
-                    <p>{msg.texto}</p>
-                  </article>
-                ))}
-              </div>
-            </section>
-          ))}
-        </div>
+
+        <section class="h1-forum__main" aria-labelledby="forum-heading">
+          <div class="h1-forum__board-heading">
+            <div>
+              <p class="h1-forum__kicker">✦ QUADRO DE RECADOS / H1</p>
+              <h2 id="forum-heading">Discussões da comunidade <span aria-hidden="true">✧</span></h2>
+              <p>Selecione um tópico para ler a conversa.</p>
+            </div>
+            <div class="h1-forum__totals" aria-label="Resumo do arquivo">
+              <span><strong>{topicos.length}</strong> tópicos</span>
+              <span><strong>{totalMensagens}</strong> mensagens</span>
+            </div>
+          </div>
+
+          <div class="h1-forum__search-area">
+            <label for="h1-forum-busca">⌕ Buscar discussão</label>
+            <input id="h1-forum-busca" type="search" autocomplete="off" placeholder="Digite o nome de um tópico..." aria-controls="h1-forum-threads" data-forum-search />
+            <span class="h1-forum__archive-badge">MODO LEITURA</span>
+          </div>
+
+          <div class="h1-forum__threads" id="h1-forum-threads">
+            {topicos.map((topico, i) => (
+              <details class="h1-forum__topic" id={topico.id} data-forum-topic data-title={topico.titulo.toLocaleLowerCase('pt-BR')} open={i === 0}>
+                <summary class="h1-forum__topic-summary">
+                  <span class="h1-forum__topic-number">{String(i + 1).padStart(2, '0')}</span>
+                  <span class="h1-forum__topic-info">
+                    <span class="h1-forum__topic-category">✦ {categorias[i]}</span>
+                    <strong>{topico.titulo}</strong>
+                    <span class="h1-forum__topic-preview">{topico.mensagens[0].autor}: {topico.mensagens[0].texto}</span>
+                  </span>
+                  <span class="h1-forum__topic-actions"><small>{topico.mensagens.length} msgs</small><span aria-hidden="true" class="h1-forum__topic-chevron">⌄</span></span>
+                </summary>
+                <div class="h1-forum__posts">
+                  <div class="h1-forum__thread-bar"><span>▣ CONVERSA ARQUIVADA</span><span>#{String(i + 1).padStart(2, '0')} · {topico.mensagens.length} MENSAGENS</span></div>
+                  {topico.mensagens.map((mensagem, j) => (
+                    <article class="h1-forum__post">
+                      <div class="h1-forum__author">
+                        <span class="h1-forum__avatar" data-theme={avatarTema(mensagem.autor)} aria-hidden="true">{avatarLetra(mensagem.autor)}</span>
+                        <strong>{mensagem.autor}</strong>
+                        <small>#{String(j + 1).padStart(2, '0')}</small>
+                      </div>
+                      <p>{mensagem.texto}</p>
+                    </article>
+                  ))}
+                  <div class="h1-forum__thread-end">✧ FIM DA CONVERSA ARQUIVADA ✧</div>
+                </div>
+              </details>
+            ))}
+          </div>
+          <p class="h1-forum__empty" data-forum-empty hidden>Nenhum tópico encontrado. Tente outra palavra.</p>
+        </section>
+
+        <aside class="h1-forum__sidebar h1-forum__sidebar--right" aria-label="Informações da comunidade">
+          <section class="h1-forum__widget h1-forum__widget--notice">
+            <h2 class="h1-forum__widget-title">✦ Avisos da H1</h2>
+            <div class="h1-forum__widget-body">
+              <p>Bem-vindo ao espaço de conversas da H1 Produtora.</p>
+              <p>Por enquanto, as discussões estão disponíveis somente para leitura.</p>
+              <span class="h1-forum__status-chip">◉ ARQUIVO DISPONÍVEL</span>
+            </div>
+          </section>
+          <section class="h1-forum__widget">
+            <h2 class="h1-forum__widget-title">✿ Perfis nas conversas</h2>
+            <div class="h1-forum__member-list">
+              {participantes.map(nome => (
+                <div class="h1-forum__member"><span class="h1-forum__avatar" data-theme={avatarTema(nome)} aria-hidden="true">{avatarLetra(nome)}</span><span>{nome}</span></div>
+              ))}
+            </div>
+          </section>
+          <section class="h1-forum__widget h1-forum__widget--promo">
+            <h2 class="h1-forum__widget-title">◉ Produção em destaque</h2>
+            <div class="h1-forum__widget-body">
+              <span class="h1-forum__disc" aria-hidden="true">◈</span>
+              <strong>Alienados</strong>
+              <p>Conheça o podcast da H1 Produtora.</p>
+              <a class="h1-forum__side-button" href="/alienados">Conhecer o podcast ↗</a>
+            </div>
+          </section>
+        </aside>
       </div>
-      <footer class="h1-forum__footer"><span>H1 PRODUTORA × FUTUREBEYOND</span><a href="#topo">↑ TOPO</a></footer>
+      <footer class="h1-forum__footer"><span>✦ H1 PRODUTORA × FUTUREBEYOND</span><a href="#topo">↑ VOLTAR AO TOPO</a></footer>
     </div>
   </main>
 </Layout>
+
+<script>
+  import '../../../recursos/javascript/pages/forum/Forum.ts';
+</script>
