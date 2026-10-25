@@ -2,7 +2,13 @@
 import Layout from '../../views/layouts/Layout.astro';
 import '../../../recursos/css/pages/alienados/alienados.css';
 
-// O roteiro ainda não fornece os áudios, capas nem visualizers dos episódios.
+// O roteiro ainda não fornece áudio final por episódio; arte oficial recebida, animação decorativa sem sincronização de áudio.
+const raios = Array.from({ length: 60 }, (_, i) => ({
+  angulo: i * 6,
+  tamanho: 9 + (i * 7 + (i % 3) * 11) % 25,
+  atraso: -(i * 0.067)
+}));
+
 const episodios = [
   { numero: '01', titulo: 'Teorias da Conspiração' },
   { numero: '02', titulo: 'Trabalho' },
@@ -15,21 +21,26 @@ const episodios = [
     <div class="h1-alienados__shell">
       <div class="h1-alienados__chrome"><span aria-hidden="true">● ● ●</span><span>H1 PRODUTORA / ALIENADOS</span><span>ONLINE</span></div>
       <nav class="h1-alienados__nav" aria-label="Navegação da produtora">
-        <a href="/home">⌂ HOME</a><a href="/sobre">✿ SOBRE</a><a href="/forum">✉ FÓRUM</a><span aria-current="page">◉ ALIENADOS</span>
+        <a href="/home">⌂ HOME</a><a href="/blog/sobre">✿ SOBRE</a><a href="/forum">✉ FÓRUM</a><span aria-current="page">◉ ALIENADOS</span>
       </nav>
       <header class="h1-alienados__hero">
         <div><p>◉ UMA PRODUÇÃO H1</p><h1>Alienados</h1><p>Nós da H1 temos o prazer de trazer ao público nosso novo podcast, o Alienados. Nosso objetivo é trazer nossa audiência para mais próxima de nosso time, mostrando quem somos e como pensamos por meio de discussões e assuntos diversos.</p></div>
-        <img src="/imagens/h1/h1-vertical.png" alt="H1 Produtora" width="1253" height="621" />
+        <img class="h1-logo--rotate" src="/imagens/h1/h1-vertical.png" alt="H1 Produtora" width="1253" height="621" />
       </header>
       <div class="h1-alienados__episodes">
         <h2>✦ Episódios</h2>
         {episodios.map(ep => (
           <section class="h1-alienados__episode" aria-label={`Episódio ${ep.numero}`}>
             <div class="h1-alienados__episode-title"><span>EP. {ep.numero}</span><h3>{ep.titulo ?? `Episódio ${Number(ep.numero)}`}</h3></div>
-            <div class="h1-alienados__visualizer" aria-label="Espaço reservado ao visualizer oficial do episódio">
-              <div class="h1-alienados__bars" aria-hidden="true">{Array.from({length:17},(_,i)=><i style={`--i:${i}`}></i>)}</div>
-              <p>Áudio e visualizer em preparação</p>
+            <div class="h1-alienados__visualizer" role="img" aria-label={`Arte oficial da H1 com visualização decorativa de ondas sonoras para o episódio ${ep.numero}`} data-audio-visualizer>
+              <img class="h1-alienados__visualizer-art" src="/imagens/h1/h1-visualizer-fundo.webp" alt="" width="800" height="466" loading="lazy" decoding="async" />
+              <div class="h1-alienados__radial" aria-hidden="true">
+                {raios.map((raio) => (
+                  <span class="h1-alienados__ray" style={`--ang:${raio.angulo}deg;--len:${raio.tamanho}px;--delay:${raio.atraso}s`}><i></i></span>
+                ))}
+              </div>
             </div>
+            <p class="h1-alienados__visualizer-caption">Visualização animada ilustrativa · Áudio do episódio em preparação</p>
           </section>
         ))}
       </div>
@@ -37,3 +48,7 @@ const episodios = [
     </div>
   </main>
 </Layout>
+
+<script>
+  import '../../../recursos/javascript/componentes/visualizadores/Alienados.ts';
+</script>
