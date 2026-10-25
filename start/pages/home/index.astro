@@ -77,7 +77,7 @@ import '../../../recursos/css/pages/home/home.css';
               </div>
               <div class="fb-welcome__art fb-welcome__art--h1">
                 <span class="fb-h1-poster__seal" aria-hidden="true">H1 PRODUTORA</span>
-                <img class="fb-h1-poster__logo" src="/imagens/h1/h1-vertical.png" alt="H1 Produtora — logotipo holográfico em tons lilás" width="1253" height="621" loading="eager" />
+                <img class="fb-h1-poster__logo h1-logo--rotate" src="/imagens/h1/h1-vertical.png" alt="H1 Produtora — logotipo holográfico em tons lilás" width="1253" height="621" loading="eager" />
                 <span class="fb-welcome__art-label">H1 PRODUTORA</span>
               </div>
             </div>
@@ -125,18 +125,25 @@ import '../../../recursos/css/pages/home/home.css';
         <aside class="fb-sidebar fb-sidebar--right" aria-label="Anúncios da produtora">
           <section class="fb-widget">
             <h2 class="fb-widget__bar">✦ ANÚNCIOS</h2>
-            <div class="fb-advert" data-random-ad>
-              <a class="fb-advert__card" href="/alienados" data-ad="alienados">
-                <span class="fb-advert__overline">PRODUÇÃO H1</span>
-                <strong>ALIENADOS</strong>
-                <span>Nosso podcast</span>
-              </a>
-              <div class="fb-advert__card" data-ad="documentario" hidden>
-                <span class="fb-advert__overline">PRODUÇÃO H1</span>
-                <strong>DOCUMENTÁRIO</strong>
-                <span>Em preparação</span>
+            <div class="fb-advert" data-random-ad role="region" aria-roledescription="carrossel" aria-label="Anúncios das produções H1" tabindex="0">
+              <div class="fb-advert__viewport" aria-live="off">
+                <a class="fb-advert__card" href="/alienados" data-ad="alienados" aria-label="Conhecer o podcast Alienados">
+                  <span class="fb-advert__overline">PRODUÇÃO H1</span>
+                  <strong>ALIENADOS</strong>
+                  <span class="fb-advert__subtitle">Nosso podcast</span>
+                </a>
+                <div class="fb-advert__card fb-advert__card--documentary" data-ad="documentario" hidden>
+                  <span class="fb-advert__overline">PRODUÇÃO H1</span>
+                  <strong>DOCUMENTÁRIO</strong>
+                  <span class="fb-advert__subtitle">Em preparação</span>
+                </div>
               </div>
-              <p class="fb-advert__footnote">Espaço reservado aos banners GIF oficiais das produções.</p>
+              <div class="fb-advert__controls" data-ad-controls hidden>
+                <button type="button" class="fb-advert__control" data-ad-prev aria-label="Anúncio anterior">‹</button>
+                <span class="fb-advert__count" data-ad-count aria-live="polite" aria-atomic="true">1 / 2</span>
+                <button type="button" class="fb-advert__control" data-ad-next aria-label="Próximo anúncio">›</button>
+              </div>
+              <p class="fb-advert__footnote">Espaço reservado aos banners oficiais das produções.</p>
             </div>
           </section>
           <section class="fb-widget">
