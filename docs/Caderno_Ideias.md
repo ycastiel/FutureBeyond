@@ -1,72 +1,73 @@
-# FutureBeyond × H1 Produtora — decisões e ideias
+# FutureBeyond × H1 Produtora — Caderno de ideias
 
-> Documento vivo do projeto. Atualizado em 2026-10-19.
-> **IMPORTANTE:** distinguir decisões do cliente (fonte: `PI2.pdf`), protótipos implementados e ideias de frontend sujeitas a aprovação.
+> **Atualizado em 25/10/2026.** Documento vivo. Distinguir **pedido do cliente**, **implementado** e **ideia opcional**.
+> Fonte principal de conteúdo: `PI2 - Transcrição Site(2).pdf`, fornecido pela equipe.
 
-## Conceito e relação entre as marcas
+## 1. Identidade e narrativa
 
-- **FutureBeyond:** universo digital e portal de exploração; mantém a estética Old Web / Y2K / Frutiger Aero, a entrada XP e a transmissão rachada.
-- **H1 Produtora:** empresa fictícia encontrada dentro do FutureBeyond. A marca e os integrantes têm papéis narrativos.
-- **Premissa do roteiro (PI2, p. 1):** o site é feito por extraterrestres tentando parecer humanos e interpretando mal a cultura. A origem extraterrestre é uma *revelação*; não deve aparecer explicitamente nas páginas públicas iniciais.
-- **Tom:** sátira midiática e corporativa + mistério gradual. Evitar jumpscares e mensagens de terror excessivamente óbvias.
-- **Princípio de escrita:** cada seção pode refletir a voz de quem supostamente a escreveu, sem revelar cedo demais o segredo.
+- **FutureBeyond** é o universo digital/portal; **H1 Produtora** é a produtora fictícia dentro dele.
+- O site é produzido por alienígenas que procuram soar humanos. Humor corporativo, sátira e estranheza gradual, sem revelar a premissa cedo demais.
+- Estilo visual: Old Web / Y2K / Frutiger Aero, painéis cromados, lilás claro + roxo noturno + detalhes ciano.
+- Arte e textos oficiais prevalecem sobre placeholders e sugestões do desenvolvedor.
 
-## Personagens do roteiro (PI2, pp. 3–4)
+## 2. Estrutura atual real do repositório
 
-| Integrante | Papel no site | Voz narrativa / oportunidades |
-|---|---|---|
-| Benedito Silva (Benê) | Técnico e programador da página | Comunicados secos; mensagens de manutenção; comentários internos e bugs *intencionais* claramente delimitados |
-| Jeff Grease | Produção e negócios | Avisos exageradamente corporativos; loja e financiamento coletivo absurdos; obsessão com propriedade |
-| Leonardo Fábio (Berinjela) | Desenvolvimento criativo | Descrições surpreendentemente longas, arte, conceitos estranhos e digressões |
-| Zezinho | Criador de vídeos externo à produtora | Trama transmídia, vídeos, pistas e futura rota oculta; verificar o nome *Wolfheus* do fluxograma com a equipe |
+- Astro + TypeScript + React instalado para eventuais ilhas; páginas atuais estáticas.
+- `astro.config.mjs`: `srcDir: ./start` e `publicDir: ./recursos/publico`.
+- Rotas principais: `start/pages/index.astro`, `home/index.astro`, `home/transmissao.astro`, `alienados/index.astro`, `forum/index.astro`, `blog/index.astro`, `blog/sobre.astro`.
+- CSS por seção: `recursos/css/pages/{home,alienados,forum,blog}/...`, e entrada em `recursos/css/pages/entrance.css`.
+- **Um único CSS global:** `recursos/css/global.css` (tokens, estilos-base, transições compartilhadas e rotação 3D da marca H1).
+- Carrossel da Home: `recursos/javascript/componentes/carrosseis/Banners.ts`.
+- Visualizer decorativo: `recursos/javascript/componentes/visualizadores/Alienados.ts`.
+- Identidade H1: `recursos/publico/imagens/h1/`. Fundo oficial usado no visualizer: `recursos/publico/imagens/h1/h1-visualizer-fundo.webp`.
+- Deploy de produção/prévia: Cloudflare **Workers** com integração GitHub; `main` é produção, `desenvolvimento` é a prévia para o cliente.
 
-## Implementado / entregue para integrar
+## 3. Implementado e atualizado neste pacote
 
-- [x] Portal `/` com efeito de queda e acesso de convidado.
-- [x] Transmissão danificada `/home/transmissao` como experiência intermediária.
-- [x] Home `/home` com três colunas e visual Lavanda & Chrome.
-- [x] Blog `/blog` com conteúdo de demonstração (páginas de post ainda pendentes).
-- [x] Adaptação da Home para apresentar a H1, anúncios de produções em preparação e links institucionais.
-- [x] Página `/sobre` com apresentações resumidas de Benê, Jeff e Berinjela.
-- [x] Logotipos enviados pela equipe integrados ao protótipo (cópias apenas com margens transparentes aparadas).
+- [x] Home institucional com Quem Somos, Nossas Produções e Comunidade.
+- [x] Logo H1 rotacionando lentamente **em 3D** em pontos selecionados (Home e Alienados), com `prefers-reduced-motion`.
+- [x] Carrossel de anúncios: primeiro item **aleatório**, depois avança sequencialmente a cada **5,2 s**, com pausa no hover/foco, controle manual e pausa quando a aba está oculta.
+- [x] Tipografia e espaçamentos do anúncio ajustados para a largura da sidebar.
+- [x] Página Alienados passa a usar a primeira arte oficial fornecida como base, com ondas radiais **decorativas** por cima, animadas só enquanto visíveis. **Ainda não há áudio sincronizado.**
+- [x] Link `Sobre` de Alienados atualizado para a rota existente `/blog/sobre`.
+- [x] Scripts considerados para `ClientRouter` / `astro:page-load`.
+- [x] Portal, queda, transmissão/CMD e transferência de janelas preservados.
 
-## Organização técnica
+## 4. Pedidos específicos do roteiro e da reunião
 
-- Astro + TypeScript, com React instalado para futuras ilhas realmente interativas.
-- `srcDir: './start'` e `publicDir: './recursos/publico'`.
-- Rotas: `start/pages/index.astro`, `start/pages/home/index.astro`, `start/pages/home/transmissao.astro`, `start/pages/sobre.astro`, `/blog`.
-- CSS compartilhado/tokens no **único** `recursos/css/global.css`. CSS local por página em `recursos/css/paginas/`.
-- Logos: `recursos/publico/imagens/h1/h1-horizontal.png` e `h1-vertical.png`, acessíveis por `/imagens/h1/...`.
-- Sem banco de dados, CMS, autenticação real ou armazenamento de senhas.
-- Hospedagem sugerida: Cloudflare Pages + GitHub, com preview de branch para cliente e branch principal para produção; conteúdo não publicado deve ser protegido se sigiloso.
+- [x] Nome do campo de login: **Usuário**.
+- [x] Erro de login fictício: **"Usuário ou Senha incorretos, essa conta não existe"**.
+- [x] A entrada oferece opção de convidado; terminal/intermediário de código mais compacto.
+- [x] No Sobre, apelidos fixos removidos; hover/foco do **Leonardo** revela **Berinjela**.
+- [x] Fórum com estética de internet dos anos 2010 e conversas roteirizadas.
+- [x] Alienados tem estrutura de episódios, ainda aguardando mídias finais.
+- [ ] Remover datas remanescentes de páginas demonstrativas, caso ainda existam (especialmente blog).
+- [ ] Revisar todos os textos substitutos com a equipe antes da versão pública final.
+- [ ] Substituir os cartões de anúncio por GIFs/imagens oficiais quando forem entregues.
 
-## Próximas páginas, conforme PDF
+## 5. Próximos trabalhos — prioridade
 
-1. **Produções:** catálogo; documentário com pôster, sinopse, créditos e extras; podcasts curtos. Não inventar títulos, elenco, duração final ou materiais não recebidos.
-2. **Fórum fictício:** conversas previamente escritas pelos produtores, sem conta nem publicação real nesta fase. Não exibir posts supostamente reais de visitantes.
-3. **Login narrativo:** página separada do portal inicial; tentativas comuns falham, algumas combinações de ARG desbloqueiam rotas ocultas. Se for exclusivamente frontend, todo o código do puzzle é inspecionável — não tratar como segurança.
-4. **Sobre:** desenvolver posteriormente backstory falso e texto de propósito institucional **a partir de material aprovado**. A versão presente é protótipo demonstrativo.
-5. **Merch + financiamento coletivo absurdo:** pendentes de conteúdo, viabilidade e alinhamento de escopo. Não ativar pagamentos de demonstração.
-6. **Blog:** alinhar com a equipe se continuará como diário/arquivo narrativo complementar ou parte oficial das seções da produtora.
+1. **Revisão visual do novo visualizer** com a H1: decidir se ondas devem ocupar o círculo todo e se a animação deve variar por episódio.
+2. **Banners oficiais**: incluir mídias e links aprovados sem alterar o comportamento do carrossel.
+3. **Responsividade** da Home e das páginas de conteúdo: validar telas de 360–768 px, tablet e desktop.
+4. **Performance / acessibilidade**: Lighthouse, testes com CPU limitada, navegação por teclado, preferências de movimento reduzido, lazy loading e tamanhos de imagem.
+5. **Terminar o conteúdo do podcast** conforme cheguem áudio, visualizers definitivos e descrições.
+6. **Polimento do CMD e das transições** (sem sacrificar a fluidez da navegação).
 
-## Ideias opcionais para review
+## 6. Ideias opcionais para discussão
 
-- Alterar discretamente os textos institucionais conforme o visitante percorre as páginas; evitar revelar demais no primeiro acesso.
-- Mensagens de sistema atribuídas a Benê com gramática objetiva e pouquíssima paciência para layout.
-- Promoções de Jeff com preços contraditórios e textos corporativos, sem simular cobranças reais.
-- Postagens mais criativas de Berinjela, com uma estranheza visual sutil que não comprometa legibilidade.
-- Referências aos vídeos de Zezinho em forma de recortes, links e notas de rodapé, quando conteúdos estiverem prontos.
-- Animações e segredos com alternativas acessíveis para teclado e toque; respeitar `prefers-reduced-motion`.
+- Rotação do selo H1: versão 3D (`rotateY`) atual ou rotação plana (`rotateZ`) mais arcade, por contexto.
+- Visualizer real sincronizado a áudio quando houver arquivos e player: usar `Web Audio API` e `AnalyserNode` **somente após autorização de reprodução**. Não afirmar sincronização antes disso.
+- Mensagens sutis do Benê e alterações narrativas de interface em áreas específicas.
+- Evoluir o fórum roteirizado para conversas adicionais fornecidas pelos produtores, antes de considerar comentários reais.
+- Login do ARG com senhas ficcionais (sem confundir com autenticação segura); páginas escondidas só quando houver conteúdo aprovado.
+- Página específica do documentário (pôster, créditos, materiais extras) quando a equipe fornecer assets.
+- Mensagens secretas e transições diferenciadas apenas em momentos importantes, sem repetir glitches em toda página.
 
-## Pendências para confirmar com a equipe
+## 7. Padrões para manter
 
-- O fluxograma (p. 7) usa **Wolfheus**: é Zezinho, outro nome de personagem ou outra conta?
-- Quais textos e ilustrações estão efetivamente aprovados e quais são placeholders?
-- O documentário e o podcast são as primeiras páginas públicas planejadas?
-- Qual papel oficial de `/blog` na navegação final?
-- Quando liberar os elementos de ARG e em quais condições?
-- Qual será o marco real de apresentação/lançamento? As datas do calendário do pitch ainda precisam ser alinhadas.
-
-## Regra de escopo
-
-Textos engraçados adicionados pelo desenvolvedor são **rascunhos**, não cânone. Diferenciar conteúdo aprovado, placeholder e sugestão, e manter links não desenvolvidos inativos até haver uma página funcional.
+- Não alterar arquivos antigos do projeto apenas para renomear pastas.
+- Não criar outro global além de `recursos/css/global.css`.
+- Scripts `.ts` fornecidos separadamente também em `.txt` para compatibilidade com proxy.
+- Não inventar datas, mídias, títulos definitivos ou falas canônicas.
+- Fazer commits incrementais e validar `npm run build` antes do push para `desenvolvimento`.

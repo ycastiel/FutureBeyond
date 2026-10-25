@@ -203,3 +203,83 @@
         animation: none;
     }
 }
+
+/* Visualizer radial: arte oficial como base + ondas decorativas independentes. */
+.h1-alienados__visualizer {
+    display: block;
+    width: 100%;
+    padding: 0;
+    min-height: 0;
+    aspect-ratio: 800 / 466;
+    overflow: hidden;
+    container-type: inline-size;
+    background: #08080c;
+}
+
+.h1-alienados__visualizer-art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: none;
+}
+
+.h1-alienados__radial {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.h1-alienados__ray {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform: rotate(var(--ang)) translateY(-21.9cqw);
+}
+
+.h1-alienados__ray i {
+    display: block;
+    width: clamp(1.5px, .33cqw, 3.5px);
+    height: clamp(4px, var(--len), 32px);
+    margin-left: -1.4px;
+    border-radius: 4px;
+    background: linear-gradient(0deg, #bcf0ff, #f1deff);
+    box-shadow: 0 0 7px #bfeaff99;
+    transform-origin: center bottom;
+    animation: alien-radial-wave 1050ms ease-in-out infinite alternate;
+    animation-delay: var(--delay);
+    animation-play-state: paused;
+}
+
+.h1-alienados__visualizer.is-visible .h1-alienados__ray i {
+    animation-play-state: running;
+}
+
+.h1-alienados__visualizer-caption {
+    margin: .45rem 1rem .75rem;
+    color: #715b8b;
+    font: .65rem/1.4 var(--font-mono, monospace);
+}
+
+@keyframes alien-radial-wave {
+    from {
+        opacity: .23;
+        transform: scaleY(.25);
+    }
+
+    to {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .h1-alienados__ray i {
+        animation: none !important;
+        opacity: .7;
+        transform: scaleY(.65);
+    }
+}
