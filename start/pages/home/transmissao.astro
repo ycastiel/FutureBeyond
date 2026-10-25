@@ -4,6 +4,13 @@ import '../../../recursos/css/pages/home/transmissao.css';
 ---
 <Layout title="FutureBeyond | Inicialização de sessão" description="Inicialização de acesso ao portal FutureBeyond.">
   <main class="signal-home">
+    <!-- Sequência de recuperação: a cena escura cobre a janela CMD inicialmente. -->
+    <div class="signal-boot" aria-hidden="true">
+      <span class="signal-boot__light signal-boot__light--one"></span>
+      <span class="signal-boot__light signal-boot__light--two"></span>
+      <span class="signal-boot__light signal-boot__light--three"></span>
+      <p class="signal-boot__message">&gt; RECUPERANDO SINAL<span>_</span></p>
+    </div>
     <section class="signal-console" aria-labelledby="signal-title">
       <header class="signal-console__titlebar">
         <span aria-hidden="true" class="signal-console__lights"><i></i><i></i><i></i></span>
