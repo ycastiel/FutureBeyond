@@ -2,35 +2,63 @@
 import Layout from '../../views/layouts/Layout.astro';
 import '../../../recursos/css/pages/home/transmissao.css';
 ---
-<Layout title="FutureBeyond | Inicialização de sessão" description="Inicialização de acesso ao portal FutureBeyond.">
+
+<Layout
+  title="FutureBeyond | Recuperação de sessão"
+  description="Terminal de acesso de visitantes ao FutureBeyond."
+>
   <main class="signal-home">
-    <!-- Sequência de recuperação: a cena escura cobre a janela CMD inicialmente. -->
+    <!-- Continuidade da queda: blackout e recuperação de sinal. -->
     <div class="signal-boot" aria-hidden="true">
       <span class="signal-boot__light signal-boot__light--one"></span>
       <span class="signal-boot__light signal-boot__light--two"></span>
       <span class="signal-boot__light signal-boot__light--three"></span>
-      <p class="signal-boot__message">&gt; RECUPERANDO SINAL<span>_</span></p>
+      <p class="signal-boot__message">&gt; RECUPERANDO SINAL <span>_</span></p>
     </div>
+
     <section class="signal-console" aria-labelledby="signal-title">
       <header class="signal-console__titlebar">
-        <span aria-hidden="true" class="signal-console__lights"><i></i><i></i><i></i></span>
-        <span>FB-OS / SESSION.INIT</span>
-        <span aria-hidden="true">_ □ ×</span>
+        <span class="signal-console__title" aria-label="FB-OS Prompt de Comando">
+          <span class="signal-console__app-icon" aria-hidden="true">&gt;_</span>
+          FB-OS — Prompt de Comando
+        </span>
+        <span class="signal-console__window-controls" aria-hidden="true">
+          <i>—</i><i>□</i><i>×</i>
+        </span>
       </header>
+
       <div class="signal-console__body">
-        <p class="signal-console__label">&gt; inicializando sessão...</p>
-        <h1 id="signal-title">Acesso concedido<span class="signal-console__cursor" aria-hidden="true">_</span></h1>
-        <div class="signal-console__code" aria-label="Informações da sessão">
-          <p><span>01</span> const visitante = <strong>"convidado"</strong>;</p>
-          <p><span>02</span> conexão.<em>estabelecer</em>();</p>
-          <p><span>03</span> sistema.<em>verificar</em>(<b>"integridade"</b>);</p>
-          <p class="signal-console__fault"><span>04</span> /* erro: registro parcialmente recuperado */</p>
-          <p><span>05</span> sessão.<em>continuar</em>();</p>
+        <div class="signal-console__screen">
+          <div class="signal-console__screen-header">
+            <span>FUTUREBEYOND / TERMINAL</span>
+            <span class="signal-console__screen-signal" aria-label="Sinal estabilizado">● ONLINE</span>
+          </div>
+
+          <p class="signal-console__intro">FB-OS [MODO CONVIDADO]</p>
+          <p class="signal-console__intro">Inicialização de acesso à H1 Produtora.</p>
+          <div class="signal-console__separator" aria-hidden="true"></div>
+
+          <p class="signal-console__line"><span class="signal-console__prompt">C:\FB-OS&gt;</span> session.init --guest</p>
+          <p class="signal-console__line"><span class="signal-console__ok">[ OK ]</span> Conexão estabelecida</p>
+          <p class="signal-console__line"><span class="signal-console__ok">[ OK ]</span> Permissões temporárias carregadas</p>
+          <p class="signal-console__line signal-console__line--warning"><span class="signal-console__warn">[ ! ]</span> Alguns registros estão incompletos</p>
+
+          <h1 id="signal-title" class="signal-console__result">ACESSO CONCEDIDO<span class="signal-console__cursor" aria-hidden="true">_</span></h1>
+          <p class="signal-console__line signal-console__ready"><span class="signal-console__prompt">C:\FB-OS&gt;</span> aguardando entrada<span class="signal-console__dots" aria-hidden="true">...</span></p>
         </div>
-        <p class="signal-console__status"><span aria-hidden="true">●</span> CONEXÃO ESTABELECIDA</p>
-        <a class="signal-console__enter" href="/home">Continuar para o site <span aria-hidden="true">↗</span></a>
+
+        <a class="signal-console__enter" href="/home">
+          <span><span class="signal-console__enter-command" aria-hidden="true">&gt;</span> Continuar para o FutureBeyond</span>
+          <span aria-hidden="true">↵</span>
+        </a>
       </div>
-      <footer class="signal-console__footer"><span>FB-OS // CONVIDADO</span><a href="/">← voltar</a></footer>
+
+      <footer class="signal-console__footer">
+        <span><i aria-hidden="true"></i> SESSÃO: CONVIDADO / ESTÁVEL</span>
+        <a href="/">← voltar ao acesso</a>
+      </footer>
     </section>
+
+    <p class="signal-home__ambient" aria-hidden="true">FB-OS // TRANSMISSÃO ESTABELECIDA</p>
   </main>
 </Layout>
