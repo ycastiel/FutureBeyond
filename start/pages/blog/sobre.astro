@@ -2,43 +2,34 @@
 import Layout from '../../views/layouts/Layout.astro';
 import '../../../recursos/css/pages/blog/sobre.css';
 
-// Apresentações sintéticas baseadas no roteiro PI2, sujeitas à aprovação da equipe.
-// A revelação sobre a verdadeira natureza dos personagens NÃO deve aparecer aqui.
+// Transcrição do roteiro fornecido pela equipe H1.
+// As falas exibidas omitem apenas os anos, conforme pedido do cliente.
 const equipe = [
   {
-    id: 'bene',
-    numero: '01',
-    nome: 'Benedito Silva',
-    apelido: 'Benê',
-    funcao: 'TECNOLOGIA & INFRAESTRUTURA',
-    resumo: 'Responsável pelos aspectos técnicos das produções e pelo funcionamento deste site.',
-    detalhe: 'Prefere instruções objetivas, decisões simples e tarefas que não exijam reuniões adicionais.',
-    simbolo: '⌘',
+    id: 'bene', numero: '01', simbolo: '⌘',
+    nome: 'Benedito Souza Ferreira Neves Padilha Ximenes Santana Cunha Espindola Siqueira Braga Alves Macedo Mendes Prado Guimarães Arruda Hamamura Alencar Dias Chaves da Silva Sauro',
+    funcao: 'CHEFE DA ÁREA TÉCNICA',
+    descricao: 'Chefe da área técnica da H1 e desenvolvedor. Benedito junior começou sua carreira apenas como estudante da área e por sua proatividade se tornou um destaque para a produtora, hoje é um dos membros mais importantes da empresa.',
+    fala: 'É um trabalho complicado mas honesto.',
+    autoria: 'Sauro, Benedito',
   },
   {
-    id: 'jeff',
-    numero: '02',
-    nome: 'Jeff Grease',
-    apelido: 'Jeff',
-    funcao: 'PRODUÇÃO & ESTRATÉGIA',
-    resumo: 'Organiza os projetos, coordena as produções e dedica atenção especial aos assuntos financeiros.',
-    detalhe: 'Seu interesse por modelos de negócios continua crescendo. As políticas de preços estão sob análise.',
-    simbolo: '$',
+    id: 'jeff', numero: '02', simbolo: '$',
+    nome: 'Jeff Grease', funcao: 'CEO DA H1',
+    descricao: 'CEO da H1 Jeff Grease é um homem de negócios, estudado em administração e sendo um grande empresário. Suas empreitadas mais famosas o levaram a fazer diversas conexões e a reger vários projetos de sucesso, hoje lidera a mais nova competidora no mercado do audiovisual. Seus ideais visam crescimento, considerando todos na empresa como sua grande família.',
+    fala: 'Sabe, é muito importante que cada um dê um pouco de si pela causa, essa empresa não é só minha, mas de todos nós!',
+    autoria: 'Jeff Grease, quando questionado sobre demissões recentes',
   },
   {
-    id: 'berinjela',
-    numero: '03',
-    nome: 'Leonardo Fábio',
-    apelido: 'Berinjela',
-    funcao: 'CRIAÇÃO & DESENVOLVIMENTO',
-    resumo: 'Responsável por ideias e propostas artísticas para as produções da H1.',
-    detalhe: 'Encontra inspiração em detalhes cotidianos que a maioria das pessoas deixaria passar.',
-    simbolo: '✿',
+    id: 'berinjela', numero: '03', simbolo: '✿',
+    nome: 'Leonardo Fábio', funcao: 'ÁREA CRIATIVA',
+    descricao: 'Ae, cara, eu gosto muito desse negócio de contar história, aí eu comecei a encabeçar a parte criativa da H1. De começo era bem difícil, principalmente quando o Jeff falou que não ia poder planta no escritório, isso meio que me desestabilizou. Enfim, tem muita coisa vindo por aí em, fica de olho.',
+    fala: 'Para de ficar me chamando de Berinjela cara!',
+    autoria: 'Leonardo Fábio, em declaração durante episódio de Alienados',
   },
 ] as const;
 ---
-
-<Layout title="FutureBeyond | Sobre a H1 Produtora" description="Conheça a H1 Produtora, os projetos em desenvolvimento e sua equipe.">
+<Layout title="FutureBeyond | Sobre a H1" description="Conheça a história e a equipe da H1 Produtora.">
   <main class="h1-about" id="topo">
     <div class="h1-about__shell">
       <div class="h1-about__chrome" aria-label="Janela institucional H1">
@@ -46,81 +37,68 @@ const equipe = [
         <span>H1 PRODUTORA // INFORMAÇÕES INSTITUCIONAIS</span>
         <span class="h1-about__status">ONLINE ✦</span>
       </div>
-
       <nav class="h1-about__nav" aria-label="Navegação da produtora">
         <a href="/home">⌂ CENTRAL</a>
-        <a href="/sobre" aria-current="page">✧ SOBRE</a>
-        <a href="/blog">♡ BLOG</a>
+        <span aria-current="page" class="h1-about__nav-current">✧ SOBRE</span>
+        <a href="/alienados">◉ ALIENADOS</a>
+        <a href="/forum">✉ FÓRUM</a>
         <a href="#equipe">✿ EQUIPE</a>
       </nav>
-
       <header class="h1-about__hero">
         <div class="h1-about__intro">
-          <p class="h1-about__eyebrow">✦ APRESENTAÇÃO INSTITUCIONAL // H1.001</p>
-          <h1>Uma produtora.<br /><em>Muitas ideias.</em></h1>
-          <p>A H1 Produtora é uma equipe criativa dedicada a desenvolver conteúdos para o entretenimento do público. Ocasionalmente, precisamos pesquisar o significado de palavras muito comuns. Isso não afeta a qualidade dos serviços.</p>
+          <p class="h1-about__eyebrow">✦ APRESENTAÇÃO INSTITUCIONAL</p>
+          <h1>Quem <em>somos</em></h1>
+          <p>Bem vindo a H1, conheça nossa família e como trabalhamos!</p>
           <a class="h1-about__button" href="#equipe">Conheça nossa equipe <span aria-hidden="true">↗</span></a>
-          <small>Texto de apresentação provisório para validação da equipe.</small>
         </div>
         <div class="h1-about__brand">
           <img src="/imagens/h1/h1-horizontal.png" width="1991" height="400" alt="H1 Produtora, logotipo holográfico lilás" />
-          <span class="h1-about__brand-sub">H1 PRODUTORA — SUA PRODUTORA DE CONFIANÇA</span>
+          <span class="h1-about__brand-sub">H1 PRODUTORA</span>
         </div>
       </header>
-
       <div class="h1-about__content">
         <section class="h1-about__window" aria-labelledby="h1-purpose-title">
-          <div class="h1-about__window-head"><span>✧ &nbsp; Sobre nós</span><span aria-hidden="true">_ □ ×</span></div>
+          <div class="h1-about__window-head"><span>✧ &nbsp; Quem somos</span><span aria-hidden="true">_ □ ×</span></div>
           <div class="h1-about__window-body h1-about__purpose">
             <div>
-              <p class="h1-about__eyebrow">01 / NOSSA APRESENTAÇÃO</p>
-              <h2 id="h1-purpose-title">Criatividade para todos os públicos.</h2>
-              <p>Nosso espaço digital reúne notícias e informações sobre as produções da H1. Estamos preparando conteúdos audiovisuais, conversas em áudio e outras iniciativas.</p>
-              <p>As informações sobre nossa história institucional e nosso propósito definitivo serão publicadas após a revisão do material de apresentação.</p>
+              <p class="h1-about__eyebrow">NOSSA APRESENTAÇÃO</p>
+              <h2 id="h1-purpose-title">Quem somos</h2>
+              <p>Nós da H1 temos o prazer de nos inserir no excitante mercado do audiovisual brasileiro. Apesar de novos, somos um grupo de indivíduos dedicados ao aprimoramento e compreensão da arte de forma humana e legal.</p>
+              <p>Nosso princípio é de buscar a arte autêntica, acreditamos que o toque humano é em sua essência extremamente importante e relevante para cada história contada. Com isso também somos extremamente gratos aos nossos colaboradores e funcionários, somos todos uma família e sem eles não seriamos nada.</p>
             </div>
-            <div class="h1-about__notice" role="note">
-              <span>◈ INFORMAÇÃO PARA VISITANTES</span>
-              <strong>ATENDIMENTO EM OPERAÇÃO</strong>
-              <p>O departamento técnico confirmou que este endereço é um site.</p>
-              <small>H1 / COMUNICADO DEMONSTRATIVO</small>
-            </div>
+            <figure class="h1-about__set-placeholder">
+              <div aria-hidden="true">🎬</div>
+              <figcaption>Imagem de bastidores em preparação</figcaption>
+            </figure>
           </div>
         </section>
-
         <section class="h1-about__window" id="equipe" aria-labelledby="h1-team-title">
-          <div class="h1-about__window-head"><span>✿ &nbsp; Diretório de integrantes</span><span>03 PERFIS</span></div>
+          <div class="h1-about__window-head"><span>✿ &nbsp; Nossa equipe</span><span>03 INTEGRANTES</span></div>
           <div class="h1-about__window-body">
-            <p class="h1-about__eyebrow">02 / PESSOAS RESPONSÁVEIS</p>
-            <h2 id="h1-team-title">Conheça a equipe H1</h2>
-            <p class="h1-about__section-intro">Três áreas distintas, uma produtora e um número razoável de reuniões sobre como funcionam as produtoras.</p>
+            <h2 id="h1-team-title">Nossa equipe</h2>
             <div class="h1-about__team">
               {equipe.map((pessoa) => (
                 <article class={`h1-about__person h1-about__person--${pessoa.id}`}>
                   <div class="h1-about__portrait" aria-hidden="true"><span>{pessoa.simbolo}</span><small>H1 / {pessoa.numero}</small></div>
                   <div class="h1-about__person-content">
                     <p class="h1-about__role">{pessoa.funcao}</p>
-                    <h3>{pessoa.nome} <span>({pessoa.apelido})</span></h3>
-                    <p>{pessoa.resumo}</p>
-                    <p class="h1-about__person-note">{pessoa.detalhe}</p>
+                    <h3>
+                      {pessoa.id === 'berinjela' ? (
+                        <span class="h1-about__name-swap" tabindex="0" aria-label="Leonardo Fábio, também conhecido como Berinjela">
+                          <span class="h1-about__name-default" aria-hidden="true">Leonardo Fábio</span>
+                          <span class="h1-about__name-alt" aria-hidden="true">Berinjela</span>
+                        </span>
+                      ) : pessoa.nome}
+                    </h3>
+                    <p>{pessoa.descricao}</p>
+                    <blockquote class="h1-about__quote">“{pessoa.fala}” <footer>— {pessoa.autoria}</footer></blockquote>
                   </div>
                 </article>
               ))}
             </div>
           </div>
         </section>
-
-        <section class="h1-about__window" aria-labelledby="h1-content-title">
-          <div class="h1-about__window-head"><span>▧ &nbsp; Em produção</span><span>PREVISÕES SUJEITAS À REVISÃO</span></div>
-          <div class="h1-about__window-body">
-            <h2 id="h1-content-title">Projetos em preparação</h2>
-            <div class="h1-about__project-grid">
-              <article><span>🎞 DOCUMENTÁRIO</span><h3>Filme e materiais extras</h3><p>Espaço planejado para sinopse, pôster, créditos e peças promocionais.</p></article>
-              <article><span>◉ PODCASTS</span><h3>Conversas em áudio</h3><p>Uma área reservada aos episódios curtos ligados aos integrantes da produtora.</p></article>
-            </div>
-          </div>
-        </section>
       </div>
-
       <footer class="h1-about__footer"><span>✦ H1 PRODUTORA × FUTUREBEYOND</span><a href="/home">← VOLTAR PARA A CENTRAL</a><a href="#topo">↑ TOPO</a></footer>
     </div>
   </main>

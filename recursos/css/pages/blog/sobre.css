@@ -447,3 +447,104 @@
         transition: none;
     }
 }
+
+/* Ajustes da transcrição oficial */
+.h1-about__nav-current {
+    display: inline-flex;
+    align-items: center;
+    padding: .65rem .9rem;
+    cursor: default;
+    color: #53267b;
+    font-weight: 800;
+    background: linear-gradient(#fff, #d7c0f0);
+    border: 1px solid #c8a5e5;
+    border-radius: 999px;
+}
+
+.h1-about__person h3 {
+    overflow-wrap: anywhere;
+    font-size: clamp(.96rem, 1.1vw, 1.12rem);
+}
+
+.h1-about__name-swap {
+    position: relative;
+    display: inline-grid !important;
+    margin: 0 !important;
+    outline-offset: 5px;
+    cursor: help;
+    font: inherit !important;
+    color: inherit !important;
+}
+
+.h1-about__name-default,
+.h1-about__name-alt {
+    grid-area: 1 / 1;
+    display: block !important;
+    margin: 0 !important;
+    color: inherit !important;
+    font: inherit !important;
+    transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.h1-about__name-alt {
+    opacity: 0;
+    transform: translateY(6px);
+}
+
+.h1-about__name-swap:is(:hover, :focus-visible) .h1-about__name-default {
+    opacity: 0;
+    transform: translateY(-6px);
+}
+
+.h1-about__name-swap:is(:hover, :focus-visible) .h1-about__name-alt {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.h1-about__quote {
+    margin: .8rem 0 0;
+    padding: .8rem 1rem;
+    border-left: 3px solid #bb87e7;
+    background: #f6eaff;
+    color: #653e84;
+    font-style: italic;
+    font-size: .78rem;
+    line-height: 1.6;
+}
+
+.h1-about__quote footer {
+    font-size: .69rem;
+    font-style: normal;
+    opacity: .78;
+    margin-top: .35rem;
+}
+
+.h1-about__set-placeholder {
+    margin: 0;
+    min-height: 200px;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    padding: 1.4rem;
+    border: 2px dashed #b49ed2;
+    border-radius: 12px;
+    background: radial-gradient(circle at 50% 30%, #ffffff, #e3d8fb);
+    color: #6d5492;
+}
+
+.h1-about__set-placeholder div {
+    font-size: 3rem;
+}
+
+.h1-about__set-placeholder figcaption {
+    font-size: .75rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .h1-about__name-default,
+    .h1-about__name-alt {
+        transition: none;
+        transform: none !important;
+    }
+}
