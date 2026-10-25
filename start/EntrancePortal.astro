@@ -23,15 +23,15 @@ import '../recursos/css/pages/entrance.css';
 
       <div class="portal-content">
         <div class="login-panel">
-          <p class="portal-kicker">[ TERMINAL DE ACESSO // 200X ]</p>
-          <h1 id="portal-title" class="portal-wordmark">Future<span>Beyond</span><span class="portal-wordmark__spark" aria-hidden="true">✦</span></h1>
+          <p class="portal-kicker">[ TERMINAL DE ACESSO ]</p>
+          <h1 id="portal-title" class="portal-wordmark">Future<span>Beyond</span></h1>
           <p class="login-panel__intro">
             Sua próxima conexão começa aqui. Identifique-se para solicitar acesso ao sistema.
           </p>
 
           <form class="login-form" data-login-form autocomplete="off" novalidate>
             <div class="form-field">
-              <label for="visitor-name">Identificação</label>
+              <label for="visitor-name">Usuário</label>
               <input
                 id="visitor-name"
                 name="visitor-name"
@@ -60,21 +60,19 @@ import '../recursos/css/pages/entrance.css';
 
             <p class="login-feedback" data-login-feedback role="status" aria-live="polite" hidden>
               <span aria-hidden="true">✕</span>
-              Você não pertence a essa era.
+              Usuário ou Senha incorretos, essa conta não existe
             </p>
           </form>
 
-          <p class="login-panel__note">Terminal fictício. Não use senhas reais.</p>
         </div>
 
         <aside class="guest-panel" aria-label="Acesso de convidado">
-          <div class="guest-panel__planet" aria-hidden="true"></div>
+          <img class="guest-panel__logo" src="/imagens/h1/h1-vertical.png" alt="" aria-hidden="true" width="1253" height="621" />
           <div class="guest-panel__content">
             <p class="guest-panel__status"><span aria-hidden="true"></span> GATEWAY DISPONÍVEL</p>
-            <span class="guest-panel__icon" aria-hidden="true">✧</span>
-            <h2>Não possui credenciais?</h2>
-            <p>Algumas portas não exigem identificação. Apenas curiosidade.</p>
-            <a class="glossy-button glossy-button--guest" href="/home/transmissao" data-guest-access>
+            
+            <h2>Não possui uma conta?</h2>
+            <a class="glossy-button glossy-button--guest" href="/home/transmissao" data-guest-access data-astro-reload>
               <span>Acessar como convidado</span>
               <span aria-hidden="true">→</span>
             </a>
@@ -89,7 +87,7 @@ import '../recursos/css/pages/entrance.css';
       </footer>
     </section>
 
-    <p class="entrance-hint">Passe o mouse sobre a janela para estabilizar a transmissão.</p>
+    
   </div>
 </main>
 
