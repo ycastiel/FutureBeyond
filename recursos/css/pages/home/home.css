@@ -560,6 +560,14 @@
   font-size: 1rem;
 }
 
+/* Subtítulo oficial das produções (transcrição da H1, p. 4). */
+.fb-section-title__subtitle {
+  margin: .25rem 0 0;
+  color: #665379;
+  font-size: .82rem;
+  line-height: 1.45;
+}
+
 .fb-section-title>span {
   color: #3a8598;
   font: 700 .6rem var(--font-mono);
