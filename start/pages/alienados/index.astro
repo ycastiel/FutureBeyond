@@ -1,20 +1,33 @@
 ---
 import Layout from '../../views/layouts/Layout.astro';
+import TerminalTranscricao from '../../views/componentes/alienados/TerminalTranscricao.astro';
 import '../../../recursos/css/pages/alienados/alienados.css';
 
-// O roteiro ainda não fornece áudio final por episódio; arte oficial recebida, animação decorativa sem sincronização de áudio.
+// Áudio e transcrição oficial ainda pendentes. Preencha os caminhos abaixo somente quando os arquivos chegarem.
+// O arquivo .vtt usa tempos absolutos de início/fim; o navegador o sincroniza com o <audio>.
 const raios = Array.from({ length: 60 }, (_, i) => ({
   angulo: i * 6,
   tamanho: 9 + (i * 7 + (i % 3) * 11) % 25,
   atraso: -(i * 0.067)
 }));
 
-const episodios = [
-  { numero: '01', titulo: 'Teorias da Conspiração' },
-  { numero: '02', titulo: 'Trabalho' },
-  { numero: '03', titulo: null },
-  { numero: '04', titulo: null },
-] as const;
+type Episodio = {
+  numero: string;
+  titulo: string | null;
+  audio: string | null;
+  legenda: string | null;
+};
+
+const episodios: Episodio[] = [
+  { numero: '01', titulo: 'Teorias da Conspiração', audio: null, legenda: null },
+  { numero: '02', titulo: 'Trabalho', audio: null, legenda: null },
+  { numero: '03', titulo: null, audio: null, legenda: null },
+  { numero: '04', titulo: null, audio: null, legenda: null },
+];
+
+// EXEMPLO PARA QUANDO OS ARQUIVOS FOREM ENTREGUES (não ativar antes):
+// { numero: '01', titulo: 'Teorias da Conspiração',
+//   audio: '/audios/alienados/ep-01.mp3', legenda: '/legendas/alienados/ep-01.vtt' },
 ---
 <Layout title="H1Produtora | Alienados" description="Alienados, o podcast da H1 Produtora.">
   <main class="h1-alienados">
@@ -54,7 +67,8 @@ const episodios = [
                 ))}
               </div>
             </div>
-            <p class="h1-alienados__visualizer-caption">Visualização animada ilustrativa · Áudio do episódio em preparação</p>
+            <p class="h1-alienados__visualizer-caption">Visualização animada ilustrativa · {ep.audio ? 'Áudio disponível no reprodutor abaixo' : 'Áudio do episódio em preparação'}</p>
+            <TerminalTranscricao numero={ep.numero} titulo={ep.titulo} audio={ep.audio} legenda={ep.legenda} />
           </section>
         ))}
       </div>
@@ -65,4 +79,5 @@ const episodios = [
 
 <script>
   import '../../../recursos/javascript/componentes/visualizadores/Alienados.ts';
+  import '../../../recursos/javascript/componentes/visualizadores/TranscricaoAlienados.ts';
 </script>
