@@ -63,8 +63,6 @@
 
 .entrance-stage {
   width: min(100%, 900px);
-  perspective: 1500px;
-  perspective-origin: 50% 44%;
 }
 
 .portal-window {
@@ -104,12 +102,6 @@
   font-size: .88rem;
   font-weight: 800;
   letter-spacing: .04em;
-}
-
-.portal-titlebar__symbol {
-  color: var(--color-cyan);
-  font-size: 1.3rem;
-  text-shadow: 0 0 8px #fff;
 }
 
 .portal-titlebar__controls {
@@ -410,13 +402,13 @@
 }
 
 /*
- * Entrada: a janela recua e sofre um pequeno solavanco.
- * Em seguida, o observador despenca: a janela SOBE e desaparece no alto.
- * O overlay escurece a cena no último instante, escondendo a troca de rota.
+ * Entrada: a janela recua sem distorção 3D e sobe para simular a queda do observador.
+ * O blackout cobre a troca de rota para o terminal de recuperação.
  */
 .entrance-scene.is-entering .portal-window {
   pointer-events: none;
-  transform-origin: 50% 42%;
+  transform-origin: center;
+  will-change: transform, opacity;
   animation: portalFallAway 1350ms cubic-bezier(.36, .02, .73, .58) both;
 }
 
@@ -466,44 +458,36 @@
   }
 }
 
+/* Queda sem inclinação 3D: somente transform + opacity, preservando o blackout. */
 @keyframes portalFallAway {
   0% {
-    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(0) scale(1);
+    transform: translateY(0) scale(1);
     opacity: 1;
-    filter: blur(0);
   }
 
   22% {
-    /* A tela se afasta um pouquinho. */
-    transform: rotateX(3deg) rotateY(-4deg) rotateZ(-2deg) translateY(18px) scale(.88);
+    transform: translateY(14px) scale(.96);
     opacity: 1;
-    filter: blur(0);
   }
 
   39% {
-    /* Ela cede — mas não chega a cair. */
-    transform: rotateX(8deg) rotateY(-6deg) rotateZ(2deg) translateY(50px) scale(.82);
+    transform: translateY(28px) scale(.94);
     opacity: 1;
-    filter: blur(0);
   }
 
   52% {
-    /* A câmera começa a cair: a tela parece subir. */
-    transform: rotateX(-3deg) rotateY(-3deg) rotateZ(-2deg) translateY(-12px) scale(.83);
+    transform: translateY(-14px) scale(.94);
     opacity: 1;
-    filter: blur(0);
   }
 
   77% {
-    transform: rotateX(-10deg) rotateY(3deg) rotateZ(-5deg) translateY(-47vh) scale(.75);
+    transform: translateY(-47vh) scale(.9);
     opacity: 1;
-    filter: none;
   }
 
   100% {
-    transform: rotateX(-17deg) rotateY(5deg) rotateZ(-7deg) translateY(-145vh) scale(.66);
+    transform: translateY(-145vh) scale(.86);
     opacity: .65;
-    filter: none;
   }
 }
 
