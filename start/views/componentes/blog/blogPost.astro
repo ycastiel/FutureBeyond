@@ -1,7 +1,6 @@
 ---
 interface Props {
   numero: string;
-  data: string;
   categoria: string;
   tema: 'horizonte' | 'discos' | 'estrelas';
   titulo: string;
@@ -9,17 +8,16 @@ interface Props {
   conteudo: readonly string[];
 }
 
-const { numero, data, categoria, tema, titulo, resumo, conteudo } = Astro.props;
+const { numero, categoria, tema, titulo, resumo, conteudo } = Astro.props;
 ---
 
 <article class="fb-blog-post" id={`post-${numero}`}>
   <div class="fb-blog-post__bar">
     <span>▧ BLOG POST // {numero}</span>
-    <time>{data}</time>
+    <span class="fb-blog-post__file">ARQUIVO H1</span>
   </div>
   <div class="fb-blog-post__body">
     <div class="fb-blog-post__meta">
-      <span>{data}</span>
       <span>✿ {categoria}</span>
     </div>
     <div class={`fb-blog-post__art fb-blog-post__art--${tema}`} role="img" aria-label={tema === 'horizonte' ? 'Paisagem cósmica ilustrada em degradê lilás e azul' : tema === 'discos' ? 'Discos holográficos ilustrados em tons pastel' : 'Céu estrelado em tons violeta e azul'}>

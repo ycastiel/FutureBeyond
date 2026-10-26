@@ -368,3 +368,179 @@
 @media (prefers-reduced-motion: reduce) {
   .h1-alienados__spark { animation: none !important; }
 }
+
+
+/* Terminal WebVTT: cada episódio tem seu próprio reprodutor e acompanhamento de legendas. */
+.h1-alienados__midia {
+    padding: 0 clamp(.65rem, 2.2vw, 1.15rem) clamp(.8rem, 2.4vw, 1.3rem);
+}
+
+.h1-alienados__reprodutor {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .7rem 1rem;
+    padding: .75rem .95rem;
+    border: 1px solid #c6afd9;
+    border-bottom: none;
+    background: linear-gradient(180deg, #fbf6ff, #e9ddfa);
+}
+
+.h1-alienados__reprodutor-info {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    color: #604080;
+    font: 800 .68rem/1.3 var(--font-mono, monospace);
+    letter-spacing: .035em;
+}
+
+.h1-alienados__reprodutor-info > span:first-child {
+    font-size: 1rem;
+    color: #9659bc;
+}
+
+.h1-alienados__audio {
+    display: block;
+    flex: 1 1 300px;
+    width: 100%;
+    min-width: 0;
+    height: 42px;
+    color-scheme: light;
+    accent-color: #754cb3;
+}
+
+.h1-alienados__reprodutor-offline {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    min-height: 2.25rem;
+    padding: .5rem .75rem;
+    border: 1px solid #b9a2cc;
+    border-radius: 4px;
+    color: #7e6b92;
+    background: #ebe2f2;
+    box-shadow: inset 0 1px #fff;
+    font: 700 .65rem var(--font-mono, monospace);
+    cursor: not-allowed;
+}
+
+.h1-alienados__reprodutor-nota {
+    color: #715d85;
+    font: .67rem var(--font-mono, monospace);
+}
+
+.h1-alienados__transcricao {
+    overflow: hidden;
+    border: 1px solid #a88fc3;
+    background: #0a0d17;
+    box-shadow: 0 7px 20px #2f194c27, inset 0 0 0 1px #ffffff0a;
+}
+
+.h1-alienados__transcricao-barra {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: .4rem .9rem;
+    padding: .54rem .75rem;
+    color: #e5ebff;
+    background: linear-gradient(180deg, #46415e, #252538 65%, #1d2031);
+    border-bottom: 1px solid #75708f;
+    font: 700 .62rem/1.4 var(--font-mono, monospace);
+    letter-spacing: .05em;
+}
+
+.h1-alienados__transcricao-identidade {
+    display: inline-flex;
+    align-items: center;
+    gap: .7rem;
+}
+
+.h1-alienados__transcricao-luzes {
+    display: inline-flex;
+    gap: 4px;
+}
+
+.h1-alienados__transcricao-luzes i {
+    display: block;
+    width: 7px;
+    height: 7px;
+    border: 1px solid #f7f4ff99;
+    border-radius: 50%;
+    background: #d68db8;
+}
+
+.h1-alienados__transcricao-luzes i:nth-child(2) { background: #ead899; }
+.h1-alienados__transcricao-luzes i:nth-child(3) { background: #9de2cc; }
+
+.h1-alienados__transcricao-status {
+    color: #b1c9f2;
+    font-size: .6rem;
+}
+
+.h1-alienados__transcricao-tela {
+    position: relative;
+    min-height: 135px;
+    padding: clamp(.8rem, 2.4vw, 1.2rem);
+    background:
+        radial-gradient(circle at 90% 5%, #30254835, transparent 48%),
+        repeating-linear-gradient(0deg, transparent 0 3px, #dce8ff04 3px 4px),
+        linear-gradient(145deg, #0b101b, #10101e);
+    color: #bbf4d4;
+    font-family: var(--font-mono, 'Courier New', monospace);
+}
+
+.h1-alienados__transcricao-comando {
+    margin: 0 0 .95rem;
+    color: #84add1;
+    font: 700 .65rem/1.5 var(--font-mono, 'Courier New', monospace);
+    overflow-wrap: anywhere;
+}
+
+.h1-alienados__transcricao-linha {
+    margin: 0;
+    color: #c1f8db;
+    font: 500 clamp(.77rem, 1.7vw, .94rem)/1.65 var(--font-mono, 'Courier New', monospace);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    text-shadow: 0 0 8px #4ee7a01c;
+}
+
+.h1-alienados__transcricao-cursor {
+    display: inline;
+    margin-left: .12em;
+    color: #f4edff;
+    font-weight: 800;
+    animation: h1-transcricao-cursor 1.05s steps(1, end) infinite;
+}
+
+.h1-alienados__transcricao-rodape {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: .3rem .75rem;
+    padding: .45rem .75rem;
+    border-top: 1px solid #33324b;
+    background: #161a29;
+    color: #aab1d2;
+    font: 600 .58rem/1.45 var(--font-mono, monospace);
+    letter-spacing: .035em;
+}
+
+@keyframes h1-transcricao-cursor {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+@media (max-width: 530px) {
+    .h1-alienados__reprodutor { align-items: stretch; flex-direction: column; }
+    .h1-alienados__audio { flex: none; }
+    .h1-alienados__transcricao-barra { font-size: .57rem; }
+    .h1-alienados__transcricao-tela { min-height: 120px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .h1-alienados__transcricao-cursor { animation: none !important; }
+}

@@ -3,12 +3,11 @@ import Layout from '../../views/layouts/Layout.astro';
 import BlogPost from '../../views/componentes/blog/blogPost.astro';
 import '../../../recursos/css/pages/blog/blog.css';
 
-// CONTEÚDO DEMONSTRATIVO: substituiremos pelos textos e mídias do cliente.
+// CONTEÚDO DEMONSTRATIVO (não consta no PDF oficial): validar manutenção com a equipe.
 // Sem banco ou CMS: por enquanto, editar este array é suficiente.
 const posts = [
   {
     numero: '001',
-    data: '14.06.20XX',
     categoria: 'ARTES & IDEIAS',
     tema: 'horizonte',
     titulo: 'Cartões-postais de um amanhã distante',
@@ -20,7 +19,6 @@ const posts = [
   },
   {
     numero: '002',
-    data: '10.06.20XX',
     categoria: 'MÚSICA & MEMÓRIAS',
     tema: 'discos',
     titulo: 'Arquivos encontrados em um CD sem nome',
@@ -32,7 +30,6 @@ const posts = [
   },
   {
     numero: '003',
-    data: '07.06.20XX',
     categoria: 'DIÁRIO',
     tema: 'estrelas',
     titulo: 'A primeira mensagem deste pequeno universo',
@@ -46,8 +43,8 @@ const posts = [
 ---
 
 <Layout
-  title="H1Produtora | Blog"
-  description="O diário digital da H1 Produtora: um pequeno canto Y2K para artes, memórias e transmissões de outro tempo."
+  title="H1 - Produtora | Blog"
+  description="O diário digital da H1 - Produtora: um pequeno canto Y2K para artes, memórias e transmissões de outro tempo."
 >
   <main class="fb-blog" id="topo">
     <div class="fb-blog__stars" aria-hidden="true"></div>
@@ -57,14 +54,14 @@ const posts = [
         <div class="fb-blog__titlebar">
           <span class="fb-blog__window-lights" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="fb-blog__titlebar-name">✧ H1 - PRODUTORA BLOG ✧</span>
-          <span class="fb-blog__address">h1produtora.net/blog</span>
+          <span class="fb-blog__address">H1 / diário digital</span>
         </div>
 
         <div class="fb-blog__intro">
           <div class="fb-blog__mascot" aria-hidden="true"><span>✦</span><i></i></div>
           <div class="fb-blog__intro-copy">
             <p class="fb-blog__eyebrow">✧ WELCOME TO MY LITTLE CORNER OF THE INTERNET ✧</p>
-            <h1>my little <span>future</span> blog <b aria-hidden="true">✳</b></h1>
+            <h1>my little <span>H1</span> blog <b aria-hidden="true">✳</b></h1>
             <p>Arte, memórias, música e outras coisinhas que atravessaram o tempo para chegar aqui. ♡</p>
             <div class="fb-blog__tags" aria-label="Temas do blog">
               <span>♡ old web</span>
@@ -73,7 +70,7 @@ const posts = [
               <span>◈ y2k vibes</span>
             </div>
           </div>
-          <div class="fb-blog__intro-orbit" aria-hidden="true"><span>FB/200X</span></div>
+          <div class="fb-blog__intro-orbit" aria-hidden="true"><span>H1 / ARQUIVO</span></div>
         </div>
 
         <nav class="fb-blog__nav" aria-label="Navegação do blog">
@@ -115,7 +112,7 @@ const posts = [
           <section class="fb-blog__widget" id="arquivo">
             <h2 class="fb-blog__widget-bar">▧ MINI ARQUIVO</h2>
             <div class="fb-blog__widget-body fb-blog__archive">
-              <span>JUNHO // 20XX</span>
+              <span>REGISTROS DA H1</span>
               {posts.map((post) => <a href={`#post-${post.numero}`}>✧ registro {post.numero}</a>)}
             </div>
           </section>
@@ -124,7 +121,7 @@ const posts = [
             <h2 class="fb-blog__widget-bar">♡ BLINKIES & STICKERS</h2>
             <div class="fb-blog__widget-body fb-blog__stickers" aria-label="Adesivos decorativos">
               <span>✳ INTERNET ANGEL</span>
-              <span>★ FUTURE FRIEND ★</span>
+              <span>★ H1 FRIEND ★</span>
               <span>♡ MADE OF STARDUST</span>
               <span>✿ CONNECTED ✿</span>
             </div>
