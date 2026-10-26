@@ -1,0 +1,71 @@
+---
+interface Props {
+  numero: string;
+  titulo: string | null;
+  audio?: string | null;
+  legenda?: string | null;
+}
+
+const { numero, titulo, audio = null, legenda = null } = Astro.props;
+const temAudio = Boolean(audio);
+const temLegenda = Boolean(audio && legenda);
+const descricao = titulo ? `Episódio ${numero}: ${titulo}` : `Episódio ${numero}`;
+---
+<div class="h1-alienados__midia" data-transcricao-midia>
+  <div class="h1-alienados__reprodutor">
+    <div class="h1-alienados__reprodutor-info">
+      <span aria-hidden="true">♫</span>
+      <span>REPRODUTOR / EP. {numero}</span>
+    </div>
+    {temAudio ? (
+      <audio
+        class="h1-alienados__audio"
+        data-transcricao-audio
+        controls
+        preload="metadata"
+        src={audio!}
+        aria-label={`Reproduzir ${descricao}`}
+      >
+        {temLegenda && <track
+          data-transcricao-track
+          kind="subtitles"
+          src={legenda!}
+          srclang="pt-BR"
+          label="Português (Brasil)"
+        />}
+        Seu navegador não suporta reprodução de áudio.
+      </audio>
+    ) : (
+      <button class="h1-alienados__reprodutor-offline" disabled type="button" aria-label={`Áudio indisponível para ${descricao}`}>
+        <span aria-hidden="true">▶</span> REPRODUÇÃO INDISPONÍVEL
+      </button>
+    )}
+    {!temAudio && <span class="h1-alienados__reprodutor-nota">Aguardando o áudio oficial do episódio.</span>}
+  </div>
+
+  <section
+    class="h1-alienados__transcricao"
+    aria-label={`Terminal de transcrição: ${descricao}`}
+    data-transcricao-terminal
+  >
+    <div class="h1-alienados__transcricao-barra">
+      <div class="h1-alienados__transcricao-identidade">
+        <span class="h1-alienados__transcricao-luzes" aria-hidden="true"><i></i><i></i><i></i></span>
+        <strong>H1 / TRANSCRIPT.EXE</strong>
+      </div>
+      <span class="h1-alienados__transcricao-status" data-transcricao-status>
+        {temLegenda ? 'CARREGANDO .VTT' : 'SEM ARQUIVO .VTT'}
+      </span>
+    </div>
+    <div class="h1-alienados__transcricao-tela">
+      <p class="h1-alienados__transcricao-comando" aria-hidden="true">C:\H1\ALIENADOS\EP_{numero}&gt; transcricao --ao-vivo</p>
+      <p class="h1-alienados__transcricao-linha" aria-live="polite" aria-atomic="true">
+        <span data-transcricao-texto>Transcrição indisponível</span><span class="h1-alienados__transcricao-cursor" aria-hidden="true">_</span>
+      </p>
+    </div>
+    <div class="h1-alienados__transcricao-rodape">
+      <span>ARQUIVO: {temLegenda ? `EP_${numero}.VTT` : 'AGUARDANDO.VTT'}</span>
+      <time data-transcricao-tempo>--:-- / --:--</time>
+    </div>
+  </section>
+</div>
