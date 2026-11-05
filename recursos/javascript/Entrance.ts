@@ -8,6 +8,33 @@ if (portal) {
 
   loginForm?.addEventListener('submit', (event) => {
     event.preventDefault();
+    const userField = loginForm.elements.namedItem('visitor-name');
+    const passField = loginForm.elements.namedItem('visitor-password');
+    const user = userField instanceof HTMLInputElement ? userField.value.trim() : '';
+    const pass = passField instanceof HTMLInputElement ? passField.value : '';
+    const normalizedUser = user.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+
+    // Login narrativo do ARG, NÃO autenticação segura.
+    // Só Benê tem senha definida no PDF; outros funcionários aguardam roteiro.
+    if (normalizedUser === 'bene' && pass === 'Alienados') {
+      if (portal.classList.contains('is-alien-recognized')) return;
+      if (feedback) feedback.hidden = true;
+      portal.classList.add('is-alien-recognized');
+      const submitButton = loginForm.querySelector<HTMLButtonElement>('button[type="submit"]');
+      if (submitButton) {
+        submitButton.disabled = true;
+        const label = submitButton.querySelector('span');
+        if (label) label.textContent = 'Acesso reconhecido';
+      }
+      const target = '/login?tema=hibrido';
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        window.location.assign(target);
+      } else {
+        window.setTimeout(() => window.location.assign(target), 560);
+      }
+      return;
+    }
+
     loginForm.reset();
 
     if (feedback) {
