@@ -610,3 +610,31 @@
     animation: none;
   }
 }
+
+/* Login narrativo: sinal de que a fachada humana foi reconhecida como disfarce. */
+.entrance-scene.is-alien-recognized .portal-window {
+  pointer-events: none;
+  animation: h1-recognize-alien 560ms cubic-bezier(.2,.7,.2,1) both;
+}
+.entrance-scene.is-alien-recognized::after {
+  content: '';
+  position: fixed;
+  z-index: 25;
+  inset: 0;
+  pointer-events: none;
+  background: #030711;
+  animation: h1-login-alien-blackout 560ms ease-in both;
+}
+@keyframes h1-recognize-alien {
+  0% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.012); filter: brightness(1.4) hue-rotate(-18deg); }
+  100% { transform: scale(.96); filter: brightness(.56); }
+}
+@keyframes h1-login-alien-blackout {
+  0%, 45% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .entrance-scene.is-alien-recognized .portal-window,
+  .entrance-scene.is-alien-recognized::after { animation: none; }
+}

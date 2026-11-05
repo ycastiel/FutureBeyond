@@ -1,0 +1,457 @@
+/* H1 - Produtora | área secreta (protótipo narrativo). Não altera CSS do site público. */
+.h1-alien-body {
+  --alien-glow: #9afce5;
+  --alien-lilac: #d2b8ff;
+  --alien-surface: rgba(6, 17, 26, .92);
+  background: #050810;
+  overflow-x: hidden;
+}
+.h1-alien-body button,
+.h1-alien-body a { -webkit-tap-highlight-color: transparent; }
+.alien-stage {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  overflow: hidden;
+  color: #e9faf9;
+  background: #060811;
+  font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+}
+.alien-stage[data-theme="retro"] {
+  --alien-glow: #b7f8ff;
+  --alien-lilac: #ebd2ff;
+  --alien-surface: rgba(17, 21, 43, .9);
+}
+.alien-stage__world,
+.alien-stage__vignette,
+.alien-stage__scan,
+.alien-stage__nerves,
+.alien-stage__ornaments { position: absolute; inset: 0; pointer-events: none; }
+.alien-stage__world {
+  z-index: -4;
+  background-image: url('/imagens/login/nave-hibrida.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: scale(1.025);
+  transition: opacity 650ms ease, transform 3s ease;
+}
+.alien-stage[data-theme="retro"] .alien-stage__world {
+  background-image: url('/imagens/login/nave-retro.webp');
+}
+.alien-stage__vignette {
+  z-index: -3;
+  background: linear-gradient(180deg, #02040d91 0%, transparent 21%, transparent 72%, #02040ddc 100%),
+    radial-gradient(ellipse at 50% 48%, #02040c33 0%, #00081316 53%, #01040cc4 100%);
+}
+.alien-stage__scan {
+  z-index: 6;
+  opacity: .18;
+  background: repeating-linear-gradient(0deg, transparent 0 4px, #d5fef50b 4px 5px);
+  mix-blend-mode: screen;
+}
+.alien-stage__nerves {
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  opacity: .8;
+  filter: drop-shadow(0 0 7px #6bf5d861);
+}
+.alien-stage[data-theme="retro"] .alien-stage__nerves { opacity: .22; }
+.alien-stage__nerve {
+  fill: none;
+  stroke: #a0ffe2;
+  stroke-width: 1.4px;
+  stroke-dasharray: 8 22;
+  opacity: .5;
+  animation: alien-energy 7.4s linear infinite, alien-breathe 5.1s ease-in-out infinite alternate;
+}
+.alien-stage__nerve--b { animation-delay: -1.8s, -2.2s; }
+.alien-stage__nerve--c { animation-delay: -3.4s, -.6s; }
+.alien-stage__nerve--d { animation-delay: -4.6s, -3.1s; }
+.alien-stage__ornaments {
+  z-index: -1;
+  opacity: .8;
+}
+.alien-stage__ornaments span {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #e8ffff;
+  box-shadow: 0 0 10px 3px #7aefd8b3, 0 0 20px 5px #b492f555;
+  animation: alien-breathe 4.8s ease-in-out infinite alternate;
+}
+.alien-stage__ornaments span:nth-child(1) { top: 29%; left: 14%; }
+.alien-stage__ornaments span:nth-child(2) { top: 64%; left: 7%; animation-delay: -2s; }
+.alien-stage__ornaments span:nth-child(3) { top: 25%; right: 11%; animation-delay: -1.4s; }
+.alien-stage__ornaments span:nth-child(4) { top: 75%; right: 15%; animation-delay: -3s; }
+
+.alien-topbar,
+.alien-status { position: relative; z-index: 8; }
+.alien-topbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: .75rem;
+  padding: .9rem clamp(1rem, 3vw, 3rem);
+  border-bottom: 1px solid #b2ffea42;
+  background: linear-gradient(180deg, #090f1def, #14132eab);
+  box-shadow: 0 4px 32px #02030ab0;
+  backdrop-filter: blur(11px);
+}
+.alien-topbar__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+  color: #e7fdf9;
+  font: 700 .72rem 'Courier New', monospace;
+  letter-spacing: .12em;
+  text-decoration: none;
+}
+.alien-topbar__brand:hover { color: var(--alien-glow); }
+.alien-topbar__glyph {
+  color: var(--alien-glow);
+  font-size: 1.25rem;
+  filter: drop-shadow(0 0 8px #8cf4e9a9);
+}
+.alien-topbar__brand em { font-style: normal; color: #bd91eb; }
+.alien-topbar__options { display: flex; align-items: center; gap: .4rem; }
+.alien-topbar__caption {
+  font: 700 .57rem 'Courier New', monospace;
+  letter-spacing: .09em;
+  color: #c5c7dc;
+  margin-right: .45rem;
+}
+.alien-topbar__options button {
+  min-height: 32px;
+  padding: .38rem .78rem;
+  border: 1px solid #96a4d88a;
+  border-radius: 5px;
+  background: #1c2141bc;
+  color: #d8d5f2;
+  font: 700 .64rem 'Courier New', monospace;
+  letter-spacing: .08em;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+.alien-topbar__options button[aria-pressed="true"] {
+  color: #071b22;
+  background: linear-gradient(#e0fff5, #8bdcd3);
+  border-color: #c9fff0;
+  box-shadow: 0 0 15px #80f5dc61;
+}
+.alien-topbar__options button:not([aria-pressed="true"]):hover { background: #343065; }
+
+.alien-stage__focus {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  padding: clamp(1.8rem, 4vw, 4rem) 1rem;
+}
+.alien-monitor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(100%, 650px);
+  padding: clamp(1.4rem, 3vw, 2.45rem) clamp(1.2rem, 3vw, 2.8rem);
+  text-align: center;
+  border: 1px solid #a6fbed91;
+  border-radius: 25px;
+  background:
+    radial-gradient(ellipse at 50% 0%, #7dedda13, transparent 60%),
+    linear-gradient(145deg, var(--alien-surface), rgba(12, 12, 27, .95));
+  box-shadow: inset 0 1px 0 #effffb35, inset 0 0 36px #68d5d112, 0 18px 80px #000d, 0 0 30px #69f6d425;
+  backdrop-filter: blur(12px);
+  transform: translateY(0);
+}
+.alien-stage[data-theme="retro"] .alien-monitor {
+  border-radius: 18px;
+  box-shadow: inset 0 1px 0 #fff9, 0 18px 80px #000a, 0 0 38px #c29cff48;
+}
+.alien-monitor__eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: .6rem;
+  margin: 0;
+  color: #aee7d5;
+  font: 700 .64rem 'Courier New', monospace;
+  letter-spacing: .13em;
+}
+.alien-monitor__eyebrow > span:nth-child(2) { color: #b39bc9; }
+.alien-monitor__light {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #a1ffdc;
+  box-shadow: 0 0 10px #a1ffdc;
+  animation: alien-breathe 3s ease-in-out infinite alternate;
+}
+.alien-monitor__seal { color: var(--alien-glow); margin: .8rem 0 -.1rem; opacity: .8; }
+.alien-monitor__seal svg { margin: auto; filter: drop-shadow(0 0 7px #9effe580); }
+.alien-monitor__pretitle {
+  margin: .35rem 0 .3rem;
+  color: #adc3d0;
+  font: 700 .68rem 'Courier New', monospace;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.alien-monitor h1 {
+  margin: .4rem 0 0;
+  color: #effffb;
+  font-size: clamp(1.6rem, 3.4vw, 3.2rem);
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -.03em;
+  text-shadow: 0 0 28px #91f0d68a;
+}
+.alien-monitor h1 strong {
+  display: inline-block;
+  margin-top: .12rem;
+  color: var(--alien-lilac);
+  font-size: 1.18em;
+  text-shadow: 0 0 32px #a28bff77;
+}
+.alien-monitor__info {
+  max-width: 53ch;
+  margin: .95rem auto 1.25rem;
+  color: #c7dce0;
+  font-size: .88rem;
+  line-height: 1.6;
+}
+.alien-monitor__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+  min-height: 44px;
+  padding: .66rem 1.25rem;
+  border: 1px solid #aafae5;
+  border-radius: 999px;
+  color: #0a2732;
+  background: linear-gradient(#f5fff9, #b1f5e4 42%, #78c7c1 100%);
+  box-shadow: inset 0 2px #fff, 0 6px 26px #69e8d94f;
+  font: 700 .8rem 'Trebuchet MS', sans-serif;
+  text-decoration: none;
+}
+.alien-monitor__action:hover { filter: brightness(1.12); }
+.alien-monitor__nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+}
+.alien-monitor__status {
+  flex-basis: 100%;
+  margin-bottom: .5rem;
+  color: #c8b8ea;
+  font: .63rem 'Courier New', monospace;
+}
+.alien-monitor__nav a {
+  border: 1px solid #aafae57a;
+  border-radius: 6px;
+  padding: .6rem 1rem;
+  color: #d1fff1;
+  font: 700 .75rem 'Courier New', monospace;
+  text-decoration: none;
+  background: #142c35c9;
+}
+.alien-monitor__nav a:hover { background: #23545e; }
+.alien-status {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .6rem 2rem;
+  padding: .72rem clamp(1rem, 3vw, 3rem);
+  border-top: 1px solid #abf9e442;
+  background: #090d19e3;
+  color: #c8d9df;
+  font: .63rem 'Courier New', monospace;
+  letter-spacing: .04em;
+}
+.alien-status a { color: #b5f9e2; }
+.alien-status a:hover { color: #fff; }
+
+/* A fachada humana vira duas portas e revela a cabine — não depende de WebGL. */
+.alien-facade {
+  position: fixed;
+  z-index: 12;
+  inset: 0;
+  display: flex;
+  pointer-events: none;
+  overflow: hidden;
+}
+.alien-facade__door {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  min-width: 0;
+  padding: clamp(1rem, 4vw, 4rem);
+  color: #4d2673;
+  background: linear-gradient(140deg, #faf4ff, #b9a2dd 48%, #7754b6);
+  border-right: 2px solid #d6c5ee;
+  box-shadow: inset 0 0 55px #fff9, 10px 0 38px #050313b5;
+  transition: transform 1400ms cubic-bezier(.72, .07, .19, 1);
+  will-change: transform;
+}
+.alien-facade__door--right {
+  align-items: flex-end;
+  border-right: 0;
+  border-left: 2px solid #e4d7fa;
+  background: linear-gradient(220deg, #d2b2f3, #67439f 62%, #2b154f);
+  color: #f0ddff;
+  box-shadow: inset 0 0 70px #e3baff4d, -10px 0 38px #050313b5;
+}
+.alien-facade__chrome {
+  display: flex;
+  justify-content: space-between;
+  gap: .5rem;
+  width: 100%;
+  padding: .6rem .8rem;
+  border: 1px solid #ffffffc5;
+  border-radius: 8px;
+  background: linear-gradient(#e8c9fc, #9865c3 48%, #5e348d);
+  color: #fff;
+  font: 700 clamp(.56rem, 1.1vw, .75rem) 'Courier New', monospace;
+  text-shadow: 0 1px #40166c;
+}
+.alien-facade__logo {
+  margin: auto 0 1.8rem;
+  font-size: clamp(2.2rem, 6vw, 7rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: #8a52c3;
+  text-shadow: 0 3px #fff;
+}
+.alien-facade__logo span { display: block; font-size: .22em; letter-spacing: .2em; }
+.alien-facade__fake-input {
+  display: block;
+  width: min(85%, 320px);
+  height: 33px;
+  margin-bottom: .8rem;
+  background: #fff9;
+  border: 1px solid #8d73af;
+  border-radius: 7px;
+  box-shadow: inset 0 2px 7px #57366c35;
+}
+.alien-facade__fake-input--short { width: min(74%, 280px); }
+.alien-facade__fake-button {
+  display: block;
+  width: min(74%, 280px);
+  height: 35px;
+  border-radius: 999px;
+  background: linear-gradient(#f5d7ff, #a270d4 48%, #62359b);
+  box-shadow: 0 5px 0 #51287b;
+}
+.alien-facade__planet {
+  display: block;
+  width: min(40vw, 310px);
+  aspect-ratio: 1;
+  margin: auto 0 1rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 31% 25%, #f8fdff, #cdacff 25%, #8258bc 49%, #261243 74%);
+  box-shadow: inset -26px -20px 35px #12052795, 0 0 44px #bb89edbd;
+}
+.alien-facade__planet::after {
+  content: '';
+  display: block;
+  width: 125%;
+  height: 40%;
+  border: 7px solid #c7efffce;
+  border-radius: 50%;
+  transform: translate(-10%, 95%) rotate(-25deg);
+}
+.alien-facade__label { margin-bottom: 4rem; font: 700 .64rem 'Courier New', monospace; letter-spacing: .15em; }
+.alien-facade__seam {
+  position: absolute;
+  left: calc(50% - 1px);
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: #dbfff7;
+  box-shadow: 0 0 24px 8px #a9fff5a5;
+  transition: opacity 350ms ease;
+}
+.alien-stage[data-open="true"] .alien-facade__door--left { transform: translateX(-105%); }
+.alien-stage[data-open="true"] .alien-facade__door--right { transform: translateX(105%); }
+.alien-stage[data-open="true"] .alien-facade__seam { opacity: 0; }
+.alien-stage--revelacao .alien-monitor {
+  opacity: 0;
+  transform: translateY(25px) scale(.97);
+  transition: opacity 1100ms ease 1050ms, transform 1100ms ease 1050ms;
+}
+.alien-stage--revelacao[data-open="true"] .alien-monitor { opacity: 1; transform: none; }
+.alien-stage.is-zooming .alien-monitor {
+  transition: transform 980ms cubic-bezier(.3, .65, .25, 1), opacity 850ms ease;
+  transform: scale(1.9);
+  opacity: 0;
+}
+.alien-stage.is-zooming .alien-stage__world { transform: scale(1.22); }
+.alien-stage.is-zooming::after {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  content: '';
+  pointer-events: none;
+  background: #02080f;
+  animation: alien-darken 900ms ease both;
+}
+
+/* Transição OVNI, exclusiva de links internos data-alien-fly. */
+.alien-flight { position: fixed; z-index: 30; inset: 0; pointer-events: none; opacity: 0; }
+.alien-flight__trail {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, #79efda1f 25%, #b6fcf39c 50%, #d9bbff2c 65%, transparent);
+  transform: translateX(-120%);
+}
+.alien-flight__ufo {
+  position: absolute;
+  top: 41%;
+  width: clamp(145px, 20vw, 270px);
+  left: -28vw;
+  filter: drop-shadow(0 0 22px #9dfef0a1);
+}
+.alien-stage.is-flying .alien-flight { opacity: 1; }
+.alien-stage.is-flying .alien-flight__trail { animation: alien-wipe 1150ms ease-in both; }
+.alien-stage.is-flying .alien-flight__ufo { animation: alien-ufo-cross 1150ms cubic-bezier(.24,.18,.69,.83) both; }
+.alien-stage.is-flying .alien-stage__focus { animation: alien-scene-fade 1150ms ease both; }
+
+@keyframes alien-breathe { 0% {opacity:.24} 55% {opacity:.8} 100% {opacity:.48} }
+@keyframes alien-energy { to {stroke-dashoffset:-180} }
+@keyframes alien-darken { 0%,60% {opacity:0} 100% {opacity:1} }
+@keyframes alien-ufo-cross { from {transform:translateX(-15vw) rotate(-8deg)} to {transform:translateX(165vw) rotate(7deg)} }
+@keyframes alien-wipe { 0% {transform:translateX(-120%);opacity:0} 35% {opacity:.6} 100% {transform:translateX(130%);opacity:0} }
+@keyframes alien-scene-fade { 0%,45% {opacity:1} 100% {opacity:.12} }
+
+@media (max-width: 720px) {
+  .alien-topbar { align-items: flex-start; }
+  .alien-topbar__options { width: 100%; justify-content: flex-start; }
+  .alien-monitor { border-radius: 17px; padding: 1.7rem 1.15rem; }
+  .alien-monitor__eyebrow { font-size: .56rem; letter-spacing: .06em; }
+  .alien-status { font-size: .57rem; }
+  .alien-facade__door { padding: .7rem; }
+  .alien-facade__chrome { font-size: .48rem; }
+  .alien-facade__logo { font-size: 2.4rem; }
+  .alien-facade__label { font-size: .5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .alien-stage *,
+  .alien-stage *::before,
+  .alien-stage *::after {
+    animation: none !important;
+    transition-duration: 0ms !important;
+  }
+  .alien-stage__nerve { stroke-dasharray: none; }
+  .alien-stage--revelacao .alien-facade { display: none; }
+  .alien-stage--revelacao .alien-monitor { opacity: 1; transform: none; }
+}
