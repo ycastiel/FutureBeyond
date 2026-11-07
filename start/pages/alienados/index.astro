@@ -3,8 +3,9 @@ import Layout from '../../views/layouts/Layout.astro';
 import TerminalTranscricao from '../../views/componentes/alienados/TerminalTranscricao.astro';
 import '../../../recursos/css/pages/alienados/alienados.css';
 
-// Áudio e transcrição oficial ainda pendentes. Preencha os caminhos abaixo somente quando os arquivos chegarem.
-// O arquivo .vtt usa tempos absolutos de início/fim; o navegador o sincroniza com o <audio>.
+// Integração dos MP3s oficiais e das legendas WebVTT sincronizadas.
+// Os arquivos MP3 ficam em recursos/publico/videos/audios/alienados/.
+// EP3 e EP4 têm áudio, mas aguardam WebVTT para ativar a transcrição.
 const raios = Array.from({ length: 60 }, (_, i) => ({
   angulo: i * 6,
   tamanho: 9 + (i * 7 + (i % 3) * 11) % 25,
@@ -19,15 +20,31 @@ type Episodio = {
 };
 
 const episodios: Episodio[] = [
-  { numero: '01', titulo: 'Teorias da Conspiração', audio: null, legenda: null },
-  { numero: '02', titulo: 'Trabalho', audio: null, legenda: null },
-  { numero: '03', titulo: null, audio: null, legenda: null },
-  { numero: '04', titulo: null, audio: null, legenda: null },
+  {
+    numero: '01',
+    titulo: 'Teoria da Conspiração',
+    audio: '/videos/audios/alienados/Alienados - EP1.mp3',
+    legenda: '/videos/legendas/alienados/ep-01.vtt',
+  },
+  {
+    numero: '02',
+    titulo: 'Trabalho',
+    audio: '/videos/audios/alienados/Alienados - EP2.mp3',
+    legenda: '/videos/legendas/alienados/ep-02.vtt',
+  },
+  {
+    numero: '03',
+    titulo: 'Planetas',
+    audio: '/videos/audios/alienados/Alienados - EP3.mp3',
+    legenda: null, // Ativar quando o .vtt oficial do EP3 estiver disponível.
+  },
+  {
+    numero: '04',
+    titulo: 'Aliens',
+    audio: '/videos/audios/alienados/Alienados - EP4.mp3',
+    legenda: null, // Ativar quando o .vtt oficial do EP4 estiver disponível.
+  },
 ];
-
-// EXEMPLO PARA QUANDO OS ARQUIVOS FOREM ENTREGUES (não ativar antes):
-// { numero: '01', titulo: 'Teorias da Conspiração',
-//   audio: '/audios/alienados/ep-01.mp3', legenda: '/legendas/alienados/ep-01.vtt' },
 ---
 <Layout title="H1Produtora | Alienados" description="Alienados, o podcast da H1 Produtora.">
   <main class="h1-alienados">
