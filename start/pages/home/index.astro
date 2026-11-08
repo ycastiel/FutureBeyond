@@ -2,7 +2,9 @@
 // Home Old Web / central da H1 - Produtora
 import Layout from '../../views/layouts/Layout.astro';
 import MessengerBuddy from '../../views/componentes/utils/MessengerBuddy.astro';
+import FakeNews from '../../views/componentes/home/FakeNews.astro';
 import '../../../recursos/css/pages/home/home.css';
+import '../../../recursos/css/pages/home/noticias.css';
 ---
 
 <Layout title="H1 - Produtora | Início" description="Conheça a H1 - Produtora, suas produções e sua equipe." >
@@ -67,6 +69,7 @@ import '../../../recursos/css/pages/home/home.css';
               <a href="/alienados">◉ &nbsp; Podcast Alienados</a>
             </div>
           </section>
+          <FakeNews lado="esquerda" />
         </aside>
 
         <div class="fb-main-column">
@@ -161,6 +164,7 @@ import '../../../recursos/css/pages/home/home.css';
               <a href="/forum">Fórum</a>
             </div>
           </section>
+          <FakeNews lado="direita" />
         </aside>
       </div>
 

@@ -1,0 +1,133 @@
+---
+/** Notícias absurdas do universo H1. Paródias fornecidas pelo cliente.
+ *  O componente aparece somente nas laterais da Home, sem reestruturar seu conteúdo.
+ */
+interface Props {
+  lado: 'esquerda' | 'direita';
+}
+
+const { lado } = Astro.props;
+
+const noticias = [
+  {
+    id: 'admitiu', lado: 'esquerda', titulo: 'Admitiu', icone: '⚽', estilo: 'azul', selo: 'EXCLUSIVO H1!',
+    texto: 'Endrick admite ser a reencarnação de pelé e muda nome para Pelendrick, esposa pede nova cláusula no contrato de casamento',
+  },
+  {
+    id: 'susto', lado: 'esquerda', titulo: 'Susto', icone: '⚠', estilo: 'violeta', selo: '',
+    texto: 'Ronaldinho Gaúcho é encontrado vivo em seu apartamento sabado à noite, situação anormal do atleta preocupa fãs.',
+  },
+  {
+    id: 'preocupante', lado: 'esquerda', titulo: 'Preocupante', icone: '🍹', estilo: 'rosa', selo: 'SAÚDE EM ALERTA!',
+    texto: 'Figado de zeca pagodinho reage mal após cantor ingerir Mocktail(drink não alcoólico), afim de promover uma marca de bebidas fitness',
+  },
+  {
+    id: 'flagra', lado: 'direita', titulo: 'Flagra', icone: '🌭', estilo: 'azul', selo: 'FLAGRA DO DIA!',
+    texto: 'Dr. Drauzio Varella é visto comendo em podrão na república, apoiadores planejam protesto em frente a seu consultório.',
+  },
+  {
+    id: 'berinjela', lado: 'direita', titulo: 'Berinjela', icone: '🍆', estilo: 'pink', selo: '',
+    texto: 'Artista estrangeiro vai a justiça por injuria e difamação cometidas por colegas de trabalho.',
+  },
+  {
+    id: 'voce-sabia', lado: 'direita', titulo: 'Você sabia', icone: 'ℹ', estilo: 'azul', selo: '',
+    texto: 'Mais de 500 anos de história e Brasil ainda não decidiu se é mussarela ou muçarela.',
+  },
+  {
+    id: 'ciencia', lado: 'direita', titulo: 'Ciência', icone: '🛸', estilo: 'violeta', selo: '',
+    texto: 'Federação intergalática é intimada a depor após quebra de sigilo bancando de Daniel Vorcaro apontar emprestimo feito a federação.',
+  },
+] as const;
+const itens = noticias.filter((noticia) => noticia.lado === lado);
+const tituloModalId = `h1-news-dialog-title-${lado}`;
+---
+
+<section class={`h1-news-portal h1-news-portal--${lado}`} data-news-root aria-label={lado === 'esquerda' ? 'Plantão H1: notícias fictícias' : 'Notícias paralelas: notícias fictícias'}>
+  <header class="h1-news-portal__intro">
+    <span class="h1-news-portal__eyebrow">✦ {lado === 'esquerda' ? 'PLANTÃO H1' : 'NOTÍCIAS PARALELAS'}</span>
+    <h2>{lado === 'esquerda' ? 'Portal de Notícias' : 'Por dentro do planeta Terra'}</h2>
+    <p>{lado === 'esquerda' ? 'Notícias absurdas, e completamente curiosas.' : 'As manchetes que nenhuma dimensão pediu 😅.'}</p>
+    <small class="h1-news-portal__disclaimer"> {lado === 'esquerda' ? 'Chefe... • BENÊ • acha melhor escrevermos aqui que inventamos essas notícias?' : 'Claro que não, idiota!'} </small>
+    <button type="button" class="h1-news-portal__restore" data-news-restore hidden>↺ Restaurar janelinhas fechadas</button>
+  </header>
+
+  <div class="h1-news-portal__list">
+    {itens.map((noticia) => (
+      <article class={`h1-news h1-news--${noticia.estilo}`} data-news-window aria-labelledby={`h1-news-title-${noticia.id}`}>
+        <div class="h1-news__titlebar">
+          <span class="h1-news__titleicon" aria-hidden="true">✦</span>
+          <h3 id={`h1-news-title-${noticia.id}`}>{noticia.titulo}</h3>
+          <button class="h1-news__close" type="button" aria-label={`Fechar notícia ${noticia.titulo}`} data-news-dismiss>×</button>
+        </div>
+        <div class="h1-news__body">
+          <span class="h1-news__illustration" aria-hidden="true">{noticia.icone}</span>
+          <p class="h1-news__copy">{noticia.texto}</p>
+        </div>
+        <div class="h1-news__footer">
+          <button type="button" class="h1-news__read" data-news-open aria-label={`Ler notícia fictícia: ${noticia.titulo}`}>Ler matéria »</button>
+        </div>
+        {noticia.selo && <span class="h1-news__sticker" aria-hidden="true">{noticia.selo}</span>}
+      </article>
+    ))}
+  </div>
+
+  <dialog class="h1-news-dialog" data-news-dialog aria-labelledby={tituloModalId}>
+    <div class="h1-news-dialog__bar">
+      <strong id={tituloModalId} data-news-dialog-title>Plantão H1</strong>
+      <button type="button" data-news-dialog-close aria-label="Fechar matéria">×</button>
+    </div>
+    <div class="h1-news-dialog__body">
+      <p class="h1-news-dialog__flag">✦ NOTÍCIAS PARALELAS</p>
+      <p data-news-dialog-copy></p>
+      <button type="button" data-news-dialog-close class="h1-news-dialog__ok">OK</button>
+    </div>
+  </dialog>
+</section>
+
+<script>
+  // Delegação de eventos: funciona com ClientRouter sem depender de elementos antigos.
+  document.addEventListener('click', (evento) => {
+    const alvo = evento.target;
+    if (!(alvo instanceof Element)) return;
+
+    const fechar = alvo.closest<HTMLButtonElement>('[data-news-dismiss]');
+    if (fechar) {
+      const janela = fechar.closest<HTMLElement>('[data-news-window]');
+      const portal = fechar.closest<HTMLElement>('[data-news-root]');
+      if (!janela || !portal) return;
+      janela.hidden = true;
+      const restaurar = portal.querySelector<HTMLButtonElement>('[data-news-restore]');
+      if (restaurar) restaurar.hidden = false;
+      return;
+    }
+
+    const restaurar = alvo.closest<HTMLButtonElement>('[data-news-restore]');
+    if (restaurar) {
+      const portal = restaurar.closest<HTMLElement>('[data-news-root]');
+      portal?.querySelectorAll<HTMLElement>('[data-news-window]').forEach((janela) => { janela.hidden = false; });
+      restaurar.hidden = true;
+      return;
+    }
+
+    const abrir = alvo.closest<HTMLButtonElement>('[data-news-open]');
+    if (abrir) {
+      const noticia = abrir.closest<HTMLElement>('[data-news-window]');
+      const portal = abrir.closest<HTMLElement>('[data-news-root]');
+      const dialogo = portal?.querySelector<HTMLDialogElement>('[data-news-dialog]');
+      const titulo = noticia?.querySelector<HTMLElement>('h3');
+      const conteudo = noticia?.querySelector<HTMLElement>('.h1-news__copy');
+      if (!dialogo || !titulo || !conteudo) return;
+      const tituloDialogo = dialogo.querySelector<HTMLElement>('[data-news-dialog-title]');
+      const textoDialogo = dialogo.querySelector<HTMLElement>('[data-news-dialog-copy]');
+      if (tituloDialogo) tituloDialogo.textContent = titulo.textContent;
+      if (textoDialogo) textoDialogo.textContent = conteudo.textContent;
+      if (!dialogo.open) dialogo.showModal();
+      return;
+    }
+
+    const fecharDialogo = alvo.closest<HTMLButtonElement>('[data-news-dialog-close]');
+    if (fecharDialogo) {
+      fecharDialogo.closest<HTMLDialogElement>('dialog')?.close();
+    }
+  });
+</script>
