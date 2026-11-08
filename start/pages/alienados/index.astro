@@ -2,6 +2,7 @@
 import Layout from '../../views/layouts/Layout.astro';
 import TerminalTranscricao from '../../views/componentes/alienados/TerminalTranscricao.astro';
 import '../../../recursos/css/pages/alienados/alienados.css';
+import '../../../recursos/css/pages/alienados/visualizer.css';
 
 // Integração dos MP3s oficiais e das legendas WebVTT sincronizadas.
 // Os arquivos MP3 ficam em recursos/publico/videos/audios/alienados/.
@@ -95,6 +96,6 @@ const episodios: Episodio[] = [
 </Layout>
 
 <script>
-  import '../../../recursos/javascript/componentes/visualizadores/Alienados.ts';
+  import '../../../recursos/javascript/pages/alienados/Alienados.ts';
   import '../../../recursos/javascript/componentes/visualizadores/TranscricaoAlienados.ts';
 </script>
