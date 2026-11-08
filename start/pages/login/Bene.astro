@@ -1,7 +1,11 @@
 ---
 import LayoutAlien from '../../views/layouts/LayoutAlien.astro';
-import EntranceAlien from '../../EntranceAlien.astro';
+import VideoPersonagem from '../../views/componentes/login/VideoPersonagem.astro';
+
+// Quando receber o vídeo oficial, coloque-o em recursos/publico/videos/login/
+// e configure o caminho público, por exemplo: '/videos/login/Bene.mp4'.
+const video: string | null = null;
 ---
-<LayoutAlien title="H1 - Produtora | Ambiente de Benê">
-  <EntranceAlien modo="interno" personagem="Benê" />
+<LayoutAlien title="H1 - Produtora | Benê - arquivo interno">
+  <VideoPersonagem personagem="Benê" video={video} />
 </LayoutAlien>

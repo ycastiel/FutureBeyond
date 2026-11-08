@@ -1,0 +1,30 @@
+---
+import OvniTransicao from './OvniTransicao.astro';
+
+interface Props {
+  personagem: 'Benê' | 'Leonardo' | 'Wolftheus';
+  /** Configure somente depois que a H1 enviar o vídeo oficial deste personagem. */
+  video?: string | null;
+}
+const { personagem, video = null } = Astro.props;
+---
+
+<main class="alien-stage alien-stage--video" data-alien-stage data-mode="video" data-theme="hibrido" data-open="true" data-character={personagem}>
+  <div class="alien-stage__world" aria-hidden="true"></div>
+  <div class="alien-stage__vignette" aria-hidden="true"></div>
+  <section class="alien-video" aria-label={`Vídeo de ${personagem}`}>
+    {video ? (
+      <video class="alien-video__player" controls preload="metadata" playsinline src={video} aria-label={`Gravação de ${personagem}`}>
+        Seu navegador não suporta vídeo HTML5.
+      </video>
+    ) : (
+      <div class="alien-video__pending" role="status">
+        <span aria-hidden="true">▣</span>
+        <p>ARQUIVO AINDA NÃO DISPONÍVEL</p>
+        <small>Vídeo individual de {personagem} aguardando envio da H1.</small>
+      </div>
+    )}
+    <a class="alien-video__back" href="/" data-alien-fly>← Voltar ao login</a>
+  </section>
+  <OvniTransicao />
+</main>
