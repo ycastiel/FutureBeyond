@@ -16,9 +16,10 @@
 
 .h1-alienados__ray i {
   animation: none;
-  transform: scaleY(var(--audio-level, .14));
-  opacity: .48;
-  transition: transform 55ms ease-out, opacity 85ms ease-out;
+  transform: scaleY(var(--audio-level, .12));
+  opacity: .58;
+  /* O TypeScript já faz a interpolação; transições CSS aqui atrasam cada quadro. */
+  transition: opacity 100ms ease-out;
 }
 
 .h1-alienados__visualizer.is-audio-playing .h1-alienados__ray i {

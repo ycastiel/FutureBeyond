@@ -18,34 +18,49 @@ type Episodio = {
   titulo: string | null;
   audio: string | null;
   legenda: string | null;
+  descricao: string;
 };
 
 const episodios: Episodio[] = [
   {
     numero: '01',
-    titulo: 'Teoria da Conspiração',
+    titulo: 'Teorias da Conspiração',
     audio: '/videos/audios/alienados/Alienados - EP1.mp3',
     legenda: '/videos/legendas/alienados/ep-01.vtt',
+    descricao: 'Nesse episódio nossos produtores conversam sobre as conspirações do mundo, envolvendo Big Techs, ordens mundiais e conceitos que todos levam como verdade mas talvez deveriam ser investigados a fundo.',
   },
   {
     numero: '02',
     titulo: 'Trabalho',
     audio: '/videos/audios/alienados/Alienados - EP2.mp3',
     legenda: '/videos/legendas/alienados/ep-02.vtt',
+    descricao: 'Nesse episódio nossos produtores conversam sobre teologia e o verdadeiro significado da fé, além de fazerem uma análise profunda sobre os prós e contras do modelo de trabalho home office.',
   },
   {
     numero: '03',
     titulo: 'Planetas',
     audio: '/videos/audios/alienados/Alienados - EP3.mp3',
     legenda: null, // Ativar quando o .vtt oficial do EP3 estiver disponível.
+    descricao: 'Nesse episódio nossos produtores conversam sobre a magnitude de nosso sistema solar e comentam sobre a estrutura do planeta Terra, além de resolverem alguns assuntos pessoais entre si.',
   },
   {
     numero: '04',
     titulo: 'Aliens',
     audio: '/videos/audios/alienados/Alienados - EP4.mp3',
     legenda: null, // Ativar quando o .vtt oficial do EP4 estiver disponível.
+    descricao: 'Nesse episódio nossos produtores conversam sobre as inúmeras aparições extraterrestres em solo terráqueo, fazendo demonstrações práticas de como eles agem, além de adicionar comentários sobre a visão de diferentes nações sobre o assunto. Além disso, esse episódio finaliza a série Alienados!',
   },
 ];
+
+// O roteiro ainda não define qual mídia de trote será usada no EP4.
+// Quando o cliente enviar o arquivo, coloque-o em recursos/publico/ e configure abaixo.
+// Exemplos: arquivo: '/videos/extras/ep4-trote.mp4', tipo: 'video'
+//           arquivo: '/videos/extras/ep4-trote.mp3', tipo: 'audio'
+const troteExtraEP4: { arquivo: string; tipo: 'video' | 'audio' } = {
+  arquivo: '',
+  tipo: 'video',
+};
+const possuiTroteExtra = troteExtraEP4.arquivo.trim().length > 0;
 ---
 <Layout title="H1Produtora | Alienados" description="Alienados, o podcast da H1 Produtora.">
   <main class="h1-alienados">
@@ -87,15 +102,85 @@ const episodios: Episodio[] = [
             </div>
             <p class="h1-alienados__visualizer-caption">Visualização animada ilustrativa · {ep.audio ? 'Áudio disponível no reprodutor abaixo' : 'Áudio do episódio em preparação'}</p>
             <TerminalTranscricao numero={ep.numero} titulo={ep.titulo} audio={ep.audio} legenda={ep.legenda} />
+            <p class="h1-alienados__episode-description">
+              {ep.numero === '04' ? (
+                <>
+                  {ep.descricao.split('demonstrações práticas')[0]}
+                  <button
+                    type="button"
+                    class="h1-alienados__extra-trigger"
+                    data-alienados-extra-open
+                    aria-haspopup="dialog"
+                    aria-controls="alienados-extra-ep4"
+                    title="Ver demonstração prática extra"
+                  ><em>demonstrações práticas</em></button>
+                  {ep.descricao.split('demonstrações práticas')[1]}
+                </>
+              ) : ep.descricao}
+            </p>
           </section>
         ))}
       </div>
       <footer class="h1-alienados__footer"><span>H1 PRODUTORA × H1Produtora</span><a href="/home">← VOLTAR PARA A CENTRAL</a></footer>
     </div>
+    <dialog
+      id="alienados-extra-ep4"
+      class="h1-alienados__extra-dialog"
+      aria-labelledby="alienados-extra-title"
+      aria-describedby="alienados-extra-description"
+      data-alienados-extra-dialog
+    >
+      <header class="h1-alienados__extra-header">
+        <span aria-hidden="true">●</span>
+        <h2 id="alienados-extra-title">H1 / ARQUIVO EXTRA — EP. 04</h2>
+        <button type="button" class="h1-alienados__extra-close" data-alienados-extra-close aria-label="Fechar janela">×</button>
+      </header>
+      <div class="h1-alienados__extra-body">
+        <p id="alienados-extra-description" class="h1-alienados__extra-caption">Demonstrações práticas — material complementar do Alienados.</p>
+        {possuiTroteExtra ? (
+          troteExtraEP4.tipo === 'video' ? (
+            <video controls preload="none" playsinline src={troteExtraEP4.arquivo} aria-label="Reproduzir trote extra do episódio 4">Seu navegador não suporta vídeo.</video>
+          ) : (
+            <audio controls preload="none" src={troteExtraEP4.arquivo} aria-label="Reproduzir trote extra do episódio 4">Seu navegador não suporta áudio.</audio>
+          )
+        ) : (
+          <div class="h1-alienados__extra-pendente" role="status">
+            <span aria-hidden="true">▣</span>
+            <p>MÍDIA EM PREPARAÇÃO</p>
+            <small>O trote adicional ainda será escolhido pela equipe da H1.</small>
+          </div>
+        )}
+      </div>
+    </dialog>
   </main>
 </Layout>
 
 <script>
   import '../../../recursos/javascript/pages/alienados/Alienados.ts';
   import '../../../recursos/javascript/componentes/visualizadores/TranscricaoAlienados.ts';
+
+  function iniciarExtraEP4(): void {
+    const botaoAbrir = document.querySelector<HTMLButtonElement>('[data-alienados-extra-open]');
+    const janela = document.querySelector<HTMLDialogElement>('[data-alienados-extra-dialog]');
+    if (!botaoAbrir || !janela || botaoAbrir.dataset.extraLigado === 'sim') return;
+    botaoAbrir.dataset.extraLigado = 'sim';
+
+    botaoAbrir.addEventListener('click', () => {
+      // Não deixar o episódio principal tocando por trás da mídia extra.
+      document.querySelectorAll<HTMLAudioElement>('.h1-alienados__audio').forEach((audio) => audio.pause());
+      if (!janela.open) janela.showModal();
+    });
+    janela.querySelector<HTMLButtonElement>('[data-alienados-extra-close]')
+      ?.addEventListener('click', () => janela.close());
+    janela.addEventListener('click', (evento) => {
+      if (evento.target === janela) janela.close();
+    });
+    janela.addEventListener('close', () => {
+      janela.querySelectorAll<HTMLMediaElement>('audio, video').forEach((midia) => midia.pause());
+      if (botaoAbrir.isConnected) botaoAbrir.focus();
+    });
+  }
+
+  document.addEventListener('astro:page-load', iniciarExtraEP4);
+  iniciarExtraEP4();
 </script>
