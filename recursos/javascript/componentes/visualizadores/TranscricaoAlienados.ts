@@ -114,6 +114,13 @@ function configurarTerminal(terminal: HTMLElement, sinal: AbortSignal): void {
     track.track.addEventListener('cuechange', atualizar, { signal: sinal });
   }
 
+  // Mantém somente um episódio tocando por vez. Não altera o visualizer.
+  audio.addEventListener('play', () => {
+    document.querySelectorAll<HTMLAudioElement>('[data-transcricao-audio]').forEach((outro) => {
+      if (outro !== audio && !outro.paused) outro.pause();
+    });
+  }, { signal: sinal });
+
   for (const evento of ['play', 'playing', 'pause', 'seeked', 'timeupdate', 'loadedmetadata', 'durationchange', 'ended', 'emptied']) {
     audio.addEventListener(evento, atualizar, { signal: sinal });
   }
