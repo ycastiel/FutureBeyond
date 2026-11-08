@@ -1,3 +1,5 @@
+import { reconhecerLogin } from './componentes/login/Personagens';
+
 const portal = document.querySelector<HTMLElement>('[data-entrance-portal]');
 
 if (portal) {
@@ -12,11 +14,12 @@ if (portal) {
     const passField = loginForm.elements.namedItem('visitor-password');
     const user = userField instanceof HTMLInputElement ? userField.value.trim() : '';
     const pass = passField instanceof HTMLInputElement ? passField.value : '';
-    const normalizedUser = user.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    const personagem = reconhecerLogin(user, pass);
 
     // Login narrativo do ARG, NÃO autenticação segura.
-    // Só Benê tem senha definida no PDF; outros funcionários aguardam roteiro.
-    if (normalizedUser === 'bene' && pass === 'Alienados') {
+    // Benê, Leo.Fab e Wolftheus: cada personagem ganha a própria página.
+    // Jeff_Grease ainda não tem senha oficial definida.
+    if (personagem) {
       if (portal.classList.contains('is-alien-recognized')) return;
       if (feedback) feedback.hidden = true;
       portal.classList.add('is-alien-recognized');
@@ -26,7 +29,7 @@ if (portal) {
         const label = submitButton.querySelector('span');
         if (label) label.textContent = 'Acesso reconhecido';
       }
-      const target = '/login?tema=hibrido';
+      const target = `/login?tema=hibrido&personagem=${encodeURIComponent(personagem.chave)}`;
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         window.location.assign(target);
       } else {
