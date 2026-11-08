@@ -1,0 +1,161 @@
+.h1-estrelas-laterais {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  mix-blend-mode: screen;
+  /* Deixa o miolo das páginas inteiramente livre. */
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 9%, transparent 17%, transparent 83%, #000 91%, #000 100%);
+  mask-image: linear-gradient(90deg, #000 0%, #000 9%, transparent 17%, transparent 83%, #000 91%, #000 100%);
+  background:
+    radial-gradient(circle at 5% 10%, rgba(255, 255, 255, .90) 0 1.2px, transparent 2.5px),
+    radial-gradient(circle at 9% 23%, rgba(193, 241, 255, .82) 0 1.5px, transparent 2.8px),
+    radial-gradient(circle at 13% 42%, rgba(245, 224, 255, .76) 0 1.4px, transparent 2.6px),
+    radial-gradient(circle at 8% 63%, rgba(255, 255, 255, .72) 0 1.1px, transparent 2.4px),
+    radial-gradient(circle at 12% 84%, rgba(193, 241, 255, .78) 0 1.3px, transparent 2.6px),
+    radial-gradient(circle at 88% 9%, rgba(255, 255, 255, .88) 0 1.2px, transparent 2.5px),
+    radial-gradient(circle at 94% 27%, rgba(193, 241, 255, .84) 0 1.5px, transparent 2.8px),
+    radial-gradient(circle at 90% 48%, rgba(245, 224, 255, .76) 0 1.4px, transparent 2.6px),
+    radial-gradient(circle at 96% 70%, rgba(255, 255, 255, .72) 0 1.1px, transparent 2.4px),
+    radial-gradient(circle at 91% 89%, rgba(193, 241, 255, .78) 0 1.3px, transparent 2.6px);
+  animation: h1-estrelas-deslocar 11s ease-in-out infinite alternate;
+}
+
+.h1-estrelas-laterais::before,
+.h1-estrelas-laterais::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Pontos ✦ brilhantes iguais à proposta arcade das laterais da Home. */
+.h1-estrelas-laterais::before {
+  content: "✦";
+  font-size: 1.05rem;
+  line-height: 1;
+  color: #f4feff;
+  text-shadow:
+    6vw 8vh 0 #fff, 11vw 18vh 0 #c9f6ff, 8vw 33vh 0 #f0dcff,
+    13vw 52vh 0 #fff, 7vw 71vh 0 #d6f8ff, 10vw 88vh 0 #fff,
+    87vw 12vh 0 #fff, 92vw 24vh 0 #c9f6ff, 89vw 39vh 0 #f0dcff,
+    95vw 57vh 0 #fff, 90vw 74vh 0 #d6f8ff, 94vw 91vh 0 #fff;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, .5));
+  animation: h1-estrelas-piscar 5.4s ease-in-out infinite alternate;
+}
+
+/* Meteoros verticais: a animação fica fora do conteúdo central. */
+.h1-estrelas-laterais::after {
+  background-image:
+    linear-gradient(180deg, transparent 0%, rgba(193, 241, 255, .22) 18%, #fff 55%, transparent 100%),
+    linear-gradient(0deg, transparent 0%, rgba(240, 220, 255, .18) 18%, rgba(255, 255, 255, .98) 55%, transparent 100%),
+    linear-gradient(180deg, transparent 0%, rgba(193, 241, 255, .16) 18%, rgba(255, 255, 255, .88) 55%, transparent 100%);
+  background-repeat: no-repeat;
+  background-size: 2px 22vh, 3px 29vh, 1.5px 16vh;
+  background-position: 7% -30vh, 92% 120vh, 96% -20vh;
+  filter: drop-shadow(0 0 8px rgba(193, 241, 255, .55));
+  animation: h1-meteoros-verticais 12.5s linear infinite;
+}
+
+@keyframes h1-estrelas-deslocar {
+  from {
+    transform: translate3d(0, 0, 0);
+    opacity: .94;
+  }
+
+  to {
+    transform: translate3d(0, -5px, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes h1-estrelas-piscar {
+  0% {
+    opacity: .52;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, .2));
+    transform: translate3d(0, 0, 0) scale(.97);
+  }
+
+  40% {
+    opacity: 1;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, .42));
+  }
+
+  70% {
+    opacity: .72;
+    filter: drop-shadow(0 0 12px rgba(193, 241, 255, .5));
+  }
+
+  100% {
+    opacity: .96;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, .28));
+    transform: translate3d(0, -4px, 0) scale(1.02);
+  }
+}
+
+@keyframes h1-meteoros-verticais {
+
+  0%,
+  10% {
+    background-position: 7% -30vh, 92% 120vh, 96% -20vh;
+    opacity: 0;
+  }
+
+  16% {
+    opacity: .95;
+  }
+
+  30% {
+    background-position: 7% 24vh, 92% 88vh, 96% 16vh;
+    opacity: 1;
+  }
+
+  38% {
+    background-position: 7% 48vh, 92% 66vh, 96% 35vh;
+    opacity: 0;
+  }
+
+  39%,
+  55% {
+    background-position: 11% -26vh, 89% 118vh, 5% 116vh;
+    opacity: 0;
+  }
+
+  62% {
+    opacity: .8;
+  }
+
+  76% {
+    background-position: 11% 20vh, 89% 84vh, 5% 79vh;
+    opacity: .9;
+  }
+
+  86%,
+  100% {
+    background-position: 11% 44vh, 89% 63vh, 5% 54vh;
+    opacity: 0;
+  }
+}
+
+/* Telas estreitas: diminuímos o brilho para não competir com o conteúdo. */
+@media (max-width: 760px) {
+  .h1-estrelas-laterais {
+    opacity: .48;
+  }
+}
+
+/* Respeita a configuração de acessibilidade do visitante. */
+@media (prefers-reduced-motion: reduce) {
+
+  .h1-estrelas-laterais,
+  .h1-estrelas-laterais::before,
+  .h1-estrelas-laterais::after {
+    animation: none !important;
+  }
+
+  .h1-estrelas-laterais::after {
+    opacity: 0;
+  }
+}

@@ -64,10 +64,10 @@
     gap: clamp(1.2rem, 3vw, 2rem);
     padding: clamp(1.4rem, 4vw, 3rem);
     background:
-      radial-gradient(circle at 14% 8%, #ffffffeb, transparent 32%),
-      radial-gradient(circle at 74% 24%, #cbb7fb92, transparent 36%),
-      radial-gradient(circle at 26% 78%, #c4eeff52, transparent 43%),
-      linear-gradient(115deg, #fff8ff 0%, #f0e7fd 54%, #ded2fa 100%);
+        radial-gradient(circle at 14% 8%, #ffffffeb, transparent 32%),
+        radial-gradient(circle at 74% 24%, #cbb7fb92, transparent 36%),
+        radial-gradient(circle at 26% 78%, #c4eeff52, transparent 43%),
+        linear-gradient(115deg, #fff8ff 0%, #f0e7fd 54%, #ded2fa 100%);
 }
 
 .h1-alienados__hero::before,
@@ -127,14 +127,14 @@
     border: 2px solid #d4bbed;
     border-radius: 9px;
     background:
-      radial-gradient(circle at 50% 45%, #e3d1ff6f 0%, transparent 47%),
-      repeating-linear-gradient(0deg, #ffffff33 0 1px, transparent 1px 7px),
-      linear-gradient(155deg, #f7f1ff 0%, #e1cff7 60%, #d6ebff 100%);
+        radial-gradient(circle at 50% 45%, #e3d1ff6f 0%, transparent 47%),
+        repeating-linear-gradient(0deg, #ffffff33 0 1px, transparent 1px 7px),
+        linear-gradient(155deg, #f7f1ff 0%, #e1cff7 60%, #d6ebff 100%);
     box-shadow:
-      inset 0 0 0 1px #ffffffa8,
-      inset 0 8px 22px #ffffff65,
-      0 16px 35px #8465b54d,
-      0 0 32px #c7affc55;
+        inset 0 0 0 1px #ffffffa8,
+        inset 0 8px 22px #ffffff65,
+        0 16px 35px #8465b54d,
+        0 0 32px #c7affc55;
 }
 
 .h1-alienados__hero-art::before {
@@ -267,41 +267,63 @@
 
 /* Visualizer radial: arte oficial como base + ondas decorativas independentes. */
 .h1-alienados__visualizer {
-  position: relative;
-  display: block;
-  width: 100%;
-  min-height: 0;
-  padding: 0;
-  aspect-ratio: 800 / 466;
-  overflow: hidden;
-  container-type: inline-size;
-  background: #08080c;
+    position: relative;
+    display: block;
+    width: 100%;
+    min-height: 0;
+    padding: 0;
+    aspect-ratio: 800 / 466;
+    overflow: hidden;
+    container-type: inline-size;
+    background: #08080c;
 }
+
 .h1-alienados__visualizer-art {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; max-width: none;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: none;
 }
-.h1-alienados__radial { position: absolute; inset: 0; pointer-events: none; }
+
+.h1-alienados__radial {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
 .h1-alienados__ray {
-  position: absolute; top: 50%; left: 50%; width: 0; height: 0;
-  transform: rotate(var(--ang)) translateY(-21.9cqw);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform: rotate(var(--ang)) translateY(-21.9cqw);
 }
+
 .h1-alienados__ray i {
-  display: block; width: clamp(1.5px, .33cqw, 3.5px);
-  height: clamp(4px, var(--len), 32px);
-  margin-left: -1.4px;
-  border-radius: 4px;
-  background: linear-gradient(0deg, #bcf0ff, #f1deff);
-  box-shadow: 0 0 7px #bfeaff99;
-  transform-origin: center bottom;
-  animation: alien-radial-wave 1050ms ease-in-out infinite alternate;
-  animation-delay: var(--delay);
-  animation-play-state: paused;
+    display: block;
+    width: clamp(1.5px, .33cqw, 3.5px);
+    height: clamp(4px, var(--len), 32px);
+    margin-left: -1.4px;
+    border-radius: 4px;
+    background: linear-gradient(0deg, #bcf0ff, #f1deff);
+    box-shadow: 0 0 7px #bfeaff99;
+    transform-origin: center bottom;
+    animation: alien-radial-wave 1050ms ease-in-out infinite alternate;
+    animation-delay: var(--delay);
+    animation-play-state: paused;
 }
-.h1-alienados__visualizer.is-visible .h1-alienados__ray i { animation-play-state: running; }
+
+.h1-alienados__visualizer.is-visible .h1-alienados__ray i {
+    animation-play-state: running;
+}
+
 .h1-alienados__visualizer-caption {
-  margin: .45rem 1rem .75rem; color: #715b8b;
-  font: .65rem/1.4 var(--font-mono,monospace);
+    margin: .45rem 1rem .75rem;
+    color: #715b8b;
+    font: .65rem/1.4 var(--font-mono, monospace);
 }
 
 .h1-alienados__footer {
@@ -320,8 +342,15 @@
 }
 
 @keyframes alien-radial-wave {
-  from { opacity: .23; transform: scaleY(.25); }
-  to { opacity: 1; transform: scaleY(1); }
+    from {
+        opacity: .23;
+        transform: scaleY(.25);
+    }
+
+    to {
+        opacity: 1;
+        transform: scaleY(1);
+    }
 }
 
 @media(max-width:700px) {
@@ -344,29 +373,56 @@
 
 /* Detalhes de gravação e moldura (sem giro da logo nessa página). */
 .h1-alienados__badge--rec::first-letter {
-  color: #e15191;
+    color: #e15191;
 }
+
 .h1-alienados__frequency {
-  position: absolute;
-  left: 1rem;
-  bottom: .75rem;
-  color: #78639e;
-  font: 700 .55rem var(--font-mono, monospace);
-  letter-spacing: .12em;
-  opacity: .8;
+    position: absolute;
+    left: 1rem;
+    bottom: .75rem;
+    color: #78639e;
+    font: 700 .55rem var(--font-mono, monospace);
+    letter-spacing: .12em;
+    opacity: .8;
 }
-.h1-alienados__spark--b { animation-delay: -1.7s; }
-.h1-alienados__spark--c { animation-delay: -3.1s; }
+
+.h1-alienados__spark--b {
+    animation-delay: -1.7s;
+}
+
+.h1-alienados__spark--c {
+    animation-delay: -3.1s;
+}
+
 @keyframes h1-alienados-sparkle {
-  0%, 100% { opacity: .58; transform: scale(.86); }
-  55% { opacity: 1; transform: scale(1.13); }
+
+    0%,
+    100% {
+        opacity: .58;
+        transform: scale(.86);
+    }
+
+    55% {
+        opacity: 1;
+        transform: scale(1.13);
+    }
 }
+
 @media (max-width: 380px) {
-  .h1-alienados__badge { font-size: .47rem; padding: .3rem .38rem; }
-  .h1-alienados__hero-art { min-height: 225px; }
+    .h1-alienados__badge {
+        font-size: .47rem;
+        padding: .3rem .38rem;
+    }
+
+    .h1-alienados__hero-art {
+        min-height: 225px;
+    }
 }
+
 @media (prefers-reduced-motion: reduce) {
-  .h1-alienados__spark { animation: none !important; }
+    .h1-alienados__spark {
+        animation: none !important;
+    }
 }
 
 
@@ -395,7 +451,7 @@
     letter-spacing: .035em;
 }
 
-.h1-alienados__reprodutor-info > span:first-child {
+.h1-alienados__reprodutor-info>span:first-child {
     font-size: 1rem;
     color: #9659bc;
 }
@@ -471,8 +527,13 @@
     background: #d68db8;
 }
 
-.h1-alienados__transcricao-luzes i:nth-child(2) { background: #ead899; }
-.h1-alienados__transcricao-luzes i:nth-child(3) { background: #9de2cc; }
+.h1-alienados__transcricao-luzes i:nth-child(2) {
+    background: #ead899;
+}
+
+.h1-alienados__transcricao-luzes i:nth-child(3) {
+    background: #9de2cc;
+}
 
 .h1-alienados__transcricao-status {
     color: #b1c9f2;
@@ -530,17 +591,177 @@
 }
 
 @keyframes h1-transcricao-cursor {
-    0%, 49% { opacity: 1; }
-    50%, 100% { opacity: 0; }
+
+    0%,
+    49% {
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 0;
+    }
 }
 
 @media (max-width: 530px) {
-    .h1-alienados__reprodutor { align-items: stretch; flex-direction: column; }
-    .h1-alienados__audio { flex: none; }
-    .h1-alienados__transcricao-barra { font-size: .57rem; }
-    .h1-alienados__transcricao-tela { min-height: 120px; }
+    .h1-alienados__reprodutor {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .h1-alienados__audio {
+        flex: none;
+    }
+
+    .h1-alienados__transcricao-barra {
+        font-size: .57rem;
+    }
+
+    .h1-alienados__transcricao-tela {
+        min-height: 120px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .h1-alienados__transcricao-cursor { animation: none !important; }
+    .h1-alienados__transcricao-cursor {
+        animation: none !important;
+    }
+}
+
+/* Descrições oficiais do roteiro e easter egg discreto do EP4. */
+.h1-alienados__episode-description {
+    margin: 0;
+    padding: .4rem clamp(1rem, 2.7vw, 1.4rem) 1.4rem;
+    color: #5c4572;
+    font-size: .92rem;
+    line-height: 1.75;
+}
+
+.h1-alienados__extra-trigger {
+    display: inline;
+    padding: 0;
+    border: 0;
+    border-bottom: 1px dashed currentColor;
+    border-radius: 0;
+    font: inherit;
+    line-height: inherit;
+    color: #7b43ae;
+    background: transparent;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.h1-alienados__extra-trigger:hover {
+    color: #a33fc2;
+    border-bottom-style: solid;
+}
+
+.h1-alienados__extra-trigger:focus-visible {
+    outline: 2px solid #8143ac;
+    outline-offset: 3px;
+}
+
+.h1-alienados__extra-dialog {
+    width: min(92vw, 610px);
+    max-height: min(85dvh, 690px);
+    margin: auto;
+    padding: 0;
+    overflow: auto;
+    border: 2px solid #b596d8;
+    border-radius: 10px;
+    color: #58416f;
+    background: #faf5ff;
+    box-shadow: 0 24px 80px #160622bc, inset 0 0 0 1px #fff;
+}
+
+.h1-alienados__extra-dialog::backdrop {
+    background: #11091dd6;
+    backdrop-filter: blur(5px);
+}
+
+.h1-alienados__extra-header {
+    display: flex;
+    gap: .65rem;
+    align-items: center;
+    padding: .7rem .85rem;
+    background: linear-gradient(#d3a8fa, #8b4ebd, #572b83);
+    color: #fff;
+}
+
+.h1-alienados__extra-header>span {
+    color: #9de7cf;
+}
+
+.h1-alienados__extra-header h2 {
+    flex: 1;
+    margin: 0;
+    font: 800 .7rem var(--font-mono, monospace);
+    letter-spacing: .04em;
+}
+
+.h1-alienados__extra-close {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid #ffffffa3;
+    border-radius: 5px;
+    background: #ffffff20;
+    color: #fff;
+    font-size: 1.45rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.h1-alienados__extra-close:hover {
+    background: #ffffff48;
+}
+
+.h1-alienados__extra-close:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+.h1-alienados__extra-body {
+    padding: clamp(1rem, 3vw, 1.4rem);
+}
+
+.h1-alienados__extra-caption {
+    margin: 0 0 1rem;
+    line-height: 1.6;
+}
+
+.h1-alienados__extra-body video {
+    display: block;
+    width: 100%;
+    background: #100d20;
+}
+
+.h1-alienados__extra-body audio {
+    display: block;
+    width: 100%;
+}
+
+.h1-alienados__extra-pendente {
+    padding: 2.4rem 1rem;
+    border: 1px dashed #aa8bc9;
+    border-radius: 6px;
+    text-align: center;
+    background: repeating-linear-gradient(0deg, #eee4f7, #eee4f7 2px, #f7f1fc 2px, #f7f1fc 5px);
+}
+
+.h1-alienados__extra-pendente>span {
+    font-size: 2rem;
+    color: #9f77bd;
+}
+
+.h1-alienados__extra-pendente p {
+    margin: .75rem 0 .35rem;
+    color: #714a8d;
+    font: 800 .83rem var(--font-mono, monospace);
+}
+
+.h1-alienados__extra-pendente small {
+    display: block;
+    line-height: 1.6;
 }
