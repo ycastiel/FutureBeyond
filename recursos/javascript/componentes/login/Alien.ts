@@ -1,9 +1,20 @@
+import { buscarPersonagem } from './Personagens';
+
 const stage = document.querySelector<HTMLElement>('[data-alien-stage]');
 
 if (stage) {
   const params = new URLSearchParams(window.location.search);
   const preview = params.get('preview') === '1';
   const retro = params.get('tema') === 'retro';
+
+  if (stage.dataset.mode === 'revelacao') {
+    const personagem = buscarPersonagem(params.get('personagem'));
+    stage.dataset.character = personagem.nome;
+    const nome = stage.querySelector<HTMLElement>('[data-alien-character-name]');
+    if (nome) nome.textContent = personagem.nome;
+    const destino = stage.querySelector<HTMLAnchorElement>('[data-alien-zoom]');
+    if (destino) destino.href = personagem.rota;
+  }
   const buttons = Array.from(stage.querySelectorAll<HTMLButtonElement>('[data-alien-theme]'));
   const phase = stage.querySelector<HTMLElement>('[data-alien-phase]');
   let navigating = false;
@@ -20,6 +31,7 @@ if (stage) {
     stage.querySelectorAll<HTMLAnchorElement>('[data-alien-zoom], [data-alien-fly]')
       .forEach((link) => {
         const url = new URL(link.href);
+        if (!url.pathname.startsWith('/login')) return;
         url.searchParams.set('tema', theme);
         if (preview) url.searchParams.set('preview', '1');
         link.href = url.pathname + url.search;
