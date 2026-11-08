@@ -149,3 +149,6 @@ if (document.readyState === 'loading') {
 } else {
   iniciarTranscricoes();
 }
+
+// Isola as declarações do terminal de transcrição.
+export {};
