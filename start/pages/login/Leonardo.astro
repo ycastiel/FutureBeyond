@@ -1,8 +1,11 @@
 ---
-// Rota disponível apenas para comparar a interface; não há credenciais do Leonardo definidas.
 import LayoutAlien from '../../views/layouts/LayoutAlien.astro';
-import EntranceAlien from '../../EntranceAlien.astro';
+import VideoPersonagem from '../../views/componentes/login/VideoPersonagem.astro';
+
+// Quando receber o vídeo oficial, coloque-o em recursos/publico/videos/login/
+// e configure o caminho público, por exemplo: '/videos/login/Leonardo.mp4'.
+const video: string | null = null;
 ---
-<LayoutAlien title="H1 - Produtora | Ambiente de Leonardo (protótipo)">
-  <EntranceAlien modo="interno" personagem="Leonardo" />
+<LayoutAlien title="H1 - Produtora | Leonardo - arquivo interno">
+  <VideoPersonagem personagem="Leonardo" video={video} />
 </LayoutAlien>
