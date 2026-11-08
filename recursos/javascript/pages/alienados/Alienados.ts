@@ -11,16 +11,16 @@ type EpisodioVisual = {
   onda?: Uint8Array<ArrayBuffer>;
 };
 
-const NIVEL_REPOUSO = 0.14;
-const INTERVALO_QUADRO_MS = 32; // aproximadamente 30 FPS, sem renderização desnecessária
+const NIVEL_REPOUSO = 0.12;
+const INTERVALO_QUADRO_MS = 24; // até ~40 FPS; JS suaviza a movimentação
 
 // Ajustes de sensibilidade: altere somente estes números para calibrar.
-const LIMIAR_RUIDO = 0.004;     // evita tremulação em quase-silêncio
-const GANHO_VOZ = 16;           // maior = mais reação a vozes baixas
-const CURVA_VOZ = 0.78;         // menor que 1 realça sons mais suaves
-const ATAQUE = 0.64;            // resposta rápida a novas falas
-const DECAIMENTO = 0.24;        // volta suave quando a voz termina
-const ALTURA_MAXIMA = 1.75;     // impede picos exagerados nas barras
+const LIMIAR_RUIDO = 0.0025;     // evita tremulação em quase-silêncio
+const GANHO_VOZ = 21;           // maior = mais reação a vozes baixas
+const CURVA_VOZ = 0.72;         // menor que 1 realça sons mais suaves
+const ATAQUE = 0.74;            // resposta rápida a novas falas
+const DECAIMENTO = 0.31;        // volta suave quando a voz termina
+const ALTURA_MAXIMA = 2.0;     // impede picos exagerados nas barras
 
 let paginaAtual: HTMLElement | null = null;
 let controlador: AbortController | null = null;
@@ -113,12 +113,12 @@ function desenhar(episodio: EpisodioVisual): void {
     for (let k = inicio; k < fim; k++) soma += frequencias[k];
     const banda = soma / Math.max(1, fim - inicio) / 255;
 
-    // Intensidade global + frequência específica de cada barra.
-    // A curva destaca conversas sem transformar silêncios em movimento falso.
-    const faixaRealcada = Math.pow(banda, 0.75);
+    // Pequenas vozes continuam visíveis, mas cada frequência conserva variação.
+    // Evita o aspecto de anel rígido quando a banda está abaixo do pico da fala.
+    const faixaRealcada = Math.pow(Math.min(1, banda * 1.8), 0.68);
     const alvo = Math.min(
       ALTURA_MAXIMA,
-      NIVEL_REPOUSO + intensidade * (0.35 + 1.40 * faixaRealcada)
+      NIVEL_REPOUSO + intensidade * (0.55 + 1.45 * faixaRealcada)
     );
     const anterior = episodio.niveis[i];
     const suavizacao = alvo > anterior ? ATAQUE : DECAIMENTO;
