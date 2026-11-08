@@ -3,6 +3,7 @@
 // Não é uma barreira de autenticação. O conteúdo da área é público no frontend.
 import '../../../recursos/css/global.css';
 import '../../../recursos/css/pages/login/alien.css';
+import EstrelasLaterais from '../componentes/utils/EstrelasLaterais.astro';
 
 interface Props {
   title: string;
@@ -26,6 +27,7 @@ const {
     <title>{title}</title>
   </head>
   <body class="h1-alien-body">
+    <EstrelasLaterais />
     <slot />
     <noscript>
       <style>

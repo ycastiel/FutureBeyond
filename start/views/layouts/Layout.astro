@@ -1,6 +1,7 @@
 ---
 import '../../../recursos/css/global.css';
 import { ClientRouter } from 'astro:transitions';
+import EstrelasLaterais from '../componentes/utils/EstrelasLaterais.astro';
 
 interface Props {
   title: string;
@@ -11,6 +12,10 @@ const {
   title,
   description = 'H1 - Produtora — conheça nossas produções e nossa comunidade.',
 } = Astro.props;
+
+// A Home já possui seu próprio céu arcade; o Fórum tem estrelas exclusivas.
+const rotaAtual = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const mostrarEstrelas = rotaAtual !== '/home' && rotaAtual !== '/forum';
 ---
 
 <!doctype html>
@@ -25,6 +30,7 @@ const {
     <ClientRouter fallback="swap" />
   </head>
   <body>
+    {mostrarEstrelas && <EstrelasLaterais />}
     <slot />
   </body>
 </html>
