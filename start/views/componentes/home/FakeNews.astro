@@ -46,17 +46,17 @@ const rotulo = contexto === 'home' ? 'Notícias Paralelas' : 'Plantão H1';
 <section
   class={`h1-news-portal h1-news-portal--${contexto}`}
   data-news-root
-  aria-label={`${rotulo}: carrossel de notícias fictícias`}
+  aria-label={`${rotulo}: carrossel de notícias`}
   aria-roledescription="carrossel"
 >
   <header class="h1-news-portal__intro">
     <span class="h1-news-portal__eyebrow">✦ {contexto === 'home' ? 'NOTÍCIAS PARALELAS' : 'PLANTÃO H1'}</span>
-    <h2>{contexto === 'home' ? 'Por dentro do planeta Terra' : 'Portal de Notícias'}</h2>
+    <h2>{contexto === 'home' ? 'Portal de Notícias' : 'Por dentro do planeta Terra'}</h2>
     <p>{contexto === 'home' ? 'As manchetes que nenhuma dimensão pediu 😅.' : 'Notícias absurdas, e completamente curiosas.'}</p>
     <small class="h1-news-portal__disclaimer">
       {contexto === 'home'
-        ? 'Claro que não, idiota!'
-        : 'Chefe... • BENÊ • acha melhor escrevermos aqui que inventamos essas notícias?'}
+        ? 'Chefe... • BENÊ • acha melhor escrevermos aqui que inventamos essas notícias?'
+        : 'Claro que não, idiota!'}
     </small>
     <button type="button" class="h1-news-portal__restore" data-news-restore hidden>
       ↺ Restaurar notícias fechadas
@@ -81,7 +81,7 @@ const rotulo = contexto === 'home' ? 'Notícias Paralelas' : 'Plantão H1';
           <p class="h1-news__copy">{noticia.texto}</p>
         </div>
         <div class="h1-news__footer">
-          <button type="button" class="h1-news__read" data-news-open aria-label={`Ler notícia fictícia: ${noticia.titulo}`}>
+          <button type="button" class="h1-news__read" data-news-open aria-label={`Ler notícia: ${noticia.titulo}`}>
             Ler matéria »
           </button>
         </div>
@@ -98,7 +98,6 @@ const rotulo = contexto === 'home' ? 'Notícias Paralelas' : 'Plantão H1';
     <span data-news-count aria-live="off" aria-atomic="true">1 / {itens.length}</span>
     <button type="button" data-news-next aria-label="Próxima notícia">›</button>
   </nav>
-  <small class="h1-news-portal__fiction">Notícias fictícias e satíricas · Universo H1</small>
 
   <dialog class="h1-news-dialog" data-news-dialog aria-labelledby={tituloModalId}>
     <div class="h1-news-dialog__bar">
@@ -106,7 +105,6 @@ const rotulo = contexto === 'home' ? 'Notícias Paralelas' : 'Plantão H1';
       <button type="button" data-news-dialog-close aria-label="Fechar matéria">×</button>
     </div>
     <div class="h1-news-dialog__body">
-      <p class="h1-news-dialog__flag">✦ PARÓDIA / CONTEÚDO FICTÍCIO</p>
       <p data-news-dialog-copy></p>
       <button type="button" data-news-dialog-close class="h1-news-dialog__ok">OK</button>
     </div>
