@@ -1,13 +1,13 @@
 ---
-/** Notícias absurdas do universo H1. Paródias fornecidas pelo cliente.
- *  O componente aparece somente nas laterais da Home, sem reestruturar seu conteúdo.
+/**
+ * Notícias fictícias oficiais H1 — componente compartilhado entre Home e Fórum.
+ * Home: 4 notícias; Fórum: 3 notícias. Não alterar as falas sem consultar os clientes.
  */
 interface Props {
-  lado: 'esquerda' | 'direita';
+  contexto: 'home' | 'forum';
 }
 
-const { lado } = Astro.props;
-
+const { contexto } = Astro.props;
 const noticias = [
   {
     id: 'admitiu', lado: 'esquerda', titulo: 'Admitiu', icone: '⚽', estilo: 'azul', selo: 'EXCLUSIVO H1!',
@@ -38,22 +38,39 @@ const noticias = [
     texto: 'Federação intergalática é intimada a depor após quebra de sigilo bancando de Daniel Vorcaro apontar emprestimo feito a federação.',
   },
 ] as const;
-const itens = noticias.filter((noticia) => noticia.lado === lado);
-const tituloModalId = `h1-news-dialog-title-${lado}`;
+const itens = contexto === 'home' ? noticias.slice(0, 4) : noticias.slice(4);
+const tituloModalId = `h1-news-dialog-title-${contexto}`;
+const rotulo = contexto === 'home' ? 'Notícias Paralelas' : 'Plantão H1';
 ---
 
-<section class={`h1-news-portal h1-news-portal--${lado}`} data-news-root aria-label={lado === 'esquerda' ? 'Plantão H1: notícias fictícias' : 'Notícias paralelas: notícias fictícias'}>
+<section
+  class={`h1-news-portal h1-news-portal--${contexto}`}
+  data-news-root
+  aria-label={`${rotulo}: carrossel de notícias fictícias`}
+  aria-roledescription="carrossel"
+>
   <header class="h1-news-portal__intro">
-    <span class="h1-news-portal__eyebrow">✦ {lado === 'esquerda' ? 'PLANTÃO H1' : 'NOTÍCIAS PARALELAS'}</span>
-    <h2>{lado === 'esquerda' ? 'Portal de Notícias' : 'Por dentro do planeta Terra'}</h2>
-    <p>{lado === 'esquerda' ? 'Notícias absurdas, e completamente curiosas.' : 'As manchetes que nenhuma dimensão pediu 😅.'}</p>
-    <small class="h1-news-portal__disclaimer"> {lado === 'esquerda' ? 'Chefe... • BENÊ • acha melhor escrevermos aqui que inventamos essas notícias?' : 'Claro que não, idiota!'} </small>
-    <button type="button" class="h1-news-portal__restore" data-news-restore hidden>↺ Restaurar janelinhas fechadas</button>
+    <span class="h1-news-portal__eyebrow">✦ {contexto === 'home' ? 'NOTÍCIAS PARALELAS' : 'PLANTÃO H1'}</span>
+    <h2>{contexto === 'home' ? 'Por dentro do planeta Terra' : 'Portal de Notícias'}</h2>
+    <p>{contexto === 'home' ? 'As manchetes que nenhuma dimensão pediu 😅.' : 'Notícias absurdas, e completamente curiosas.'}</p>
+    <small class="h1-news-portal__disclaimer">
+      {contexto === 'home'
+        ? 'Claro que não, idiota!'
+        : 'Chefe... • BENÊ • acha melhor escrevermos aqui que inventamos essas notícias?'}
+    </small>
+    <button type="button" class="h1-news-portal__restore" data-news-restore hidden>
+      ↺ Restaurar notícias fechadas
+    </button>
   </header>
 
-  <div class="h1-news-portal__list">
-    {itens.map((noticia) => (
-      <article class={`h1-news h1-news--${noticia.estilo}`} data-news-window aria-labelledby={`h1-news-title-${noticia.id}`}>
+  <div class="h1-news-portal__list" data-news-slides>
+    {itens.map((noticia, i) => (
+      <article
+        class={`h1-news h1-news--${noticia.estilo}`}
+        data-news-window
+        aria-labelledby={`h1-news-title-${noticia.id}`}
+        hidden={i !== 0}
+      >
         <div class="h1-news__titlebar">
           <span class="h1-news__titleicon" aria-hidden="true">✦</span>
           <h3 id={`h1-news-title-${noticia.id}`}>{noticia.titulo}</h3>
@@ -64,12 +81,24 @@ const tituloModalId = `h1-news-dialog-title-${lado}`;
           <p class="h1-news__copy">{noticia.texto}</p>
         </div>
         <div class="h1-news__footer">
-          <button type="button" class="h1-news__read" data-news-open aria-label={`Ler notícia fictícia: ${noticia.titulo}`}>Ler matéria »</button>
+          <button type="button" class="h1-news__read" data-news-open aria-label={`Ler notícia fictícia: ${noticia.titulo}`}>
+            Ler matéria »
+          </button>
         </div>
         {noticia.selo && <span class="h1-news__sticker" aria-hidden="true">{noticia.selo}</span>}
       </article>
     ))}
+    <p class="h1-news-portal__empty" data-news-empty hidden>
+      Você fechou todas as notícias deste carrossel. Use «Restaurar» para exibi-las novamente.
+    </p>
   </div>
+
+  <nav class="h1-news-portal__controls" data-news-controls aria-label={`Navegar pelas notícias: ${rotulo}`}>
+    <button type="button" data-news-prev aria-label="Notícia anterior">‹</button>
+    <span data-news-count aria-live="off" aria-atomic="true">1 / {itens.length}</span>
+    <button type="button" data-news-next aria-label="Próxima notícia">›</button>
+  </nav>
+  <small class="h1-news-portal__fiction">Notícias fictícias e satíricas · Universo H1</small>
 
   <dialog class="h1-news-dialog" data-news-dialog aria-labelledby={tituloModalId}>
     <div class="h1-news-dialog__bar">
@@ -77,7 +106,7 @@ const tituloModalId = `h1-news-dialog-title-${lado}`;
       <button type="button" data-news-dialog-close aria-label="Fechar matéria">×</button>
     </div>
     <div class="h1-news-dialog__body">
-      <p class="h1-news-dialog__flag">✦ NOTÍCIAS PARALELAS</p>
+      <p class="h1-news-dialog__flag">✦ PARÓDIA / CONTEÚDO FICTÍCIO</p>
       <p data-news-dialog-copy></p>
       <button type="button" data-news-dialog-close class="h1-news-dialog__ok">OK</button>
     </div>
@@ -85,49 +114,5 @@ const tituloModalId = `h1-news-dialog-title-${lado}`;
 </section>
 
 <script>
-  // Delegação de eventos: funciona com ClientRouter sem depender de elementos antigos.
-  document.addEventListener('click', (evento) => {
-    const alvo = evento.target;
-    if (!(alvo instanceof Element)) return;
-
-    const fechar = alvo.closest<HTMLButtonElement>('[data-news-dismiss]');
-    if (fechar) {
-      const janela = fechar.closest<HTMLElement>('[data-news-window]');
-      const portal = fechar.closest<HTMLElement>('[data-news-root]');
-      if (!janela || !portal) return;
-      janela.hidden = true;
-      const restaurar = portal.querySelector<HTMLButtonElement>('[data-news-restore]');
-      if (restaurar) restaurar.hidden = false;
-      return;
-    }
-
-    const restaurar = alvo.closest<HTMLButtonElement>('[data-news-restore]');
-    if (restaurar) {
-      const portal = restaurar.closest<HTMLElement>('[data-news-root]');
-      portal?.querySelectorAll<HTMLElement>('[data-news-window]').forEach((janela) => { janela.hidden = false; });
-      restaurar.hidden = true;
-      return;
-    }
-
-    const abrir = alvo.closest<HTMLButtonElement>('[data-news-open]');
-    if (abrir) {
-      const noticia = abrir.closest<HTMLElement>('[data-news-window]');
-      const portal = abrir.closest<HTMLElement>('[data-news-root]');
-      const dialogo = portal?.querySelector<HTMLDialogElement>('[data-news-dialog]');
-      const titulo = noticia?.querySelector<HTMLElement>('h3');
-      const conteudo = noticia?.querySelector<HTMLElement>('.h1-news__copy');
-      if (!dialogo || !titulo || !conteudo) return;
-      const tituloDialogo = dialogo.querySelector<HTMLElement>('[data-news-dialog-title]');
-      const textoDialogo = dialogo.querySelector<HTMLElement>('[data-news-dialog-copy]');
-      if (tituloDialogo) tituloDialogo.textContent = titulo.textContent;
-      if (textoDialogo) textoDialogo.textContent = conteudo.textContent;
-      if (!dialogo.open) dialogo.showModal();
-      return;
-    }
-
-    const fecharDialogo = alvo.closest<HTMLButtonElement>('[data-news-dialog-close]');
-    if (fecharDialogo) {
-      fecharDialogo.closest<HTMLDialogElement>('dialog')?.close();
-    }
-  });
+  import '../../../../recursos/javascript/componentes/carrosseis/Noticias.ts';
 </script>
