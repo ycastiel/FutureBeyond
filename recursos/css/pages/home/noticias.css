@@ -242,12 +242,6 @@
   background: linear-gradient(#fff, #d8e7fb);
 }
 
-.h1-news__fiction {
-  color: #73677f;
-  font: 700 .48rem var(--font-mono);
-  letter-spacing: .01em;
-}
-
 .h1-news__sticker {
   position: absolute;
   right: -.28rem;
@@ -301,12 +295,6 @@
 
 .h1-news-dialog__body {
   padding: 1rem;
-}
-
-.h1-news-dialog__flag {
-  margin: 0 0 .7rem;
-  color: #744684;
-  font: 800 .62rem/1.5 var(--font-mono);
 }
 
 .h1-news-dialog__body [data-news-dialog-copy] {
@@ -376,13 +364,6 @@
   letter-spacing: .06em;
 }
 
-.h1-news-portal__fiction {
-  display: block;
-  text-align: center;
-  color: #5a3778;
-  font: 700 .55rem/1.4 var(--font-mono, monospace);
-}
-
 .h1-news-portal__empty {
   margin: 0;
   border: 1px dashed #9c79d8;
@@ -412,15 +393,9 @@
 }
 
 .h1-forum__widget--news .h1-news-portal__list,
-.h1-forum__widget--news .h1-news-portal__controls,
-.h1-forum__widget--news .h1-news-portal__fiction {
+.h1-forum__widget--news .h1-news-portal__controls {
   margin-left: .5rem;
   margin-right: .5rem;
-}
-
-.h1-forum__widget--news .h1-news-portal__fiction {
-  color: #edddff;
-  margin-bottom: .6rem;
 }
 
 @media (max-width: 1060px) and (min-width: 511px) {
