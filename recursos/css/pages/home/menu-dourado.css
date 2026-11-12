@@ -1,0 +1,82 @@
+.fb-nav__brand {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  flex: 0 0 78px;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  width: 78px;
+  min-height: 48px;
+  margin-left: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Halo dourado atrás da logo — não tinge a imagem original. */
+.fb-nav__brand::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0 -7px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center,
+    rgba(255, 249, 196, .85) 0%,
+    rgba(255, 207, 91, .58) 25%,
+    rgba(244, 159, 48, .22) 51%,
+    transparent 75%);
+  filter: blur(9px);
+  animation: fb-nav-golden-halo 3.8s ease-in-out infinite;
+}
+
+.fb-nav__brand::after {
+  content: '✦';
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  font-size: 10px;
+  line-height: 1;
+  color: #fff6bb;
+  text-shadow: 0 0 7px #ffd55f, 0 0 16px #d98c2b;
+  animation: fb-nav-golden-spark 4.6s ease-in-out infinite;
+}
+
+.fb-nav__brand img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 69px;
+  height: auto;
+  max-height: 41px;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 0 4px rgba(255, 231, 144, .85))
+    drop-shadow(0 0 11px rgba(255, 193, 90, .52));
+  animation: fb-nav-golden-logo 3.8s ease-in-out infinite;
+}
+
+@keyframes fb-nav-golden-halo {
+  0%, 100% { opacity: .68; transform: scale(.94); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+@keyframes fb-nav-golden-logo {
+  0%, 100% { filter: drop-shadow(0 0 3px #ffe9a2a6) drop-shadow(0 0 10px #ffd46e80); }
+  50% { filter: drop-shadow(0 0 8px #fff5b8e6) drop-shadow(0 0 18px #f4b04ab8); }
+}
+
+@keyframes fb-nav-golden-spark {
+  0%, 100% { opacity: .45; transform: scale(.78); }
+  50% { opacity: 1; transform: scale(1.16); }
+}
+
+@media (max-width: 560px) {
+  .fb-nav__brand { flex-basis: 61px; width: 61px; min-height: 42px; }
+  .fb-nav__brand img { width: 56px; max-height: 36px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fb-nav__brand::before,
+  .fb-nav__brand::after,
+  .fb-nav__brand img { animation: none; }
+}
