@@ -5,6 +5,7 @@ import MessengerBuddy from '../../views/componentes/utils/MessengerBuddy.astro';
 import FakeNews from '../../views/componentes/home/FakeNews.astro';
 import '../../../recursos/css/pages/home/home.css';
 import '../../../recursos/css/pages/home/noticias.css';
+import '../../../recursos/css/pages/home/acesso-documentario.css';
 ---
 
 <Layout title="H1 - Produtora | Início" description="Conheça a H1 - Produtora, suas produções e sua equipe." >
@@ -79,7 +80,10 @@ import '../../../recursos/css/pages/home/noticias.css';
                 <p class="fb-kicker">// APRESENTAMOS: H1 PRODUTORA</p>
                 <h2 id="fb-welcome-title">Quem <em>somos?</em></h2>
                 <p>Bem vindo a H1, conheça nossa família e como trabalhamos!</p>
-                <a class="fb-button" href="/blog/sobre"><span>Acessar Sobre</span><span aria-hidden="true">→</span></a>
+                <div class="fb-welcome__actions">
+                  <a class="fb-button" href="/blog/sobre"><span>Acessar Sobre</span><span aria-hidden="true">→</span></a>
+                  <a class="fb-button fb-button--secondary" href="/documentario"><span>Conhecer Fato Capital</span><span aria-hidden="true">↗</span></a>
+                </div>
               </div>
               <div class="fb-welcome__art fb-welcome__art--h1">
                 <span class="fb-h1-poster__seal" aria-hidden="true">H1 PRODUTORA</span>
@@ -99,24 +103,25 @@ import '../../../recursos/css/pages/home/noticias.css';
                 </div>
                 <span>CATÁLOGO / PRÉVIA</span>
               </div>
-              <article class="fb-post">
+              <a class="fb-post fb-post--link" href="/documentario">
                 <div class="fb-post__art fb-post__art--space" aria-hidden="true"><span>✦</span></div>
                 <div class="fb-post__body">
                   <p class="fb-post__meta">DOCUMENTÁRIO</p>
-                  <h3>Documentário da H1</h3>
-                  <p>Em breve, materiais e informações sobre o documentário.</p>
-                  <span class="fb-post__pending">[ MATERIAL EM PREPARAÇÃO ]</span>
+                  <h3>Fato Capital</h3>
+                  <p>Conheça o documentário da H1, sua equipe e os materiais já disponíveis.</p>
+                  <span class="fb-post__cta">Acessar Fato Capital <span aria-hidden="true">↗</span></span>
+                  <span class="fb-post__pending">[ NOVOS MATERIAIS EM PREPARAÇÃO ]</span>
                 </div>
-              </article>
-              <article class="fb-post fb-post--muted">
+              </a>
+              <a class="fb-post fb-post--muted fb-post--link" href="/alienados">
                 <div class="fb-post__art fb-post__art--disc" aria-hidden="true"><span>◈</span></div>
                 <div class="fb-post__body">
                   <p class="fb-post__meta">PODCAST</p>
                   <h3>Alienados</h3>
                   <p>Conheça nosso podcast e fique por dentro dos assuntos do nosso time.</p>
-                  <a href="/alienados">Acessar Alienados <span aria-hidden="true">↗</span></a>
+                  <span class="fb-post__cta">Acessar Alienados <span aria-hidden="true">↗</span></span>
                 </div>
-              </article>
+              </a>
             </div>
           </section>
 
@@ -141,11 +146,11 @@ import '../../../recursos/css/pages/home/noticias.css';
                   <strong>ALIENADOS</strong>
                   <span class="fb-advert__subtitle">Nosso podcast</span>
                 </a>
-                <div class="fb-advert__card fb-advert__card--documentary" data-ad="documentario" hidden>
+                <a class="fb-advert__card fb-advert__card--documentary" href="/documentario" data-ad="documentario" hidden aria-label="Conhecer Fato Capital, documentário da H1">
                   <span class="fb-advert__overline">PRODUÇÃO H1</span>
-                  <strong>DOCUMENTÁRIO</strong>
-                  <span class="fb-advert__subtitle">Em preparação</span>
-                </div>
+                  <strong>FATO CAPITAL</strong>
+                  <span class="fb-advert__subtitle">Conhecer documentário</span>
+                </a>
               </div>
               <div class="fb-advert__controls" data-ad-controls hidden>
                 <button type="button" class="fb-advert__control" data-ad-prev aria-label="Anúncio anterior">‹</button>
