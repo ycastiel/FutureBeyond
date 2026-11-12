@@ -3,73 +3,93 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-/* O wrapper não muda o layout dos outros personagens. */
-.alien-stage--video .alien-video__media {
-  width: 100%;
-  min-width: 0;
-}
-
-.alien-stage--video .alien-video__actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: .85rem;
-}
-
-/* BENÊ: a arte oficial tem um núcleo central que não deve ficar escondido. */
-.alien-stage.alien-stage--video[data-character="Benê"] .alien-stage__world {
   filter: brightness(.93) saturate(1.08);
+  transition: filter 500ms ease;
 }
 
-.alien-stage.alien-stage--video[data-character="Benê"] .alien-stage__vignette {
+.alien-stage.alien-stage--video .alien-stage__vignette {
   background:
     linear-gradient(180deg, #03040b6b 0%, transparent 23%, transparent 76%, #03040b9c 100%),
     linear-gradient(90deg, #03040b6e 0%, #03040b29 25%, transparent 44%, transparent 59%, #03040b35 84%, #03040b69 100%);
 }
 
-/* O pulso e as órbitas agora são desenhados no SVG GalaxiasAlien.astro.
-   Eles compartilham as coordenadas da arte de fundo (1280 x 720),
-   evitando o deslocamento causado pelo antigo ::before em 50% da tela. */
+/* A arte fica mais visível antes do clique. Quando o vídeo é selecionado,
+   a página recebe um escurecimento sutil para priorizar a reprodução. */
+.alien-stage--video:has(.alien-video.is-focused) .alien-stage__world {
+  filter: brightness(.72) saturate(.96);
+}
 
-/* Na chegada, o vídeo se concentra à esquerda e deixa o centro da arte livre. */
-.alien-stage--video .alien-video.alien-video--bene {
+.alien-stage--video .alien-video__media {
+  min-width: 0;
+  width: min(100%, 450px);
+}
+
+.alien-stage--video .alien-video__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: .85rem;
+}
+
+/* Todos os personagens começam com mídia à esquerda e centro da arte livre. */
+.alien-stage--video .alien-video.alien-video--interativo {
   width: min(94vw, 1220px);
   align-items: flex-start;
   gap: 1rem;
 }
 
-.alien-video--bene .alien-video__media {
-  width: min(100%, 450px);
+.alien-video--interativo .alien-video__media {
   margin-inline: 0 auto;
-  will-change: transform;
 }
 
-.alien-video--bene.is-focused .alien-video__media {
+.alien-video--interativo.is-focused .alien-video__media {
   width: min(100%, 950px);
   margin-inline: auto;
 }
 
-.alien-video--bene .alien-video__pending {
+/* Pendente: painel translúcido, sem virar um retângulo escuro sobre a roseta. */
+.alien-video--interativo .alien-video__pending {
   background: linear-gradient(135deg, #07101c78, #1a123b61);
-  border-color: #ffe5a26c;
-  box-shadow: 0 10px 40px #0009, 0 0 25px #ffd77d19;
+  border: 1px solid #d4c6f36a;
+  box-shadow: 0 10px 40px #0009, 0 0 25px #cab3fc16;
   backdrop-filter: blur(4px);
 }
 
-.alien-video--bene .alien-video__player {
+/* Vídeo real: moldura discreta no início, mais iluminada ao receber foco. */
+.alien-video--interativo .alien-video__player {
+  background: #070d16;
+  border: 1px solid #d4c6f366;
+  box-shadow: 0 10px 40px #000a, 0 0 25px #cab3fc1b;
+  transition: border-color 350ms ease, box-shadow 350ms ease;
+}
+
+.alien-video--interativo.is-focused .alien-video__player,
+.alien-video--interativo.is-focused .alien-video__pending {
+  border-color: #dfc9ffbd;
+  box-shadow: 0 16px 65px #000c, 0 0 32px #bfa3ff44;
+}
+
+/* Benê conserva o detalhe dourado aprovado no ajuste anterior. */
+.alien-stage--video[data-character="Benê"] .alien-video__pending {
+  border-color: #ffe5a26c;
+  box-shadow: 0 10px 40px #0009, 0 0 25px #ffd77d19;
+}
+.alien-stage--video[data-character="Benê"] .alien-video__player {
   border-color: #ffe5a2b0;
   box-shadow: 0 10px 40px #000b, 0 0 25px #ffd77d22;
 }
-
-.alien-video--bene .alien-video__actions {
-  width: min(100%, 450px);
-  justify-content: flex-start;
+.alien-stage--video[data-character="Benê"] .alien-video.is-focused .alien-video__player,
+.alien-stage--video[data-character="Benê"] .alien-video.is-focused .alien-video__pending {
+  border-color: #ffe5a2ed;
+  box-shadow: 0 16px 65px #000c, 0 0 35px #ffd77d54;
 }
 
-.alien-video--bene.is-focused .alien-video__actions {
+.alien-video--interativo .alien-video__actions {
+  width: min(100%, 450px);
+}
+
+.alien-video--interativo.is-focused .alien-video__actions {
   align-self: center;
   justify-content: center;
 }
@@ -80,18 +100,23 @@
   align-items: center;
   min-height: 44px;
   padding: .65rem 1.1rem;
-  border: 1px solid #ffe3a6;
+  border: 1px solid #d4beef;
   border-radius: 999px;
-  color: #33240c;
-  background: linear-gradient(180deg, #fff4ce, #d7ac61);
-  box-shadow: 0 3px 15px #f6c46c4b;
+  color: #261d3e;
+  background: linear-gradient(180deg, #f6ebff, #bca3e2);
+  box-shadow: 0 3px 15px #c3a4ed46;
   font: 700 .82rem 'Trebuchet MS', sans-serif;
   cursor: pointer;
 }
 
-.alien-video__focus-button:hover {
-  filter: brightness(1.08);
+.alien-stage--video[data-character="Benê"] .alien-video__focus-button {
+  border-color: #ffe3a6;
+  color: #33240c;
+  background: linear-gradient(180deg, #fff4ce, #d7ac61);
+  box-shadow: 0 3px 15px #f6c46c4b;
 }
+
+.alien-video__focus-button:hover { filter: brightness(1.08); }
 
 .alien-video__focus-button:focus-visible,
 .alien-video__back:focus-visible {
@@ -100,19 +125,27 @@
 }
 
 @media (max-width: 760px) {
-  /* Em telas estreitas, o painel permanece acessível e centralizado. */
-  .alien-stage--video .alien-video.alien-video--bene {
+  /* Em telas estreitas, a arte e os controles continuam acessíveis.
+     Evitamos o deslocamento lateral que reduziria a área de toque. */
+  .alien-stage--video .alien-video.alien-video--interativo {
     width: min(92vw, 560px);
     align-items: center;
   }
-  .alien-video--bene .alien-video__media,
-  .alien-video--bene.is-focused .alien-video__media {
+  .alien-video--interativo .alien-video__media,
+  .alien-video--interativo.is-focused .alien-video__media {
     width: 100%;
     margin-inline: auto;
   }
-  .alien-video--bene .alien-video__actions {
+  .alien-video--interativo .alien-video__actions,
+  .alien-video--interativo.is-focused .alien-video__actions {
     width: 100%;
     justify-content: center;
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .alien-stage.alien-stage--video .alien-stage__world,
+  .alien-video--interativo .alien-video__player {
+    transition: none;
+  }
+}

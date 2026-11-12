@@ -376,7 +376,7 @@ const avatarLetra = (nome: string) => nome.replace(/^zZ_/, '').charAt(0).toUpper
           <section class="h1-forum__widget">
             <h2 class="h1-forum__widget-title">✦ Tópicos do fórum</h2>
             <ul class="h1-forum__shortcut-list">
-              {topicos.map((topico, i) => <li><a href={`#${topico.id}`} data-forum-topic-link><span>✧</span> {topico.titulo}</a></li>)}
+              {topicos.map((topico) => <li><a href={`#${topico.id}`} data-forum-topic-link><span>✧</span> {topico.titulo}</a></li>)}
             </ul>
           </section>
           <section class="h1-forum__widget h1-forum__widget--small">

@@ -23,12 +23,6 @@
   font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
 }
 
-.alien-stage[data-theme="retro"] {
-  --alien-glow: #b7f8ff;
-  --alien-lilac: #ebd2ff;
-  --alien-surface: rgba(17, 21, 43, .9);
-}
-
 .alien-stage__world,
 .alien-stage__vignette,
 .alien-stage__scan,
@@ -41,16 +35,12 @@
 
 .alien-stage__world {
   z-index: -4;
-  background-image: url('/imagens/login/nave-hibrida.webp');
+  background-image: url('/imagens/login/fundo-alien.webp');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   transform: scale(1.025);
   transition: opacity 650ms ease, transform 3s ease;
-}
-
-.alien-stage[data-theme="retro"] .alien-stage__world {
-  background-image: url('/imagens/login/nave-retro.webp');
 }
 
 .alien-stage__vignette {
@@ -72,10 +62,6 @@
   height: 100%;
   opacity: .8;
   filter: drop-shadow(0 0 7px #6bf5d861);
-}
-
-.alien-stage[data-theme="retro"] .alien-stage__nerves {
-  opacity: .22;
 }
 
 .alien-stage__nerve {
@@ -137,84 +123,9 @@
   animation-delay: -3s;
 }
 
-.alien-topbar,
 .alien-status {
   position: relative;
   z-index: 8;
-}
-
-.alien-topbar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: .75rem;
-  padding: .9rem clamp(1rem, 3vw, 3rem);
-  border-bottom: 1px solid #b2ffea42;
-  background: linear-gradient(180deg, #090f1def, #14132eab);
-  box-shadow: 0 4px 32px #02030ab0;
-  backdrop-filter: blur(11px);
-}
-
-.alien-topbar__brand {
-  display: inline-flex;
-  align-items: center;
-  gap: .65rem;
-  color: #e7fdf9;
-  font: 700 .72rem 'Courier New', monospace;
-  letter-spacing: .12em;
-  text-decoration: none;
-}
-
-.alien-topbar__brand:hover {
-  color: var(--alien-glow);
-}
-
-.alien-topbar__glyph {
-  color: var(--alien-glow);
-  font-size: 1.25rem;
-  filter: drop-shadow(0 0 8px #8cf4e9a9);
-}
-
-.alien-topbar__brand em {
-  font-style: normal;
-  color: #bd91eb;
-}
-
-.alien-topbar__options {
-  display: flex;
-  align-items: center;
-  gap: .4rem;
-}
-
-.alien-topbar__caption {
-  font: 700 .57rem 'Courier New', monospace;
-  letter-spacing: .09em;
-  color: #c5c7dc;
-  margin-right: .45rem;
-}
-
-.alien-topbar__options button {
-  min-height: 32px;
-  padding: .38rem .78rem;
-  border: 1px solid #96a4d88a;
-  border-radius: 5px;
-  background: #1c2141bc;
-  color: #d8d5f2;
-  font: 700 .64rem 'Courier New', monospace;
-  letter-spacing: .08em;
-  transition: background 180ms ease, border-color 180ms ease;
-}
-
-.alien-topbar__options button[aria-pressed="true"] {
-  color: #071b22;
-  background: linear-gradient(#e0fff5, #8bdcd3);
-  border-color: #c9fff0;
-  box-shadow: 0 0 15px #80f5dc61;
-}
-
-.alien-topbar__options button:not([aria-pressed="true"]):hover {
-  background: #343065;
 }
 
 .alien-stage__focus {
@@ -242,11 +153,6 @@
   box-shadow: inset 0 1px 0 #effffb35, inset 0 0 36px #68d5d112, 0 18px 80px #000d, 0 0 30px #69f6d425;
   backdrop-filter: blur(12px);
   transform: translateY(0);
-}
-
-.alien-stage[data-theme="retro"] .alien-monitor {
-  border-radius: 18px;
-  box-shadow: inset 0 1px 0 #fff9, 0 18px 80px #000a, 0 0 38px #c29cff48;
 }
 
 .alien-monitor__eyebrow {
@@ -667,15 +573,6 @@
 }
 
 @media (max-width: 720px) {
-  .alien-topbar {
-    align-items: flex-start;
-  }
-
-  .alien-topbar__options {
-    width: 100%;
-    justify-content: flex-start;
-  }
-
   .alien-monitor {
     border-radius: 17px;
     padding: 1.7rem 1.15rem;
