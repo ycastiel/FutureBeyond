@@ -2,10 +2,10 @@
 import LayoutAlien from '../../views/layouts/LayoutAlien.astro';
 import VideoPersonagem from '../../views/componentes/login/VideoPersonagem.astro';
 
-// Quando receber o vídeo oficial, coloque-o em recursos/publico/videos/login/
-// e configure o caminho público, por exemplo: '/videos/login/Bene.mp4'.
+// Quando receber o vídeo oficial, coloque-o no bucket do R2.
+// Lembre de configurar o caminho e a URL do vídeo definida.
 const video: string | null = null;
 ---
 <LayoutAlien title="H1 - Produtora | Benê - arquivo interno">
-  <VideoPersonagem personagem="Benê" video={video} />
+  <VideoPersonagem personagem="Benê" video={video} destaqueCentral />
 </LayoutAlien>

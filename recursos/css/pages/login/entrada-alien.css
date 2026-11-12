@@ -1,0 +1,8 @@
+.alien-stage.alien-stage--revelacao[data-mode="revelacao"] .alien-stage__world {
+  background-image:
+  
+  url('/imagens/login/entrada-alien.webp');
+  background-position: center center, center center;
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
+}
