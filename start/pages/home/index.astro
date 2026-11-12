@@ -6,6 +6,7 @@ import FakeNews from '../../views/componentes/home/FakeNews.astro';
 import '../../../recursos/css/pages/home/home.css';
 import '../../../recursos/css/pages/home/noticias.css';
 import '../../../recursos/css/pages/home/acesso-documentario.css';
+import '../../../recursos/css/pages/home/menu-dourado.css';
 ---
 
 <Layout title="H1 - Produtora | Início" description="Conheça a H1 - Produtora, suas produções e sua equipe." >
@@ -32,9 +33,19 @@ import '../../../recursos/css/pages/home/acesso-documentario.css';
         <nav class="fb-nav" aria-label="Navegação principal">
           <span class="fb-nav__current" aria-current="page">⌂ <span>INÍCIO</span></span>
           <a href="/blog/sobre">✧ <span>SOBRE A H1</span></a>
-          <a href="#producoes">▧ <span>PRODUÇÕES</span></a>
           <a href="/alienados">◉ <span>ALIENADOS</span></a>
+          <a href="/documentario">▣ <span>FATO CAPITAL</span></a>
           <a href="/forum">✉ <span>FÓRUM</span></a>
+          <span class="fb-nav__brand" aria-hidden="true">
+            <img
+              src="/imagens/h1/h1-vertical.png"
+              alt=""
+              width="1288"
+              height="621"
+              loading="eager"
+              decoding="async"
+            />
+          </span>
         </nav>
       </header>
 
