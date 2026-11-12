@@ -3,6 +3,7 @@ import Layout from '../../views/layouts/Layout.astro';
 import TerminalTranscricao from '../../views/componentes/alienados/TerminalTranscricao.astro';
 import '../../../recursos/css/pages/alienados/alienados.css';
 import '../../../recursos/css/pages/alienados/video.css';
+import '../../../recursos/css/pages/alienados/decoracoes.css';
 
 // MP4s oficiais no R2. URL temporária de testes (r2.dev), NÃO usar na produção.
 // Quando o subdomínio de mídia estiver pronto, altere apenas esta constante.
@@ -64,7 +65,11 @@ const possuiTroteExtra = troteExtraEP4.arquivo.trim().length > 0;
     <div class="h1-alienados__shell">
       <div class="h1-alienados__chrome"><span aria-hidden="true">● ● ●</span><span>H1 PRODUTORA / ALIENADOS</span><span>ONLINE</span></div>
       <nav class="h1-alienados__nav" aria-label="Navegação da produtora">
-        <a href="/home">⌂ HOME</a><a href="/blog/sobre">✿ SOBRE</a><a href="/forum">✉ FÓRUM</a><span aria-current="page">◉ ALIENADOS</span>
+        <a href="/home">⌂ HOME</a>
+        <a href="/blog/sobre">✧ SOBRE A H1</a>
+        <span aria-current="page">◉ ALIENADOS</span>
+        <a href="/documentario">▣ FATO CAPITAL</a>
+        <a href="/forum">✉ FÓRUM</a>
       </nav>
       <header class="h1-alienados__hero">
         <div>
@@ -75,7 +80,11 @@ const possuiTroteExtra = troteExtraEP4.arquivo.trim().length > 0;
 
         <div class="h1-alienados__hero-art" aria-hidden="true">
           <span class="h1-alienados__badge h1-alienados__badge--rec">● REC / H1</span>
-          <span class="h1-alienados__badge h1-alienados__badge--label">IDENTIDADE VISUAL</span>
+          <span class="h1-alienados__badge h1-alienados__badge--label">MISTÉRIOS E DISCUSSÕES</span>
+          <!-- Emojis decorativos: não fazem parte da navegação nem bloqueiam cliques. -->
+          <span class="h1-alienados__emoji h1-alienados__emoji--banner h1-alienados__emoji--fone" aria-hidden="true">🎧</span>
+          <span class="h1-alienados__emoji h1-alienados__emoji--banner h1-alienados__emoji--microfone" aria-hidden="true">🎙️</span>
+          <span class="h1-alienados__emoji h1-alienados__emoji--banner h1-alienados__emoji--nota" aria-hidden="true">🎵</span>
           <span class="h1-alienados__spark h1-alienados__spark--a">✦</span>
           <span class="h1-alienados__spark h1-alienados__spark--b">✧</span>
           <span class="h1-alienados__spark h1-alienados__spark--c">✦</span>
@@ -85,10 +94,23 @@ const possuiTroteExtra = troteExtraEP4.arquivo.trim().length > 0;
         </div>
       </header>
       <div class="h1-alienados__episodes">
-        <h2>✦ Episódios</h2>
+        <h2>
+          <span>✦ Episódios</span>
+          <span class="h1-alienados__emojis-margem" aria-hidden="true">
+            <span class="h1-alienados__emoji h1-alienados__emoji--margem">🎵</span>
+            <span class="h1-alienados__emoji h1-alienados__emoji--margem">🎧</span>
+            <span class="h1-alienados__emoji h1-alienados__emoji--margem">🎙️</span>
+          </span>
+        </h2>
         {episodios.map(ep => (
           <section class="h1-alienados__episode" aria-label={`Episódio ${ep.numero}`}>
-            <div class="h1-alienados__episode-title"><span>EP. {ep.numero}</span><h3>{ep.titulo ?? `Episódio ${Number(ep.numero)}`}</h3></div>
+            <div class="h1-alienados__episode-title">
+              <span>EP. {ep.numero}</span>
+              <h3>{ep.titulo ?? `Episódio ${Number(ep.numero)}`}</h3>
+              <span class="h1-alienados__emoji h1-alienados__emoji--episodio" aria-hidden="true">
+                {ep.numero === '01' ? '🎧' : ep.numero === '02' ? '🎙️' : ep.numero === '03' ? '🎵' : '🎧'}
+              </span>
+            </div>
             <TerminalTranscricao numero={ep.numero} titulo={ep.titulo} video={ep.video} legenda={ep.legenda} />
             <p class="h1-alienados__episode-description">
               {ep.numero === '04' ? (

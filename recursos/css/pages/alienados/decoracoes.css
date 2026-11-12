@@ -1,0 +1,113 @@
+.h1-alienados__emoji {
+  display: inline-block;
+  flex: none;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  transform-origin: center;
+  animation: h1-alienados-giro-musical 18s linear infinite;
+  will-change: transform;
+}
+
+/* Os três pequenos elementos orbitam as bordas do banner,
+   deixando a logomarca e os selos de gravação desimpedidos. */
+.h1-alienados__emoji--banner {
+  position: absolute;
+  z-index: 2;
+  font-size: clamp(1.1rem, 2.2vw, 1.65rem);
+  opacity: .86;
+  filter: drop-shadow(0 2px 5px #7c4fb067);
+}
+
+.h1-alienados__emoji--fone {
+  top: 30%;
+  left: 4%;
+  animation-duration: 21s;
+}
+
+.h1-alienados__emoji--microfone {
+  top: 40%;
+  right: 3%;
+  animation-duration: 24s;
+  animation-direction: reverse;
+  animation-delay: -8s;
+}
+
+.h1-alienados__emoji--nota {
+  bottom: 11%;
+  left: 15%;
+  animation-duration: 17s;
+  animation-delay: -5s;
+}
+
+/* Margem clara da seção Episódios: longe de players e botões CC. */
+.h1-alienados__episodes > h2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+}
+
+.h1-alienados__emojis-margem {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(.45rem, 1.7vw, 1.15rem);
+  padding-inline: .4rem;
+}
+
+.h1-alienados__emoji--margem {
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  opacity: .7;
+  filter: drop-shadow(0 2px 6px #9d6bd03d);
+}
+
+.h1-alienados__emoji--margem:nth-child(2) {
+  animation-duration: 25s;
+  animation-direction: reverse;
+  animation-delay: -6s;
+}
+
+.h1-alienados__emoji--margem:nth-child(3) {
+  animation-duration: 22s;
+  animation-delay: -12s;
+}
+
+/* Uma pequena nota no espaço livre à direita do título de cada EP. */
+.h1-alienados__emoji--episodio {
+  margin-left: auto;
+  font-size: 1.25rem;
+  opacity: .72;
+  animation-duration: 26s;
+  animation-delay: -10s;
+}
+
+.h1-alienados__episode:nth-of-type(even) .h1-alienados__emoji--episodio {
+  animation-direction: reverse;
+  animation-duration: 23s;
+}
+
+@keyframes h1-alienados-giro-musical {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(180deg); }
+  100% { transform: translateY(0) rotate(360deg); }
+}
+
+/* Em telas estreitas, o título e os controles continuam prioritários. */
+@media (max-width: 520px) {
+  .h1-alienados__emojis-margem {
+    gap: .35rem;
+  }
+  .h1-alienados__emojis-margem .h1-alienados__emoji:last-child {
+    display: none;
+  }
+  .h1-alienados__emoji--episodio {
+    font-size: 1.05rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .h1-alienados__emoji {
+    animation: none !important;
+    will-change: auto;
+  }
+}
