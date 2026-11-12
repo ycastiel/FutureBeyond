@@ -1,0 +1,44 @@
+.h1-alienados__reprodutor {
+  align-items: flex-start;
+}
+
+.h1-alienados__video {
+  display: block;
+  flex: 0 0 100%;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: min(75vh, 650px);
+  object-fit: contain;
+  border: 1px solid #b9a2d0;
+  background: #080711;
+  border-radius: 5px;
+  color-scheme: dark;
+}
+
+.h1-alienados__legenda-toggle {
+  margin-left: auto;
+  border: 1px solid #ab8acb;
+  border-radius: 3px;
+  padding: .35rem .7rem;
+  color: #5d3c7c;
+  background: linear-gradient(#ffffff, #e6d8f2);
+  font: 700 .64rem/1.35 var(--font-mono, monospace);
+  cursor: pointer;
+}
+
+.h1-alienados__legenda-toggle:hover,
+.h1-alienados__legenda-toggle[aria-pressed='true'] {
+  color: #fff;
+  border-color: #78539c;
+  background: linear-gradient(#a576d0, #5a3680);
+}
+
+.h1-alienados__legenda-toggle:focus-visible {
+  outline: 2px solid #78539c;
+  outline-offset: 3px;
+}
+
+@media (max-width: 530px) {
+  .h1-alienados__video { max-height: none; }
+}
