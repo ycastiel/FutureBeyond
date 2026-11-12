@@ -1,0 +1,115 @@
+.h1-doc {
+  min-height: 100svh;
+  padding: clamp(.7rem, 3vw, 2rem);
+  color: #422857;
+  background: radial-gradient(circle at 82% 8%, #ae83ef45, transparent 35%), linear-gradient(145deg, #120d23, #321947 65%, #151d35);
+}
+.h1-doc__shell {
+  max-width: 1120px;
+  margin-inline: auto;
+  overflow: hidden;
+  border: 2px solid #bda4df;
+  background: #f1eafd;
+  box-shadow: 0 25px 75px #080313aa, 0 0 30px #ba8cfd25;
+}
+.h1-doc__chrome, .h1-doc__bar {
+  color: #fff;
+  background: linear-gradient(#ddaeff, #9658c9 42%, #622d91 54%, #41205d);
+  text-shadow: 0 1px 1px #2a0e46;
+}
+.h1-doc__chrome {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .6rem 1rem;
+  font: 700 .7rem var(--font-mono, monospace);
+}
+.h1-doc__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  padding: .75rem 1rem;
+  border-bottom: 1px solid #c8acd9;
+  background: linear-gradient(#fff, #e2cff5, #cbb6e7);
+}
+.h1-doc__nav a, .h1-doc__nav span, .h1-doc__closing a {
+  display: inline-block;
+  padding: .55rem .85rem;
+  border: 1px solid #a17bc7;
+  border-radius: 999px;
+  color: #fff;
+  background: linear-gradient(#d9affb, #9458be 49%, #65378f 52%, #71419d);
+  font-size: .77rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+.h1-doc__nav span[aria-current] { color: #4b2a68; background: linear-gradient(#fff, #dff3ff); cursor: default; }
+.h1-doc__nav a:hover, .h1-doc__closing a:hover { filter: brightness(1.12); }
+.h1-doc__intro {
+  padding: clamp(1.4rem, 5vw, 3.2rem);
+  text-align: center;
+  background: radial-gradient(circle at 50% -10%, #fff, transparent 58%), linear-gradient(#f8f3ff, #e5d7f5);
+}
+.h1-doc__eyebrow { font: 700 .72rem var(--font-mono, monospace); letter-spacing: .18em; color: #8950b1; }
+.h1-doc__intro h1 {
+  margin: .3rem 0 1rem;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  line-height: 1.08;
+  color: #512577;
+  text-shadow: 2px 3px #fff, 0 0 16px #c99cf2;
+}
+.h1-doc__intro h1 em { color: #985ac7; }
+.h1-doc__intro > p:not(.h1-doc__eyebrow) { max-width: 760px; margin: 1rem auto; line-height: 1.75; }
+.h1-doc__question { font-weight: 800; font-style: italic; color: #77419c; }
+.h1-doc__media-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(220px, 1fr);
+  gap: 1rem;
+  padding: clamp(1rem, 3vw, 2rem);
+}
+.h1-doc__window { min-width: 0; border: 1px solid #a985ca; background: #fffaff; box-shadow: 0 8px 20px #54306e25; }
+.h1-doc__bar { margin: 0; padding: .55rem .85rem; font-size: .84rem; }
+.h1-doc__window video, .h1-doc__window img { display: block; width: 100%; }
+.h1-doc__window video { aspect-ratio: 16 / 9; background: #100c22; }
+.h1-doc__poster { aspect-ratio: 4 / 5; object-fit: contain; background: #180f28; }
+.h1-doc__placeholder {
+  display: grid;
+  place-content: center;
+  gap: .75rem;
+  padding: 1.2rem;
+  min-height: 200px;
+  text-align: center;
+  color: #7b58a5;
+  font: 700 .8rem var(--font-mono, monospace);
+  background: radial-gradient(circle at center, #e8dbfc, #fbf9ff 68%);
+}
+.h1-doc__placeholder > span { font-size: 2rem; }
+.h1-doc__placeholder--video { aspect-ratio: 16 / 9; }
+.h1-doc__placeholder--poster { aspect-ratio: 4 / 5; }
+.h1-doc__story {
+  display: grid;
+  justify-items: center;
+  gap: 1.7rem;
+  padding: 0 clamp(1rem, 5vw, 3rem) 2.5rem;
+  text-align: center;
+}
+.h1-doc__story > p { max-width: 800px; margin: .5rem 0; font-size: 1.05rem; line-height: 1.8; }
+.h1-doc__clip { width: min(100%, 720px); }
+.h1-doc__testimonials {
+  padding: clamp(1rem, 4vw, 2.4rem);
+  background: #e8def5;
+}
+.h1-doc__testimonials h2 { margin: 0 0 1.2rem; color: #592e7a; }
+.h1-doc__quotes { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1rem; }
+.h1-doc__quotes blockquote { margin: 0; padding: 1.1rem; border: 1px solid #ccade0; border-left: 4px solid #a96fd3; background: #fffaff; }
+.h1-doc__quotes blockquote p { margin-top: 0; }
+.h1-doc__quotes footer { font-size: .8rem; font-weight: 800; color: #6a4290; }
+.h1-doc__quotes footer span { font-weight: 400; }
+.h1-doc__closing { padding: 2.8rem 1.2rem; text-align: center; background: linear-gradient(#faf5ff, #e2d0f2); }
+.h1-doc__closing h2 { margin: 0 0 .7rem; }
+.h1-doc__closing p { margin: 0 0 1.6rem; }
+@media (max-width: 760px) {
+  .h1-doc__media-grid { grid-template-columns: 1fr; }
+  .h1-doc__quotes { grid-template-columns: 1fr; }
+  .h1-doc__story > p { font-size: .95rem; }
+}

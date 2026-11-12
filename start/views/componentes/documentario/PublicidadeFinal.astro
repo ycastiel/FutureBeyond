@@ -1,0 +1,186 @@
+
+<section class="fc-final">
+  <aside class="fc-popup fc-popup--blu">
+    <div class="fc-popup__barra">
+      <span>★ EDIÇÃO ESPECIAL</span>
+      <span aria-hidden="true" class="fc-popup__fechar">×</span>
+    </div>
+
+    <div class="fc-popup__conteudo">
+      <strong>ADQUIRA JÁ EM BLU-RAY!!!</strong>
+
+      <div class="fc-selo" aria-label="Blu-ray">
+        BLU-RAY
+      </div>
+    </div>
+  </aside>
+
+  <div class="fc-final__centro">
+    <slot />
+  </div>
+
+  <aside class="fc-popup fc-popup--dvd">
+    <div class="fc-popup__barra">
+      <span>★ LOJA H1</span>
+      <span aria-hidden="true" class="fc-popup__fechar">×</span>
+    </div>
+
+    <div class="fc-popup__conteudo">
+      <strong>Acesse nossa loja :) </strong>
+      <div class="fc-dvd" aria-hidden="true"></div>
+      <small>DVD • EDIÇÃO FÍSICA</small>
+    </div>
+  </aside>
+</section>
+
+<style>
+  .fc-final {
+    display: grid;
+    grid-template-columns:
+      minmax(145px, 190px)
+      minmax(0, 1fr)
+      minmax(145px, 190px);
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+  }
+
+  .fc-final__centro {
+    min-width: 0;
+    text-align: center;
+  }
+
+  .fc-popup {
+    overflow: hidden;
+    border: 2px solid #7561d7;
+    border-radius: 7px;
+    background: #f5f0ff;
+    box-shadow: 0 5px 14px #190c4170;
+    font-family: Tahoma, Arial, sans-serif;
+    color: #30254f;
+  }
+
+  .fc-popup__barra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 7px;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    background: linear-gradient(#a1a0ff, #283dbd);
+  }
+
+  .fc-popup--dvd .fc-popup__barra {
+    background: linear-gradient(#d895ff, #7332b1);
+  }
+
+  .fc-popup__fechar {
+    display: grid;
+    place-items: center;
+    width: 16px;
+    height: 16px;
+    border: 1px solid white;
+    border-radius: 3px;
+    background: linear-gradient(#ff9a79, #d12f28);
+    line-height: 1;
+  }
+
+  .fc-popup__conteudo {
+    min-height: 155px;
+    padding: 14px 9px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+    text-align: center;
+    font-size: 13px;
+  }
+
+  .fc-popup__conteudo small {
+    font-size: 9px;
+    color: #72528e;
+  }
+
+  .fc-selo {
+    display: grid;
+    place-items: center;
+    width: 105px;
+    height: 105px;
+    padding: 8px;
+    background: linear-gradient(130deg, #0c54d9, #a044f2);
+    color: white;
+    font-weight: 900;
+    font-size: 16px;
+    text-shadow: 0 1px 3px #171069;
+    clip-path: polygon(
+      50% 0%, 60% 17%, 77% 5%, 79% 26%,
+      99% 22%, 88% 43%, 100% 55%, 79% 62%,
+      88% 86%, 64% 80%, 50% 100%, 39% 81%,
+      16% 92%, 21% 67%, 0% 54%, 20% 42%,
+      7% 20%, 31% 26%
+    );
+    transform: rotate(-8deg);
+  }
+
+  .fc-dvd {
+    position: relative;
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    border: 2px solid #b6a4d6;
+    background:
+      radial-gradient(
+        circle,
+        transparent 0 9px,
+        #ba9be4 10px 12px,
+        transparent 13px 20px,
+        #ffffff55 21px 23px,
+        transparent 24px
+      ),
+      conic-gradient(
+        #9c74e0, #f4c7ff, #a4ddff,
+        #ffffff, #c39dff, #8f6bea,
+        #c1edff, #9c74e0
+      );
+    box-shadow: inset 0 0 10px #ffffff,
+                0 3px 10px #64469b50;
+  }
+
+  .fc-dvd::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: #eee8fa;
+    border: 2px solid #8574a8;
+  }
+
+  @media (max-width: 720px) {
+    .fc-final {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .fc-final__centro {
+      grid-column: 1 / -1;
+      grid-row: 1;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .fc-final {
+      grid-template-columns: 1fr;
+    }
+
+    .fc-final__centro {
+      grid-column: auto;
+      grid-row: auto;
+    }
+  }
+</style>
