@@ -90,7 +90,7 @@ function configurarTerminal(terminal: HTMLElement, sinal: AbortSignal): void {
     } else if (video.ended) {
       apresentar('Transcrição concluída.');
     } else if (video.currentTime === 0 && video.paused) {
-      apresentar('Pressione reproduzir para acompanhar a transcrição.');
+      apresentar('Pressione "reproduzir ▶️" para acompanhar a transcrição.');
     } else {
       apresentar('Aguardando próxima fala...');
     }

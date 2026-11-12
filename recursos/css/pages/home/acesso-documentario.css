@@ -1,0 +1,56 @@
+.fb-welcome__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem;
+  margin-top: .15rem;
+}
+
+.fb-welcome__actions .fb-button {
+  max-width: 100%;
+}
+
+.fb-button.fb-button--secondary {
+  color: #4b3673;
+  background: linear-gradient(180deg, #fff 0%, #f9fcff 42%, #d9e7fb 51%, #c6b9e6 100%);
+  border-color: #d3c1e6;
+  box-shadow: inset 0 2px 2px #ffffffbc, 0 3px 0 #8a81a8, 0 5px 9px #25143833;
+  text-shadow: none;
+}
+
+@media (max-width: 480px) {
+  .fb-welcome__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .fb-welcome__actions .fb-button {
+    justify-content: space-between;
+  }
+}
+
+/* Cards inteiros clicáveis sem elementos interativos aninhados. */
+.fb-post--link,
+.fb-post--link:visited {
+  text-decoration: none;
+  color: #503c68;
+  cursor: pointer;
+}
+
+.fb-post--link:focus-visible {
+  outline: 3px solid #4e8fcd;
+  outline-offset: 3px;
+}
+
+.fb-post__cta {
+  display: inline-block;
+  color: #376e98;
+  font-size: .77rem;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.fb-post--link:hover .fb-post__cta,
+.fb-post--link:focus-visible .fb-post__cta {
+  color: #7055ae;
+}
