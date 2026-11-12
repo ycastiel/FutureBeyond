@@ -2,21 +2,18 @@
 import Layout from '../../views/layouts/Layout.astro';
 import TerminalTranscricao from '../../views/componentes/alienados/TerminalTranscricao.astro';
 import '../../../recursos/css/pages/alienados/alienados.css';
-import '../../../recursos/css/pages/alienados/visualizer.css';
+import '../../../recursos/css/pages/alienados/video.css';
 
-// Integração dos MP3s oficiais e das legendas WebVTT sincronizadas.
-// Os arquivos MP3 ficam em recursos/publico/videos/audios/alienados/.
-// EP3 e EP4 têm áudio, mas aguardam WebVTT para ativar a transcrição.
-const raios = Array.from({ length: 60 }, (_, i) => ({
-  angulo: i * 6,
-  tamanho: 9 + (i * 7 + (i % 3) * 11) % 25,
-  atraso: -(i * 0.067)
-}));
+// MP4s oficiais no R2. URL temporária de testes (r2.dev), NÃO usar na produção.
+// Quando o subdomínio de mídia estiver pronto, altere apenas esta constante.
+const baseDosVideos = 'https://pub-90cad55344be4a7ea61b85c6b701136b.r2.dev/h1-midias/alienados';
+const urlDoEpisodio = (numero: number): string =>
+  `${baseDosVideos}/${encodeURIComponent(`Alienados - EP${numero}.mp4`)}`;
 
 type Episodio = {
   numero: string;
   titulo: string | null;
-  audio: string | null;
+  video: string;
   legenda: string | null;
   descricao: string;
 };
@@ -25,29 +22,29 @@ const episodios: Episodio[] = [
   {
     numero: '01',
     titulo: 'Teorias da Conspiração',
-    audio: '/videos/audios/alienados/Alienados - EP1.mp3',
+    video: urlDoEpisodio(1),
     legenda: '/videos/legendas/alienados/ep-01.vtt',
     descricao: 'Nesse episódio nossos produtores conversam sobre as conspirações do mundo, envolvendo Big Techs, ordens mundiais e conceitos que todos levam como verdade mas talvez deveriam ser investigados a fundo.',
   },
   {
     numero: '02',
     titulo: 'Trabalho',
-    audio: '/videos/audios/alienados/Alienados - EP2.mp3',
+    video: urlDoEpisodio(2),
     legenda: '/videos/legendas/alienados/ep-02.vtt',
     descricao: 'Nesse episódio nossos produtores conversam sobre teologia e o verdadeiro significado da fé, além de fazerem uma análise profunda sobre os prós e contras do modelo de trabalho home office.',
   },
   {
     numero: '03',
     titulo: 'Planetas',
-    audio: '/videos/audios/alienados/Alienados - EP3.mp3',
-    legenda: null, // Ativar quando o .vtt oficial do EP3 estiver disponível.
+    video: urlDoEpisodio(3),
+    legenda: '/videos/legendas/alienados/ep-03.vtt',
     descricao: 'Nesse episódio nossos produtores conversam sobre a magnitude de nosso sistema solar e comentam sobre a estrutura do planeta Terra, além de resolverem alguns assuntos pessoais entre si.',
   },
   {
     numero: '04',
     titulo: 'Aliens',
-    audio: '/videos/audios/alienados/Alienados - EP4.mp3',
-    legenda: null, // Ativar quando o .vtt oficial do EP4 estiver disponível.
+    video: urlDoEpisodio(4),
+    legenda: '/videos/legendas/alienados/ep-04.vtt',
     descricao: 'Nesse episódio nossos produtores conversam sobre as inúmeras aparições extraterrestres em solo terráqueo, fazendo demonstrações práticas de como eles agem, além de adicionar comentários sobre a visão de diferentes nações sobre o assunto. Além disso, esse episódio finaliza a série Alienados!',
   },
 ];
@@ -92,16 +89,7 @@ const possuiTroteExtra = troteExtraEP4.arquivo.trim().length > 0;
         {episodios.map(ep => (
           <section class="h1-alienados__episode" aria-label={`Episódio ${ep.numero}`}>
             <div class="h1-alienados__episode-title"><span>EP. {ep.numero}</span><h3>{ep.titulo ?? `Episódio ${Number(ep.numero)}`}</h3></div>
-            <div class="h1-alienados__visualizer" role="img" aria-label={`Arte oficial da H1 com visualização decorativa de ondas sonoras para o episódio ${ep.numero}`} data-audio-visualizer>
-              <img class="h1-alienados__visualizer-art" src="/imagens/h1/h1-visualizer-fundo.webp" alt="" width="800" height="466" loading="lazy" decoding="async" />
-              <div class="h1-alienados__radial" aria-hidden="true">
-                {raios.map((raio) => (
-                  <span class="h1-alienados__ray" style={`--ang:${raio.angulo}deg;--len:${raio.tamanho}px;--delay:${raio.atraso}s`}><i></i></span>
-                ))}
-              </div>
-            </div>
-            <p class="h1-alienados__visualizer-caption">Visualização animada ilustrativa · {ep.audio ? 'Áudio disponível no reprodutor abaixo' : 'Áudio do episódio em preparação'}</p>
-            <TerminalTranscricao numero={ep.numero} titulo={ep.titulo} audio={ep.audio} legenda={ep.legenda} />
+            <TerminalTranscricao numero={ep.numero} titulo={ep.titulo} video={ep.video} legenda={ep.legenda} />
             <p class="h1-alienados__episode-description">
               {ep.numero === '04' ? (
                 <>
@@ -156,7 +144,6 @@ const possuiTroteExtra = troteExtraEP4.arquivo.trim().length > 0;
 </Layout>
 
 <script>
-  import '../../../recursos/javascript/pages/alienados/Alienados.ts';
   import '../../../recursos/javascript/componentes/visualizadores/TranscricaoAlienados.ts';
 
   function iniciarExtraEP4(): void {
@@ -167,7 +154,7 @@ const possuiTroteExtra = troteExtraEP4.arquivo.trim().length > 0;
 
     botaoAbrir.addEventListener('click', () => {
       // Não deixar o episódio principal tocando por trás da mídia extra.
-      document.querySelectorAll<HTMLAudioElement>('.h1-alienados__audio').forEach((audio) => audio.pause());
+      document.querySelectorAll<HTMLVideoElement>('[data-transcricao-video]').forEach((video) => video.pause());
       if (!janela.open) janela.showModal();
     });
     janela.querySelector<HTMLButtonElement>('[data-alienados-extra-close]')

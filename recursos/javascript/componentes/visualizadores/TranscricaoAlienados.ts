@@ -29,7 +29,8 @@ function textoDasLegendas(faixa: TextTrack): string {
 
 function configurarTerminal(terminal: HTMLElement, sinal: AbortSignal): void {
   const midia = terminal.closest<HTMLElement>('[data-transcricao-midia]');
-  const audio = midia?.querySelector<HTMLAudioElement>('[data-transcricao-audio]');
+  const video = midia?.querySelector<HTMLVideoElement>('[data-transcricao-video]');
+  const botaoCC = midia?.querySelector<HTMLButtonElement>('[data-transcricao-cc]');
   const track = midia?.querySelector<HTMLTrackElement>('[data-transcricao-track]');
   const texto = terminal.querySelector<HTMLElement>('[data-transcricao-texto]');
   const status = terminal.querySelector<HTMLElement>('[data-transcricao-status]');
@@ -43,25 +44,25 @@ function configurarTerminal(terminal: HTMLElement, sinal: AbortSignal): void {
     if (texto.textContent !== mensagem) texto.textContent = mensagem;
   };
 
-  // Enquanto a equipe não fornece o áudio e o .vtt, não simulamos reprodução.
-  if (!audio) {
+  // Se a mídia ainda não foi cadastrada, não simulamos reprodução.
+  if (!video) {
     apresentar('Transcrição indisponível');
-    status.textContent = 'SEM ÁUDIO';
+    status.textContent = 'SEM VÍDEO';
     tempo.textContent = '--:-- / --:--';
     return;
   }
 
   const temLegenda = Boolean(track?.getAttribute('src'));
   let legendaFalhou = false;
-  let audioFalhou = false;
+  let videoFalhou = false;
   let legendaCarregada = !temLegenda;
 
   const atualizar = (): void => {
-    tempo.textContent = `${formatarTempo(audio.currentTime)} / ${formatarTempo(audio.duration)}`;
+    tempo.textContent = `${formatarTempo(video.currentTime)} / ${formatarTempo(video.duration)}`;
 
-    if (audioFalhou) {
-      status.textContent = 'ERRO DE ÁUDIO';
-      apresentar('Não foi possível reproduzir este episódio.');
+    if (videoFalhou) {
+      status.textContent = 'ERRO DE VÍDEO';
+      apresentar('Não foi possível reproduzir o vídeo deste episódio.');
       return;
     }
 
@@ -86,15 +87,15 @@ function configurarTerminal(terminal: HTMLElement, sinal: AbortSignal): void {
     const fala = textoDasLegendas(track.track);
     if (fala) {
       apresentar(fala);
-    } else if (audio.ended) {
+    } else if (video.ended) {
       apresentar('Transcrição concluída.');
-    } else if (audio.currentTime === 0 && audio.paused) {
+    } else if (video.currentTime === 0 && video.paused) {
       apresentar('Pressione reproduzir para acompanhar a transcrição.');
     } else {
       apresentar('Aguardando próxima fala...');
     }
 
-    status.textContent = audio.ended ? 'FINALIZADO' : audio.paused ? 'PAUSADO' : 'EM REPRODUÇÃO';
+    status.textContent = video.ended ? 'FINALIZADO' : video.paused ? 'PAUSADO' : 'EM REPRODUÇÃO';
   };
 
   if (track) {
@@ -112,20 +113,33 @@ function configurarTerminal(terminal: HTMLElement, sinal: AbortSignal): void {
       atualizar();
     }, { signal: sinal });
     track.track.addEventListener('cuechange', atualizar, { signal: sinal });
+    if (botaoCC) {
+      const atualizarBotaoCC = (): void => {
+        const ativado = track.track.mode === 'showing';
+        botaoCC.setAttribute('aria-pressed', String(ativado));
+        botaoCC.textContent = ativado ? 'CC LIGADO' : 'CC DESLIGADO';
+      };
+      botaoCC.addEventListener('click', () => {
+        track.track.mode = track.track.mode === 'showing' ? 'hidden' : 'showing';
+        atualizarBotaoCC();
+        atualizar();
+      }, { signal: sinal });
+      atualizarBotaoCC();
+    }
   }
 
-  // Mantém somente um episódio tocando por vez. Não altera o visualizer.
-  audio.addEventListener('play', () => {
-    document.querySelectorAll<HTMLAudioElement>('[data-transcricao-audio]').forEach((outro) => {
-      if (outro !== audio && !outro.paused) outro.pause();
+  // Mantém somente um vídeo tocando por vez.
+  video.addEventListener('play', () => {
+    document.querySelectorAll<HTMLVideoElement>('[data-transcricao-video]').forEach((outro) => {
+      if (outro !== video && !outro.paused) outro.pause();
     });
   }, { signal: sinal });
 
   for (const evento of ['play', 'playing', 'pause', 'seeked', 'timeupdate', 'loadedmetadata', 'durationchange', 'ended', 'emptied']) {
-    audio.addEventListener(evento, atualizar, { signal: sinal });
+    video.addEventListener(evento, atualizar, { signal: sinal });
   }
-  audio.addEventListener('error', () => {
-    audioFalhou = true;
+  video.addEventListener('error', () => {
+    videoFalhou = true;
     atualizar();
   }, { signal: sinal });
   atualizar();
@@ -141,6 +155,7 @@ function iniciarTranscricoes(): void {
 // Astro ClientRouter mantém o documento entre páginas; reinicializamos ao navegar.
 document.addEventListener('astro:page-load', iniciarTranscricoes);
 document.addEventListener('astro:before-swap', () => {
+  document.querySelectorAll<HTMLVideoElement>('[data-transcricao-video]').forEach((video) => video.pause());
   controlador?.abort();
   controlador = undefined;
 });
