@@ -57,14 +57,13 @@
 }
 
 .h1-news-portal__restore[hidden],
-.h1-news[hidden] {
+.h1-news[hidden],
+.h1-news-portal__empty[hidden],
+.h1-news-portal__controls[hidden] {
   display: none !important;
 }
 
 .h1-news-portal__list {
-  display: grid;
-  gap: .78rem;
-  align-content: start;
   min-width: 0;
 }
 
@@ -243,12 +242,6 @@
   background: linear-gradient(#fff, #d8e7fb);
 }
 
-.h1-news__fiction {
-  color: #73677f;
-  font: 700 .48rem var(--font-mono);
-  letter-spacing: .01em;
-}
-
 .h1-news__sticker {
   position: absolute;
   right: -.28rem;
@@ -304,12 +297,6 @@
   padding: 1rem;
 }
 
-.h1-news-dialog__flag {
-  margin: 0 0 .7rem;
-  color: #744684;
-  font: 800 .62rem/1.5 var(--font-mono);
-}
-
 .h1-news-dialog__body [data-news-dialog-copy] {
   color: #222;
   font: .91rem/1.5 Tahoma, sans-serif;
@@ -340,30 +327,80 @@
   }
 }
 
-/* A grade existente da Home permanece intacta: somente reorganizamos as novas janelinhas em telas menores. */
-@media (max-width: 1040px) {
-  .fb-sidebar--right>.h1-news-portal {
-    grid-column: 1 / -1;
-  }
-
-  .fb-sidebar--right>.h1-news-portal .h1-news-portal__list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+/* Controles simples, similares aos do carrossel de banners da Home. */
+.h1-news-portal__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  padding: .36rem .48rem;
+  border: 1px solid #9c79d8;
+  border-radius: 6px;
+  color: #fff;
+  background: linear-gradient(180deg, #7c50b4, #392254);
+  box-shadow: inset 0 1px #ffffff5c;
 }
 
-@media (max-width: 720px) {
-  .fb-sidebar--left>.h1-news-portal {
-    grid-column: 1 / -1;
-  }
-
-  .fb-sidebar--left>.h1-news-portal .h1-news-portal__list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.h1-news-portal__controls button {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid #cbb9f4;
+  border-radius: 4px;
+  color: #fff;
+  background: linear-gradient(#9261d1, #512684);
+  font: 900 1.35rem/1 Tahoma, sans-serif;
+  cursor: pointer;
 }
 
-@media (max-width: 510px) {
-  .fb-sidebar :is(.h1-news-portal__list) {
-    grid-template-columns: 1fr !important;
+.h1-news-portal__controls button:hover {
+  filter: brightness(1.2);
+}
+
+.h1-news-portal__controls [data-news-count] {
+  font: 800 .67rem var(--font-mono, monospace);
+  letter-spacing: .06em;
+}
+
+.h1-news-portal__empty {
+  margin: 0;
+  border: 1px dashed #9c79d8;
+  padding: .8rem .6rem;
+  border-radius: 5px;
+  background: #f5edff;
+  color: #44225e;
+  font: .7rem/1.45 Tahoma, sans-serif;
+}
+
+.h1-news-portal__controls button:focus-visible,
+.h1-news-portal__restore:focus-visible {
+  outline: 3px solid #76e9ff;
+  outline-offset: 2px;
+}
+
+/* O Fórum tem outra identidade cromática: o carrossel permanece dentro do widget.
+ * Não alteramos o CSS de tópicos, busca ou membros da comunidade. */
+.h1-forum__widget--news {
+  overflow: visible;
+}
+
+.h1-forum__widget--news .h1-news-portal__intro {
+  border: 0;
+  border-radius: 4px 4px 0 0;
+  box-shadow: inset 0 1px #ffffff50;
+}
+
+.h1-forum__widget--news .h1-news-portal__list,
+.h1-forum__widget--news .h1-news-portal__controls {
+  margin-left: .5rem;
+  margin-right: .5rem;
+}
+
+@media (max-width: 1060px) and (min-width: 511px) {
+  .h1-forum__sidebar--right {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

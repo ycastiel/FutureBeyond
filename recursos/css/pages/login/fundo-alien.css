@@ -1,0 +1,118 @@
+.alien-stage.alien-stage--video .alien-stage__world {
+  background-image: url('/imagens/login/fundo-alien.webp');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* O wrapper não muda o layout dos outros personagens. */
+.alien-stage--video .alien-video__media {
+  width: 100%;
+  min-width: 0;
+}
+
+.alien-stage--video .alien-video__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: .85rem;
+}
+
+/* BENÊ: a arte oficial tem um núcleo central que não deve ficar escondido. */
+.alien-stage.alien-stage--video[data-character="Benê"] .alien-stage__world {
+  filter: brightness(.93) saturate(1.08);
+}
+
+.alien-stage.alien-stage--video[data-character="Benê"] .alien-stage__vignette {
+  background:
+    linear-gradient(180deg, #03040b6b 0%, transparent 23%, transparent 76%, #03040b9c 100%),
+    linear-gradient(90deg, #03040b6e 0%, #03040b29 25%, transparent 44%, transparent 59%, #03040b35 84%, #03040b69 100%);
+}
+
+/* O pulso e as órbitas agora são desenhados no SVG GalaxiasAlien.astro.
+   Eles compartilham as coordenadas da arte de fundo (1280 x 720),
+   evitando o deslocamento causado pelo antigo ::before em 50% da tela. */
+
+/* Na chegada, o vídeo se concentra à esquerda e deixa o centro da arte livre. */
+.alien-stage--video .alien-video.alien-video--bene {
+  width: min(94vw, 1220px);
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.alien-video--bene .alien-video__media {
+  width: min(100%, 450px);
+  margin-inline: 0 auto;
+  will-change: transform;
+}
+
+.alien-video--bene.is-focused .alien-video__media {
+  width: min(100%, 950px);
+  margin-inline: auto;
+}
+
+.alien-video--bene .alien-video__pending {
+  background: linear-gradient(135deg, #07101c78, #1a123b61);
+  border-color: #ffe5a26c;
+  box-shadow: 0 10px 40px #0009, 0 0 25px #ffd77d19;
+  backdrop-filter: blur(4px);
+}
+
+.alien-video--bene .alien-video__player {
+  border-color: #ffe5a2b0;
+  box-shadow: 0 10px 40px #000b, 0 0 25px #ffd77d22;
+}
+
+.alien-video--bene .alien-video__actions {
+  width: min(100%, 450px);
+  justify-content: flex-start;
+}
+
+.alien-video--bene.is-focused .alien-video__actions {
+  align-self: center;
+  justify-content: center;
+}
+
+.alien-video__focus-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 44px;
+  padding: .65rem 1.1rem;
+  border: 1px solid #ffe3a6;
+  border-radius: 999px;
+  color: #33240c;
+  background: linear-gradient(180deg, #fff4ce, #d7ac61);
+  box-shadow: 0 3px 15px #f6c46c4b;
+  font: 700 .82rem 'Trebuchet MS', sans-serif;
+  cursor: pointer;
+}
+
+.alien-video__focus-button:hover {
+  filter: brightness(1.08);
+}
+
+.alien-video__focus-button:focus-visible,
+.alien-video__back:focus-visible {
+  outline: 3px solid #ffe19d;
+  outline-offset: 4px;
+}
+
+@media (max-width: 760px) {
+  /* Em telas estreitas, o painel permanece acessível e centralizado. */
+  .alien-stage--video .alien-video.alien-video--bene {
+    width: min(92vw, 560px);
+    align-items: center;
+  }
+  .alien-video--bene .alien-video__media,
+  .alien-video--bene.is-focused .alien-video__media {
+    width: 100%;
+    margin-inline: auto;
+  }
+  .alien-video--bene .alien-video__actions {
+    width: 100%;
+    justify-content: center;
+  }
+}
+

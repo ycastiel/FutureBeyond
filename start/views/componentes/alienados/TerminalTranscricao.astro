@@ -2,29 +2,31 @@
 interface Props {
   numero: string;
   titulo: string | null;
-  audio?: string | null;
+  video?: string | null;
   legenda?: string | null;
 }
 
-const { numero, titulo, audio = null, legenda = null } = Astro.props;
-const temAudio = Boolean(audio);
-const temLegenda = Boolean(audio && legenda);
+const { numero, titulo, video = null, legenda = null } = Astro.props;
+const temVideo = Boolean(video);
+const temLegenda = Boolean(video && legenda);
 const descricao = titulo ? `Episódio ${numero}: ${titulo}` : `Episódio ${numero}`;
 ---
 <div class="h1-alienados__midia" data-transcricao-midia>
   <div class="h1-alienados__reprodutor">
     <div class="h1-alienados__reprodutor-info">
-      <span aria-hidden="true">♫</span>
-      <span>REPRODUTOR / EP. {numero}</span>
+      <span aria-hidden="true">▶</span>
+      <span>VÍDEO OFICIAL / EP. {numero}</span>
     </div>
-    {temAudio ? (
-      <audio
-        class="h1-alienados__audio"
-        data-transcricao-audio
+    {temVideo ? (
+      <video
+        class="h1-alienados__video"
+        data-transcricao-video
         controls
-        preload="metadata"
-        src={audio!}
-        aria-label={`Reproduzir ${descricao}`}
+        playsinline
+        preload="none"
+        poster="/imagens/h1/h1-visualizer-fundo.webp"
+        src={video!}
+        aria-label={`Reproduzir vídeo oficial de ${descricao}`}
       >
         {temLegenda && <track
           data-transcricao-track
@@ -33,14 +35,22 @@ const descricao = titulo ? `Episódio ${numero}: ${titulo}` : `Episódio ${numer
           srclang="pt-BR"
           label="Português (Brasil)"
         />}
-        Seu navegador não suporta reprodução de áudio.
-      </audio>
+        Seu navegador não suporta reprodução de vídeo.
+      </video>
     ) : (
-      <button class="h1-alienados__reprodutor-offline" disabled type="button" aria-label={`Áudio indisponível para ${descricao}`}>
-        <span aria-hidden="true">▶</span> REPRODUÇÃO INDISPONÍVEL
+      <div class="h1-alienados__reprodutor-offline" role="status">VÍDEO INDISPONÍVEL</div>
+    )}
+    {temLegenda && (
+      <button
+        type="button"
+        class="h1-alienados__legenda-toggle"
+        data-transcricao-cc
+        aria-pressed="false"
+        aria-label={`Mostrar ou ocultar legendas no vídeo do episódio ${numero}`}
+      >
+        CC DESLIGADO
       </button>
     )}
-    {!temAudio && <span class="h1-alienados__reprodutor-nota">Aguardando o áudio oficial do episódio.</span>}
   </div>
 
   <section

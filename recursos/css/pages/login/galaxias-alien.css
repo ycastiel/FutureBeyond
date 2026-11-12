@@ -1,0 +1,95 @@
+.h1-galaxias-alien {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  mix-blend-mode: screen;
+}
+
+.h1-galaxias-alien__aura {
+  opacity: .65;
+  animation: h1-alien-core-pulsar 4.2s ease-in-out infinite;
+}
+
+.h1-galaxias-alien__orbita {
+  fill: none;
+  stroke: #c6b5ff;
+  stroke-width: 1.3;
+  stroke-opacity: .52;
+  stroke-dasharray: 1 4;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.h1-galaxias-alien__orbita--central {
+  stroke: #f6d68a;
+  stroke-opacity: .50;
+  animation: h1-alien-galaxia-girar 58s linear infinite;
+}
+
+.h1-galaxias-alien__orbita--esquerda {
+  animation: h1-alien-galaxia-girar 64s linear infinite reverse;
+}
+
+.h1-galaxias-alien__orbita--direita {
+  stroke: #9cdfff;
+  animation: h1-alien-galaxia-girar 77s linear infinite;
+}
+
+.h1-galaxias-alien__estrela {
+  fill: #e7f1ff;
+  stroke: none;
+  filter: drop-shadow(0 0 3px #ddd2ff);
+}
+
+.h1-galaxias-alien__lateral { opacity: .58; }
+
+/* O dourado deve marcar apenas o núcleo da arte do Benê.
+   Os demais personagens usam a mesma arte, com a órbita central violeta. */
+.alien-stage--video:not([data-character="Benê"]) .h1-galaxias-alien__aura {
+  animation-name: h1-alien-core-pulsar-suave;
+}
+.alien-stage--video:not([data-character="Benê"]) .h1-galaxias-alien__orbita--central {
+  stroke: #d6baff;
+  stroke-opacity: .36;
+}
+
+.alien-stage--revelacao .h1-galaxias-alien__orbita--central {
+  stroke: #b9ecff;
+  stroke-opacity: .35;
+}
+
+.alien-stage--revelacao .h1-galaxias-alien__aura {
+  animation-name: h1-alien-core-pulsar-suave;
+}
+
+@keyframes h1-alien-core-pulsar {
+  0%, 100% { opacity: .36; }
+  50% { opacity: .90; }
+}
+
+@keyframes h1-alien-core-pulsar-suave {
+  0%, 100% { opacity: .14; }
+  50% { opacity: .42; }
+}
+
+@keyframes h1-alien-galaxia-girar {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 760px) {
+  .h1-galaxias-alien__lateral { opacity: .35; }
+  .h1-galaxias-alien__orbita--central { stroke-opacity: .25; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .h1-galaxias-alien__orbita,
+  .h1-galaxias-alien__aura {
+    animation: none !important;
+  }
+  .h1-galaxias-alien__aura { opacity: .44; }
+}
