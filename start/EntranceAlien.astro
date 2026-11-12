@@ -2,6 +2,7 @@
 // Revelação da nave; as telas de vídeo individuais usam VideoPersonagem.astro.
 // Textos de status são demonstrativos; as páginas narrativas serão fornecidas pela H1.
 import OvniTransicao from './views/componentes/login/OvniTransicao.astro';
+import GalaxiasAlien from './views/componentes/login/GalaxiasAlien.astro';
 
 interface Props {
   personagem?: 'Benê' | 'Leonardo' | 'Wolftheus' | 'Jeff';
@@ -16,11 +17,12 @@ const destino = '/login/Bene';
   class:list={['alien-stage', revelacao ? 'alien-stage--revelacao' : 'alien-stage--interno']}
   data-alien-stage
   data-mode={modo}
-  data-theme="hibrido"
   data-open={revelacao ? 'false' : 'true'}
   data-character={personagem}
 >
-  <div class="alien-stage__world" aria-hidden="true"></div>
+  <div class="alien-stage__world" aria-hidden="true">
+    <GalaxiasAlien modo="entrada" />
+  </div>
   <div class="alien-stage__vignette" aria-hidden="true"></div>
   <div class="alien-stage__scan" aria-hidden="true"></div>
 
@@ -36,17 +38,6 @@ const destino = '/login/Bene';
     <span></span><span></span><span></span><span></span>
   </div>
 
-  <header class="alien-topbar">
-    <a class="alien-topbar__brand" href="/" aria-label="Voltar ao portal público da H1">
-      <span class="alien-topbar__glyph" aria-hidden="true">◈</span>
-      <span>H1 <em>·</em> SISTEMA INTERNO</span>
-    </a>
-    <div class="alien-topbar__options" aria-label="Comparar estilos experimentais">
-      <span class="alien-topbar__caption">ESTUDO DE ARTE</span>
-      <button type="button" data-alien-theme="retro" aria-pressed="false">Y2K</button>
-      <button type="button" data-alien-theme="hibrido" aria-pressed="true">HÍBRIDO</button>
-    </div>
-  </header>
 
   <div class="alien-stage__focus">
     <div class="alien-monitor">
