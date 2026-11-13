@@ -1,0 +1,164 @@
+.h1-doc__nav {
+  align-items: center;
+  gap: .48rem;
+}
+
+.h1-doc__nav > a,
+.h1-doc__nav > .h1-doc__nav-current {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  min-height: 37px;
+  padding: .55rem .85rem;
+  white-space: nowrap;
+  font-size: .72rem;
+  line-height: 1.2;
+}
+
+/* Página atual: Fato Capital. */
+.h1-doc__nav > span.h1-doc__nav-current[aria-current="page"] {
+  border: 1px solid #b78dd5;
+  color: #492368;
+  background: linear-gradient(#fff, #e3cefa);
+  box-shadow: inset 0 1px #fff, 0 3px 8px #65427a26;
+  text-shadow: 0 1px #fff;
+  cursor: default;
+}
+
+.h1-doc__nav > a:focus-visible {
+  outline: 3px solid #6e35a6;
+  outline-offset: 3px;
+}
+
+/* Logo da H1 no extremo direito. */
+.h1-doc__nav > .h1-doc__nav-brand {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  flex: 0 0 78px;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  width: 78px;
+  min-height: 48px;
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  color: inherit;
+  background: transparent;
+  box-shadow: none;
+  text-shadow: none;
+  pointer-events: none;
+  user-select: none;
+}
+
+.h1-doc__nav-brand::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0 -7px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 249, 196, .85) 0%,
+    rgba(255, 207, 91, .58) 25%,
+    rgba(244, 159, 48, .22) 51%,
+    transparent 75%
+  );
+  filter: blur(9px);
+  animation: h1-doc-nav-halo 3.8s ease-in-out infinite;
+}
+
+.h1-doc__nav-brand::after {
+  content: '✦';
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  color: #fff6bb;
+  font-size: 10px;
+  line-height: 1;
+  text-shadow: 0 0 7px #ffd55f, 0 0 16px #d98c2b;
+  animation: h1-doc-nav-spark 4.6s ease-in-out infinite;
+}
+
+.h1-doc__nav-brand img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 69px;
+  height: auto;
+  max-height: 41px;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 0 4px #ffe790d9)
+    drop-shadow(0 0 11px #ffc15a85);
+  animation: h1-doc-nav-logo 3.8s ease-in-out infinite;
+}
+
+@keyframes h1-doc-nav-halo {
+  0%, 100% {
+    opacity: .68;
+    transform: scale(.94);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes h1-doc-nav-logo {
+  0%, 100% {
+    filter:
+      drop-shadow(0 0 3px #ffe9a2a6)
+      drop-shadow(0 0 10px #ffd46e80);
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 8px #fff5b8e6)
+      drop-shadow(0 0 18px #f4b04ab8);
+  }
+}
+
+@keyframes h1-doc-nav-spark {
+  0%, 100% {
+    opacity: .45;
+    transform: scale(.78);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.16);
+  }
+}
+
+@media (max-width: 560px) {
+  .h1-doc__nav {
+    padding: .7rem;
+    gap: .45rem;
+  }
+
+  .h1-doc__nav > a,
+  .h1-doc__nav > .h1-doc__nav-current {
+    padding: .45rem .7rem;
+  }
+
+  .h1-doc__nav > .h1-doc__nav-brand {
+    flex-basis: 61px;
+    width: 61px;
+    min-height: 42px;
+  }
+
+  .h1-doc__nav-brand img {
+    width: 56px;
+    max-height: 36px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .h1-doc__nav-brand::before,
+  .h1-doc__nav-brand::after,
+  .h1-doc__nav-brand img {
+    animation: none;
+  }
+}
