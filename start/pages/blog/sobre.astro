@@ -2,9 +2,8 @@
 import Layout from '../../views/layouts/Layout.astro';
 import '../../../recursos/css/pages/blog/sobre.css';
 import '../../../recursos/css/pages/blog/apoio.css';
+import '../../../recursos/css/pages/blog/navegacao.css';
 
-// Transcrição do roteiro fornecido pela equipe H1.
-// As falas exibidas omitem apenas os anos, conforme pedido do cliente.
 const equipe = [
   {
     id: 'bene', numero: '01', simbolo: '⌘',
@@ -30,7 +29,7 @@ const equipe = [
   },
 ] as const;
 ---
-<Layout title="H1Produtora | Sobre a H1" description="Conheça a história e a equipe da H1 Produtora.">
+<Layout title="H1 - Produtora | Sobre a H1" description="Conheça a história e a equipe da H1 Produtora.">
   <main class="h1-about" id="topo">
     <div class="h1-about__shell">
       <div class="h1-about__chrome" aria-label="Janela institucional H1">
@@ -38,12 +37,22 @@ const equipe = [
         <span>H1 PRODUTORA // INFORMAÇÕES INSTITUCIONAIS</span>
         <span class="h1-about__status">ONLINE ✦</span>
       </div>
-      <nav class="h1-about__nav" aria-label="Navegação da produtora">
-        <a href="/home">⌂ CENTRAL</a>
-        <span aria-current="page" class="h1-about__nav-current">✧ SOBRE</span>
-        <a href="/alienados">◉ ALIENADOS</a>
-        <a href="/forum">✉ FÓRUM</a>
-        <a href="#equipe">✿ EQUIPE</a>
+      <nav class="h1-about__nav" aria-label="Navegação principal">
+        <a href="/home">⌂ <span>HOME</span></a>
+        <span class="h1-about__nav-current" aria-current="page">✧ <span>SOBRE A H1</span></span>
+        <a href="/alienados">◉ <span>ALIENADOS</span></a>
+        <a href="/documentario">▣ <span>FATO CAPITAL</span></a>
+        <a href="/forum">✉ <span>FÓRUM</span></a>
+        <span class="h1-about__nav-brand" aria-hidden="true">
+          <img
+            src="/imagens/h1/h1-vertical.png"
+            alt=""
+            width="1288"
+            height="621"
+            loading="eager"
+            decoding="async"
+          />
+        </span>
       </nav>
       <header class="h1-about__hero">
         <div class="h1-about__intro">
@@ -113,7 +122,7 @@ const equipe = [
           </div>
         </section>
       </div>
-      <footer class="h1-about__footer"><span>✦ H1 PRODUTORA × H1Produtora</span><a href="/home">← VOLTAR PARA A CENTRAL</a><a href="#topo">↑ TOPO</a></footer>
+      <footer class="h1-about__footer"><span>✦ H1 PRODUTORA</span><a href="/home">← VOLTAR PARA A CENTRAL</a><a href="#topo">↑ TOPO</a></footer>
     </div>
   </main>
 </Layout>
