@@ -236,7 +236,7 @@ const topicos = [
   },
   {
     "id": "duvida-podcasts-ep4",
-    "titulo": "UMA DÚVIDA SOBRE OS PODCASTS",
+    "titulo": "EP 4 DE ALIENADOS MUDOU",
     "mensagens": [
       {
         "autor": "TLGFan_1994",
@@ -307,10 +307,33 @@ const topicos = [
         "texto": "Olá, pedimos para evitar desviar de assuntos da produtora no fórum, vlw!"
       }
     ]
+  },
+  {
+    // NOVO TÓPICO: autores e falas provisórios para futura revisão do cliente.
+    "id": "informacoes-nexa",
+    "titulo": "ALGUÉM TEM MAIS INFORMAÇÕES SOBRE A NEXA",
+    "mensagens": [
+      {
+        "autor": "usuario_nexa_01",
+        "texto": "Alguém já ouviu falar de uma corporação chamada NEXA? Procurei informações sobre ela, mas não encontrei quase nada."
+      },
+      {
+        "autor": "usuario_nexa_02",
+        "texto": "Já vi esse nome mencionado em outra discussão, só não sei se essa corporação realmente existe."
+      },
+      {
+        "autor": "usuario_nexa_03",
+        "texto": "Também fiquei curioso. Se ela existe mesmo, alguém sabe o que faz?"
+      },
+      {
+        "autor": "usuario_nexa_04",
+        "texto": "Por enquanto só encontrei rumores. Se alguém tiver alguma referência concreta, manda aqui."
+      }
+    ]
   }
 ];
 
-const categorias = ['Boas-vindas', 'Ajuda', 'Produções', 'Discussão', 'Comunicado', 'Comunidade', 'Discussão', 'Ajuda', 'Discussão', 'Discussão', 'Produções', 'Comunidade'];
+const categorias = ['Boas-vindas', 'Ajuda', 'Produções', 'Discussão', 'Comunicado', 'Comunidade', 'Discussão', 'Ajuda', 'Discussão', 'Discussão', 'Produções', 'Comunidade', 'Mistério'];
 const totalMensagens = topicos.reduce((n, topico) => n + topico.mensagens.length, 0);
 // Wolftheus consta no painel de perfis, mas não participa das conversas (roteiro atualizado).
 const participantes = [...new Set([
@@ -348,9 +371,10 @@ const avatarLetra = (nome: string) => nome.replace(/^zZ_/, '').charAt(0).toUpper
         </div>
         <nav class="h1-forum__nav" aria-label="Navegação principal">
           <a href="/home">⌂ <span>HOME</span></a>
-          <a href="/blog/sobre">✿ <span>SOBRE</span></a>
-          <span class="h1-forum__nav-current" aria-current="page">✉ <span>FÓRUM</span></span>
+          <a href="/blog/sobre">✧ <span>SOBRE A H1</span></a>
           <a href="/alienados">◉ <span>ALIENADOS</span></a>
+          <a href="/documentario">▣ <span>FATO CAPITAL</span></a>
+          <span class="h1-forum__nav-current" aria-current="page">✉ <span>FÓRUM</span></span>
         </nav>
         <div class="h1-forum__ticker" aria-label="Aviso da comunidade">
           <span>✧ CENTRAL DE CONVERSAS ✧</span>
