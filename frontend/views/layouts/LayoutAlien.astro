@@ -1,0 +1,42 @@
+---
+// Layout próprio da área narrativa, sem ClientRouter: o OVNI controla sua transição.
+// Não é uma barreira de autenticação. O conteúdo da área é público no frontend.
+import '../../recursos/css/global.css';
+import '../../recursos/css/pages/login/alien.css';
+import EstrelasLaterais from '../componentes/utils/EstrelasLaterais.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+const {
+  title,
+  description = 'Protótipo narrativo da área interna da H1 - Produtora.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#090d16" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" href="/utils/icones/favicon.ico" sizes="any" />
+    <title>{title}</title>
+  </head>
+  <body class="h1-alien-body">
+    <EstrelasLaterais />
+    <slot />
+    <noscript>
+      <style>
+        .alien-facade { display: none !important; }
+        .alien-stage--revelacao .alien-monitor { opacity: 1 !important; transform: none !important; }
+      </style>
+    </noscript>
+    <script>
+      import '../../recursos/javascript/componentes/login/Alien.ts';
+    </script>
+  </body>
+</html>
