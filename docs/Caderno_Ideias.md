@@ -1,73 +1,132 @@
-# H1 Produtora — Caderno de ideias
+# H1-Produtora — Caderno de Ideias
 
-> **Atualizado em 25/10/2026.** Documento vivo. Distinguir **pedido do cliente**, **implementado** e **ideia opcional**.
-> Fonte principal de conteúdo: `PI2 - Transcrição Site(2).pdf`, fornecido pela equipe.
+> **Atualizado em 14/11/2026.**
+>
+> Documento de apoio criativo da H1 Produtora. Reúne inspirações, possibilidades de evolução e sugestões que podem ser avaliadas futuramente.
+>
+> **Importante:** algumas das ideias registradas aqui não representam funcionalidades 100% aprovadas nem obrigações de implementação.
 
 ## 1. Identidade e narrativa
 
-- **H1 - Produtora** é o universo digital/portal; **H1 Produtora** é a produtora fictícia dentro dele.
-- O site é produzido por alienígenas que procuram soar humanos. Humor corporativo, sátira e estranheza gradual, sem revelar a premissa cedo demais.
-- Estilo visual: Old Web / Y2K / Frutiger Aero, painéis cromados, lilás claro + roxo noturno + detalhes ciano.
-- Arte e textos oficiais prevalecem sobre placeholders e sugestões do desenvolvedor.
+**H1 Produtora** é uma empresa fictícia administrada por extraterrestres que tentam compreender e reproduzir a cultura humana se disfarçando.
 
-## 2. Estrutura atual real do repositório
+A experiência combina humor corporativo, sátira, ficção científica e mistério gradual.
 
-- Astro + TypeScript + React instalado para eventuais ilhas; páginas atuais estáticas.
-- `astro.config.mjs`: `srcDir: ./start` e `publicDir: ./recursos/publico`.
-- Rotas principais: `start/pages/index.astro`, `home/index.astro`, `home/transmissao.astro`, `alienados/index.astro`, `forum/index.astro`, `blog/index.astro`, `blog/sobre.astro`.
-- CSS por seção: `recursos/css/pages/{home,alienados,forum,blog}/...`, e entrada em `recursos/css/pages/entrance.css`.
-- **Um único CSS global:** `recursos/css/global.css` (tokens, estilos-base, transições compartilhadas e rotação 3D da marca H1).
-- Carrossel da Home: `recursos/javascript/componentes/carrosseis/Banners.ts`.
-- Visualizer decorativo: `recursos/javascript/componentes/visualizadores/Alienados.ts`.
-- Identidade H1: `recursos/publico/imagens/h1/`. Fundo oficial usado no visualizer: `recursos/publico/imagens/h1/h1-visualizer-fundo.webp`.
-- Deploy de produção/prévia: Cloudflare **Workers** com integração GitHub; `main` é produção, `desenvolvimento` é a prévia para o cliente.
+### Referências visuais
 
-## 3. Implementado e atualizado neste pacote
+- Old Web e internet dos anos 2000.
+- Windows XP, MSN e Orkut.
+- Y2K, Frutiger Aero e elementos cromados.
+- Lavanda, lilás, roxo noturno e preto espacial.
+- Interfaces retrofuturistas e elementos de arcade.
+- Transmissões, interferências e pistas narrativas.
 
-- [x] Home institucional com Quem Somos, Nossas Produções e Comunidade.
-- [x] Logo H1 rotacionando lentamente **em 3D** em pontos selecionados (Home e Alienados), com `prefers-reduced-motion`.
-- [x] Carrossel de anúncios: primeiro item **aleatório**, depois avança sequencialmente a cada **5,2 s**, com pausa no hover/foco, controle manual e pausa quando a aba está oculta.
-- [x] Tipografia e espaçamentos do anúncio ajustados para a largura da sidebar.
-- [x] Página Alienados passa a usar a primeira arte oficial fornecida como base, com ondas radiais **decorativas** por cima, animadas só enquanto visíveis. **Ainda não há áudio sincronizado.**
-- [x] Link `Sobre` de Alienados atualizado para a rota existente `/blog/sobre`.
-- [x] Scripts considerados para `ClientRouter` / `astro:page-load`.
-- [x] Portal, queda, transmissão/CMD e transferência de janelas preservados.
+A estranheza deve surgir progressivamente, sem revelar prematuramente a identidade extraterrestre dos personagens.
 
-## 4. Pedidos específicos do roteiro e da reunião
+**Regra criativa:** a identidade e os conteúdos oficiais fornecidos pela H1 prevalecem sobre sugestões experimentais.
 
-- [x] Nome do campo de login: **Usuário**.
-- [x] Erro de login fictício: **"Usuário ou Senha incorretos, essa conta não existe"**.
-- [x] A entrada oferece opção de convidado; terminal/intermediário de código mais compacto.
-- [x] No Sobre, apelidos fixos removidos; hover/foco do **Leonardo** revela **Berinjela**.
-- [x] Fórum com estética de internet dos anos 2010 e conversas roteirizadas.
-- [x] Alienados tem estrutura de episódios, ainda aguardando mídias finais.
-- [ ] Remover datas remanescentes de páginas demonstrativas, caso ainda existam (especialmente blog).
-- [ ] Revisar todos os textos substitutos com a equipe antes da versão pública final.
-- [ ] Substituir os cartões de anúncio por GIFs/imagens oficiais quando forem entregues.
+## 2. Ambientação e animações
 
-## 5. Próximos trabalhos — prioridade
+### Ideias para avaliar futuramente
 
-1. **Revisão visual do novo visualizer** com a H1: decidir se ondas devem ocupar o círculo todo e se a animação deve variar por episódio.
-2. **Banners oficiais**: incluir mídias e links aprovados sem alterar o comportamento do carrossel.
-3. **Responsividade** da Home e das páginas de conteúdo: validar telas de 360–768 px, tablet e desktop.
-4. **Performance / acessibilidade**: Lighthouse, testes com CPU limitada, navegação por teclado, preferências de movimento reduzido, lazy loading e tamanhos de imagem.
-5. **Terminar o conteúdo do podcast** conforme cheguem áudio, visualizers definitivos e descrições.
-6. **Polimento do CMD e das transições** (sem sacrificar a fluidez da navegação).
+- Criar variações sutis de brilho e ambientação espacial conforme a página visitada.
+- Desenvolver pequenas interferências visuais relacionadas aos personagens, sem comprometer a navegação.
+- Explorar animações adicionais em elementos interativos, preservando a estética Y2K.
+- Considerar mensagens de sistema e sinais de manutenção atribuídos ao Benê.
+- Utilizar efeitos especiais mais expressivos apenas em momentos narrativamente importantes.
+- Experimentar transições diferenciadas para futuras descobertas e páginas secretas.
 
-## 6. Ideias opcionais para discussão
+### Cuidados
 
-- Rotação do selo H1: versão 3D (`rotateY`) atual ou rotação plana (`rotateZ`) mais arcade, por contexto.
-- Visualizer real sincronizado a áudio quando houver arquivos e player: usar `Web Audio API` e `AnalyserNode` **somente após autorização de reprodução**. Não afirmar sincronização antes disso.
-- Mensagens sutis do Benê e alterações narrativas de interface em áreas específicas.
-- Evoluir o fórum roteirizado para conversas adicionais fornecidas pelos produtores, antes de considerar comentários reais.
-- Login do ARG com senhas ficcionais (sem confundir com autenticação segura); páginas escondidas só quando houver conteúdo aprovado.
-- Página específica do documentário (pôster, créditos, materiais extras) quando a equipe fornecer assets.
-- Mensagens secretas e transições diferenciadas apenas em momentos importantes, sem repetir glitches em toda página.
+- Evitar excesso de glitches e animações simultâneas.
+- Preservar a legibilidade dos textos.
+- Respeitar `prefers-reduced-motion`.
+- Evitar elementos decorativos sobre conteúdos interativos.
+- Manter bom desempenho em dispositivos móveis.
 
-## 7. Padrões para manter
+## 3. Personagens e narrativa interativa
 
-- Não alterar arquivos antigos do projeto apenas para renomear pastas.
-- Não criar outro global além de `recursos/css/global.css`.
-- Scripts `.ts` fornecidos separadamente também em `.txt` para compatibilidade com proxy.
-- Não inventar datas, mídias, títulos definitivos ou falas canônicas.
-- Fazer commits incrementais e validar `npm run build` antes do push para `desenvolvimento`.
+### Possibilidades futuras
+
+**Benê**
+
+Mensagens de manutenção, informações técnicas e pequenos detalhes que sugiram conhecimento sobre o funcionamento interno do portal.
+
+**Jeff Grease**
+
+Comunicações exageradamente corporativas, propagandas absurdas e possíveis elementos satíricos sobre negócios e comercialização.
+
+**Leonardo / Berinjela**
+
+Apresentações artísticas, descrições inesperadas e interações criativas associadas aos projetos da produtora.
+
+**Wolftheus**
+
+Possíveis mensagens, pistas e participações em conteúdos narrativos futuros, conforme material aprovado pela equipe.
+
+## 4. Alienados
+
+O podcast já possui estrutura de episódios, reprodução de vídeo e transcrições sincronizadas quando disponíveis.
+
+### Possíveis melhorias
+
+- Avaliar novos detalhes decorativos associados à gravação.
+- Considerar experiências alternativas para episódios especiais.
+- Integrar materiais complementares eventualmente fornecidos pelos produtores.
+- Explorar recursos adicionais de acessibilidade para os conteúdos audiovisuais.
+
+**Ideia histórica:** um visualizador reativo baseado na Web Audio API foi considerado durante o desenvolvimento. Sua implementação anterior foi removida após a evolução para o sistema de vídeos. Não deve ser reintroduzido sem uma nova decisão criativa.
+
+## 5. Fórum e comunidade narrativa
+
+O Fórum atual apresenta conversas roteirizadas, sem publicação real dos visitantes.
+
+### Possibilidades futuras
+
+- Acrescentar tópicos oficiais fornecidos pelos produtores.
+- Incluir referências discretas entre discussões e outras páginas.
+- Explorar pistas escondidas em mensagens ou elementos visuais.
+- Criar eventos narrativos que possam ser acompanhados pelo visitante sem necessidade de autenticação real.
+
+A implementação de comentários públicos ou contas reais seria uma mudança de escopo e exigiria avaliação técnica específica.
+
+## 6. Publicidade e produções
+
+### Banners e anúncios
+
+- Integrar novos materiais oficiais quando disponibilizados.
+- Considerar banners temáticos para produções futuras.
+- Preservar a navegação e os controles dos carrosséis.
+- Evitar publicidade decorativa que prejudique a leitura.
+
+### Fato Capital e outras produções
+
+- Incluir conteúdos extras aprovados pela equipe.
+- Avaliar futuras apresentações de pôsteres, créditos e bastidores.
+- Criar conexões narrativas entre produções quando fizer sentido.
+
+## 7. Melhorias de qualidade
+
+Estas são possibilidades técnicas de polimento, não problemas confirmados.
+
+- Avaliar acessibilidade pelo teclado e por leitores de tela.
+- Revisar contraste e legibilidade em dispositivos menores.
+- Examinar desempenho com ferramentas como Lighthouse.
+- Revisar carregamento de imagens e vídeos.
+- Considerar estratégias adicionais de lazy loading.
+- Garantir alternativas para usuários com preferência por movimento reduzido.
+- Testar futuras interações em dispositivos móveis antes de incorporá-las à versão principal.
+
+## 8. Critérios para novas ideias
+
+Antes de implementar uma sugestão:
+
+1. Verificar se ela combina com a identidade do FutureBeyond.
+2. Distinguir criação experimental de conteúdo oficial.
+3. Avaliar o impacto sobre funcionalidades já aprovadas.
+4. Priorizar acessibilidade e desempenho.
+5. Confirmar com a equipe quando a alteração envolver narrativa, personagens ou mídia oficial.
+
+---
+
+**Observação:** este documento é um espaço de exploração criativa. A arquitetura atual, os comandos e o processo de implantação devem ser consultados no `README.md`.

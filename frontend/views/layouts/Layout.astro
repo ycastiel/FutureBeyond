@@ -1,0 +1,36 @@
+---
+import '../../recursos/css/global.css';
+import { ClientRouter } from 'astro:transitions';
+import EstrelasLaterais from '../componentes/utils/EstrelasLaterais.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'H1 - Produtora — conheça nossas produções e nossa comunidade.',
+} = Astro.props;
+
+// A Home já possui seu próprio céu arcade; o Fórum tem estrelas exclusivas.
+const rotaAtual = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const mostrarEstrelas = rotaAtual !== '/home' && rotaAtual !== '/forum';
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#17091f" />
+    <title>{title}</title>
+    <link rel="icon" href="/utils/icones/favicon.ico" sizes="any" />
+    <ClientRouter fallback="swap" />
+  </head>
+  <body>
+    {mostrarEstrelas && <EstrelasLaterais />}
+    <slot />
+  </body>
+</html>

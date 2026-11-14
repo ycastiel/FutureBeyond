@@ -1,0 +1,116 @@
+---
+/**
+ * Notícias fictícias oficiais H1 — componente compartilhado entre Home e Fórum.
+ * Home: 4 notícias; Fórum: 3 notícias. Não alterar as falas sem consultar os clientes.
+ */
+interface Props {
+  contexto: 'home' | 'forum';
+}
+
+const { contexto } = Astro.props;
+const noticias = [
+  {
+    id: 'admitiu', lado: 'esquerda', titulo: 'Admitiu', icone: '⚽', estilo: 'azul', selo: 'EXCLUSIVO H1!',
+    texto: 'Endrick admite ser a reencarnação de pelé e muda nome para Pelendrick, esposa pede nova cláusula no contrato de casamento',
+  },
+  {
+    id: 'susto', lado: 'esquerda', titulo: 'Susto', icone: '⚠', estilo: 'violeta', selo: '',
+    texto: 'Ronaldinho Gaúcho é encontrado vivo em seu apartamento sabado à noite, situação anormal do atleta preocupa fãs.',
+  },
+  {
+    id: 'preocupante', lado: 'esquerda', titulo: 'Preocupante', icone: '🍹', estilo: 'rosa', selo: 'SAÚDE EM ALERTA!',
+    texto: 'Figado de zeca pagodinho reage mal após cantor ingerir Mocktail(drink não alcoólico), afim de promover uma marca de bebidas fitness',
+  },
+  {
+    id: 'flagra', lado: 'direita', titulo: 'Flagra', icone: '🌭', estilo: 'azul', selo: 'FLAGRA DO DIA!',
+    texto: 'Dr. Drauzio Varella é visto comendo em podrão na república, apoiadores planejam protesto em frente a seu consultório.',
+  },
+  {
+    id: 'berinjela', lado: 'direita', titulo: 'Berinjela', icone: '🍆', estilo: 'pink', selo: '',
+    texto: 'Artista estrangeiro vai a justiça por injuria e difamação cometidas por colegas de trabalho.',
+  },
+  {
+    id: 'voce-sabia', lado: 'direita', titulo: 'Você sabia', icone: 'ℹ', estilo: 'azul', selo: '',
+    texto: 'Mais de 500 anos de história e Brasil ainda não decidiu se é mussarela ou muçarela.',
+  },
+  {
+    id: 'ciencia', lado: 'direita', titulo: 'Ciência', icone: '🛸', estilo: 'violeta', selo: '',
+    texto: 'Federação intergalática é intimada a depor após quebra de sigilo bancando de Daniel Vorcaro apontar emprestimo feito a federação.',
+  },
+] as const;
+const itens = contexto === 'home' ? noticias.slice(0, 4) : noticias.slice(4);
+const tituloModalId = `h1-news-dialog-title-${contexto}`;
+const rotulo = contexto === 'home' ? 'Notícias Paralelas' : 'Plantão H1';
+---
+
+<section
+  class={`h1-news-portal h1-news-portal--${contexto}`}
+  data-news-root
+  aria-label={`${rotulo}: carrossel de notícias`}
+  aria-roledescription="carrossel"
+>
+  <header class="h1-news-portal__intro">
+    <span class="h1-news-portal__eyebrow">✦ {contexto === 'home' ? 'NOTÍCIAS PARALELAS' : 'PLANTÃO H1'}</span>
+    <h2>{contexto === 'home' ? 'Portal de Notícias' : 'Por dentro do planeta Terra'}</h2>
+    <p>{contexto === 'home' ? 'As manchetes que nenhuma dimensão pediu 😅.' : 'Notícias absurdas, e completamente curiosas.'}</p>
+    <small class="h1-news-portal__disclaimer">
+      {contexto === 'home'
+        ? 'Chefe... • BENÊ • acha melhor escrevermos aqui que inventamos essas notícias?'
+        : 'Claro que não, idiota!'}
+    </small>
+    <button type="button" class="h1-news-portal__restore" data-news-restore hidden>
+      ↺ Restaurar notícias fechadas
+    </button>
+  </header>
+
+  <div class="h1-news-portal__list" data-news-slides>
+    {itens.map((noticia, i) => (
+      <article
+        class={`h1-news h1-news--${noticia.estilo}`}
+        data-news-window
+        aria-labelledby={`h1-news-title-${noticia.id}`}
+        hidden={i !== 0}
+      >
+        <div class="h1-news__titlebar">
+          <span class="h1-news__titleicon" aria-hidden="true">✦</span>
+          <h3 id={`h1-news-title-${noticia.id}`}>{noticia.titulo}</h3>
+          <button class="h1-news__close" type="button" aria-label={`Fechar notícia ${noticia.titulo}`} data-news-dismiss>×</button>
+        </div>
+        <div class="h1-news__body">
+          <span class="h1-news__illustration" aria-hidden="true">{noticia.icone}</span>
+          <p class="h1-news__copy">{noticia.texto}</p>
+        </div>
+        <div class="h1-news__footer">
+          <button type="button" class="h1-news__read" data-news-open aria-label={`Ler notícia: ${noticia.titulo}`}>
+            Ler matéria »
+          </button>
+        </div>
+        {noticia.selo && <span class="h1-news__sticker" aria-hidden="true">{noticia.selo}</span>}
+      </article>
+    ))}
+    <p class="h1-news-portal__empty" data-news-empty hidden>
+      Você fechou todas as notícias deste carrossel. Use «Restaurar» para exibi-las novamente.
+    </p>
+  </div>
+
+  <nav class="h1-news-portal__controls" data-news-controls aria-label={`Navegar pelas notícias: ${rotulo}`}>
+    <button type="button" data-news-prev aria-label="Notícia anterior">‹</button>
+    <span data-news-count aria-live="off" aria-atomic="true">1 / {itens.length}</span>
+    <button type="button" data-news-next aria-label="Próxima notícia">›</button>
+  </nav>
+
+  <dialog class="h1-news-dialog" data-news-dialog aria-labelledby={tituloModalId}>
+    <div class="h1-news-dialog__bar">
+      <strong id={tituloModalId} data-news-dialog-title>Plantão H1</strong>
+      <button type="button" data-news-dialog-close aria-label="Fechar matéria">×</button>
+    </div>
+    <div class="h1-news-dialog__body">
+      <p data-news-dialog-copy></p>
+      <button type="button" data-news-dialog-close class="h1-news-dialog__ok">OK</button>
+    </div>
+  </dialog>
+</section>
+
+<script>
+  import '../../../recursos/javascript/componentes/carrosseis/Noticias.ts';
+</script>

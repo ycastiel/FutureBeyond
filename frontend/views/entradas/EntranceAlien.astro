@@ -1,0 +1,103 @@
+---
+// Revelação da nave; as telas de vídeo individuais usam VideoPersonagem.astro.
+// Textos de status são demonstrativos; as páginas narrativas serão fornecidas pela H1.
+import OvniTransicao from '../componentes/login/OvniTransicao.astro';
+import GalaxiasAlien from '../componentes/login/GalaxiasAlien.astro';
+
+interface Props {
+  personagem?: 'Benê' | 'Leonardo' | 'Wolftheus' | 'Jeff';
+  modo?: 'revelacao' | 'interno';
+}
+const { personagem = 'Benê', modo = 'revelacao' } = Astro.props;
+const revelacao = modo === 'revelacao';
+const destino = '/login/Bene';
+---
+
+<main
+  class:list={['alien-stage', revelacao ? 'alien-stage--revelacao' : 'alien-stage--interno']}
+  data-alien-stage
+  data-mode={modo}
+  data-open={revelacao ? 'false' : 'true'}
+  data-character={personagem}
+>
+  <div class="alien-stage__world" aria-hidden="true">
+    <GalaxiasAlien modo="entrada" />
+  </div>
+  <div class="alien-stage__vignette" aria-hidden="true"></div>
+  <div class="alien-stage__scan" aria-hidden="true"></div>
+
+  <!-- SVGs dinâmicos: luminosidade e nervuras, não uma nave vetorial inteira. -->
+  <svg class="alien-stage__nerves" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
+    <path class="alien-stage__nerve alien-stage__nerve--a" d="M -30 650 C 140 430 50 300 260 80 S 420 -20 500 -90" />
+    <path class="alien-stage__nerve alien-stage__nerve--b" d="M 1030 650 C 860 430 950 300 740 80 S 580 -20 500 -90" />
+    <path class="alien-stage__nerve alien-stage__nerve--c" d="M -40 580 C 175 450 215 245 360 0" />
+    <path class="alien-stage__nerve alien-stage__nerve--d" d="M 1040 580 C 825 450 785 245 640 0" />
+  </svg>
+
+  <div class="alien-stage__ornaments" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+  </div>
+
+
+  <div class="alien-stage__focus">
+    <div class="alien-monitor">
+      <p class="alien-monitor__eyebrow">
+        <span class="alien-monitor__light" aria-hidden="true"></span>
+        CONEXÃO INTERNA <span aria-hidden="true">/</span> ACESSO RECONHECIDO
+      </p>
+      <div class="alien-monitor__seal" aria-hidden="true">
+        <svg viewBox="0 0 100 50" width="92" height="46">
+          <ellipse cx="50" cy="25" rx="40" ry="12" fill="none" stroke="currentColor" stroke-width="1.6" transform="rotate(-25 50 25)" />
+          <circle cx="50" cy="25" r="14" fill="none" stroke="currentColor" stroke-width="1.3" />
+          <circle cx="50" cy="25" r="3" fill="currentColor" />
+          <path d="M50 3 V47 M5 25 H95" stroke="currentColor" stroke-width=".7" opacity=".5" />
+        </svg>
+      </div>
+      <p class="alien-monitor__pretitle">Identidade confirmada</p>
+      <h1>Seja bem-vindo de volta,<br /><strong><span data-alien-character-name>{personagem}</span>.</strong></h1>
+      <p class="alien-monitor__info">
+        {revelacao
+          ? 'A interface pública foi encerrada. Abrindo ambiente interno…'
+          : 'Área interna — demonstração visual. Conteúdo narrativo aguardando aprovação.'}
+      </p>
+
+      {revelacao ? (
+        <a class="alien-monitor__action" href={destino} data-alien-zoom>
+          <span>Entrar na área interna</span><span aria-hidden="true">↗</span>
+        </a>
+      ) : (
+        <div class="alien-monitor__nav">
+          <span class="alien-monitor__status">[ PROTÓTIPO / SEM DADOS OFICIAIS ]</span>
+          <a href="/login/Bene" data-alien-fly>Benê</a>
+          <a href="/login/Leonardo" data-alien-fly>Leonardo</a>
+        </div>
+      )}
+    </div>
+  </div>
+
+  <footer class="alien-status">
+    <span>H1 · ACESSO INTERNO</span>
+    <span data-alien-phase>{revelacao ? 'SINCRONIZANDO INTERFACE...' : 'SISTEMA EM ESPERA'}</span>
+    <a href="/" class="alien-status__exit">Sair para o site público</a>
+  </footer>
+
+  {revelacao && (
+    <div class="alien-facade" aria-hidden="true">
+      <div class="alien-facade__door alien-facade__door--left">
+        <span class="alien-facade__chrome">H1Produtora.exe <span>_ □ ×</span></span>
+        <span class="alien-facade__logo">H1<span> - PRODUTORA</span></span>
+        <span class="alien-facade__fake-input"></span>
+        <span class="alien-facade__fake-input alien-facade__fake-input--short"></span>
+        <span class="alien-facade__fake-button"></span>
+      </div>
+      <div class="alien-facade__door alien-facade__door--right">
+        <span class="alien-facade__chrome">SISTEMA PÚBLICO <span>×</span></span>
+        <span class="alien-facade__planet"></span>
+        <span class="alien-facade__label">CONEXÃO ESTABELECIDA</span>
+      </div>
+      <span class="alien-facade__seam"></span>
+    </div>
+  )}
+
+  <OvniTransicao />
+</main>

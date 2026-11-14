@@ -1,0 +1,197 @@
+---
+// Home Old Web / central da H1 - Produtora
+import Layout from '../../views/layouts/Layout.astro';
+import MessengerBuddy from '../../views/componentes/utils/MessengerBuddy.astro';
+import FakeNews from '../../views/componentes/home/FakeNews.astro';
+import '../../recursos/css/pages/home/home.css';
+import '../../recursos/css/pages/home/noticias.css';
+import '../../recursos/css/pages/home/acesso-documentario.css';
+import '../../recursos/css/pages/home/menu-dourado.css';
+---
+
+<Layout title="H1 - Produtora | Início" description="Conheça a H1 - Produtora, suas produções e sua equipe." >
+  <main class="fb-home" id="topo">
+    <div class="fb-home__stars" aria-hidden="true"></div>
+
+    <div class="fb-site">
+      <header class="fb-header">
+        <div class="fb-header__chrome">
+          <span class="fb-header__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>H1 - Produtora // central de visitantes</span>
+          <span class="fb-header__right">H1 PRODUTORA ✦ ESTAMOS ONLINE</span>
+        </div>
+
+        <div class="fb-header__hero">
+          <div class="fb-header__identity">
+            <p>✦ &nbsp; PORTAL DA H1 PRODUTORA</p>
+            <h1>H1 <span>- Produtora</span><b aria-hidden="true">✧</b></h1>
+            <span class="fb-header__subtitle">Conheça nossos projetos, novidades e nossa equipe.</span>
+          </div>
+          <div class="fb-header__orb" aria-hidden="true"><span>H1/01</span></div>
+        </div>
+
+        <nav class="fb-nav" aria-label="Navegação principal">
+          <span class="fb-nav__current" aria-current="page">⌂ <span>INÍCIO</span></span>
+          <a href="/blog/sobre">✧ <span>SOBRE A H1</span></a>
+          <a href="/alienados">◉ <span>ALIENADOS</span></a>
+          <a href="/documentario">▣ <span>FATO CAPITAL</span></a>
+          <a href="/forum">✉ <span>FÓRUM</span></a>
+          <span class="fb-nav__brand" aria-hidden="true">
+            <img
+              src="/imagens/h1/h1-vertical.png"
+              alt=""
+              width="1288"
+              height="621"
+              loading="eager"
+              decoding="async"
+            />
+          </span>
+        </nav>
+      </header>
+
+      <div class="fb-ticker" aria-label="Mensagem de boas-vindas">
+        <span>✧ VOCÊ ESTÁ ONLINE ✧</span>
+        <span>—</span>
+        <span>H1 PRODUTORA RECEBE VISITANTES</span>
+        <span>✦</span>
+        <span>CONHEÇA NOSSAS PRODUÇÕES</span>
+      </div>
+
+      <div class="fb-columns">
+        <aside class="fb-sidebar fb-sidebar--left" aria-label="Informações do visitante">
+          <section class="fb-widget">
+            <h2 class="fb-widget__bar">✿ PERFIL DO VISITANTE</h2>
+            <div class="fb-profile fb-profile--guest">
+              <div class="fb-profile__avatar fb-profile__avatar--messenger">
+                <MessengerBuddy className="msn-buddy--home" idPrefix="h1-home-visitante" title="Avatar do visitante convidado" />
+              </div>
+              <strong>Você está visitando como convidado.</strong>
+              <p>Já possui uma conta?</p>
+              <a href="/" class="fb-profile__login">Ir para o login ↗</a>
+            </div>
+          </section>
+
+          <section class="fb-widget">
+            <h2 class="fb-widget__bar">✧ NAVEGAÇÃO RÁPIDA</h2>
+            <div class="fb-shortcuts">
+              <a href="#inicio">⌂ &nbsp; Página inicial</a>
+              <a href="/blog/sobre">✧ &nbsp; Conheça a H1</a>
+              <a href="#producoes">▧ &nbsp; Nossas produções</a>
+              <a href="/forum">✉ &nbsp; Fórum da comunidade</a>
+              <a href="/alienados">◉ &nbsp; Podcast Alienados</a>
+            </div>
+          </section>
+        </aside>
+
+        <div class="fb-main-column">
+          <section class="fb-window" id="inicio" aria-labelledby="fb-welcome-title">
+            <div class="fb-window__bar"><span>✦ &nbsp; H1 Produtora — Bem-vindos</span><span aria-hidden="true">_ □ ×</span></div>
+            <div class="fb-welcome">
+              <div class="fb-welcome__copy">
+                <p class="fb-kicker">// APRESENTAMOS: H1 PRODUTORA</p>
+                <h2 id="fb-welcome-title">Quem <em>somos?</em></h2>
+                <p>Bem vindo a H1, conheça nossa família e como trabalhamos!</p>
+                <div class="fb-welcome__actions">
+                  <a class="fb-button" href="/blog/sobre"><span>Acessar Sobre</span><span aria-hidden="true">→</span></a>
+                  <a class="fb-button fb-button--secondary" href="/documentario"><span>Conhecer Fato Capital</span><span aria-hidden="true">↗</span></a>
+                </div>
+              </div>
+              <div class="fb-welcome__art fb-welcome__art--h1">
+                <span class="fb-h1-poster__seal" aria-hidden="true">H1 PRODUTORA</span>
+                <img class="fb-h1-poster__logo h1-logo--rotate" src="/imagens/h1/h1-vertical.png" alt="H1 Produtora — logotipo holográfico em tons lilás" width="1253" height="621" loading="eager" />
+                <span class="fb-welcome__art-label">H1 PRODUTORA</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="fb-window" id="producoes" aria-labelledby="fb-archive-title">
+            <div class="fb-window__bar"><span>▧ &nbsp; Catálogo da H1</span><span>EM DESENVOLVIMENTO</span></div>
+            <div class="fb-archive">
+              <div class="fb-section-title">
+                <div>
+                  <h2 id="fb-archive-title">✧ Nossas produções</h2>
+                  <p class="fb-section-title__subtitle">Conheça nosso trabalho!</p>
+                </div>
+                <span>CATÁLOGO / PRÉVIA</span>
+              </div>
+              <a class="fb-post fb-post--link" href="/documentario">
+                <div class="fb-post__art fb-post__art--space" aria-hidden="true"><span>✦</span></div>
+                <div class="fb-post__body">
+                  <p class="fb-post__meta">DOCUMENTÁRIO</p>
+                  <h3>Fato Capital</h3>
+                  <p>Conheça o documentário da H1, sua equipe e os materiais já disponíveis.</p>
+                  <span class="fb-post__cta">Acessar Fato Capital <span aria-hidden="true">↗</span></span>
+                  <span class="fb-post__pending">[ NOVOS MATERIAIS EM PREPARAÇÃO ]</span>
+                </div>
+              </a>
+              <a class="fb-post fb-post--muted fb-post--link" href="/alienados">
+                <div class="fb-post__art fb-post__art--disc" aria-hidden="true"><span>◈</span></div>
+                <div class="fb-post__body">
+                  <p class="fb-post__meta">PODCAST</p>
+                  <h3>Alienados</h3>
+                  <p>Conheça nosso podcast e fique por dentro dos assuntos do nosso time.</p>
+                  <span class="fb-post__cta">Acessar Alienados <span aria-hidden="true">↗</span></span>
+                </div>
+              </a>
+            </div>
+          </section>
+
+          <section class="fb-window" id="mensagens" aria-labelledby="fb-messages-title">
+            <div class="fb-window__bar"><span>✉ &nbsp; Fale conosco</span><span>COMUNIDADE</span></div>
+            <div class="fb-message">
+              <p class="fb-kicker">FALE CONOSCO</p>
+              <h2 id="fb-messages-title">Participe da nossa comunidade!</h2>
+              <p>Compartilhe e converse com todos os membros da nossa comunidade!</p>
+              <a class="fb-button" href="/forum"><span>Visitar o fórum</span><span aria-hidden="true">↗</span></a>
+            </div>
+          </section>
+        </div>
+
+        <aside class="fb-sidebar fb-sidebar--right" aria-label="Anúncios da produtora">
+          <section class="fb-widget">
+            <h2 class="fb-widget__bar">✦ ANÚNCIOS</h2>
+            <div class="fb-advert" data-random-ad role="region" aria-roledescription="carrossel" aria-label="Anúncios das produções H1" tabindex="0">
+              <div class="fb-advert__viewport" aria-live="off">
+                <a class="fb-advert__card" href="/alienados" data-ad="alienados" aria-label="Conhecer o podcast Alienados">
+                  <span class="fb-advert__overline">PRODUÇÃO H1</span>
+                  <strong>ALIENADOS</strong>
+                  <span class="fb-advert__subtitle">Nosso podcast</span>
+                </a>
+                <a class="fb-advert__card fb-advert__card--documentary" href="/documentario" data-ad="documentario" hidden aria-label="Conhecer Fato Capital, documentário da H1">
+                  <span class="fb-advert__overline">PRODUÇÃO H1</span>
+                  <strong>FATO CAPITAL</strong>
+                  <span class="fb-advert__subtitle">Conhecer documentário</span>
+                </a>
+              </div>
+              <div class="fb-advert__controls" data-ad-controls hidden>
+                <button type="button" class="fb-advert__control" data-ad-prev aria-label="Anúncio anterior">‹</button>
+                <span class="fb-advert__count" data-ad-count aria-live="polite" aria-atomic="true">1 / 2</span>
+                <button type="button" class="fb-advert__control" data-ad-next aria-label="Próximo anúncio">›</button>
+              </div>
+              <p class="fb-advert__footnote">Espaço reservado aos banners oficiais das produções.</p>
+            </div>
+          </section>
+          <section class="fb-widget">
+            <h2 class="fb-widget__bar">✧ NAVEGAÇÃO</h2>
+            <div class="fb-shortcuts">
+              <a href="/blog/sobre">Sobre a H1</a>
+              <a href="/alienados">Podcast Alienados</a>
+              <a href="/forum">Fórum</a>
+            </div>
+          </section>
+          <FakeNews contexto="home" />
+        </aside>
+      </div>
+
+      <footer class="fb-footer">
+        <span>✦ H1 - Produtora</span>
+        <span>Um portal. Uma produtora. Muitas ideias.</span>
+        <a href="#topo">↑ VOLTAR AO TOPO</a>
+      </footer>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  import '../../recursos/javascript/componentes/carrosseis/Banners.ts';
+</script>

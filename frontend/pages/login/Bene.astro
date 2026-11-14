@@ -1,0 +1,12 @@
+---
+import LayoutAlien from '../../views/layouts/LayoutAlien.astro';
+import VideoPersonagem from '../../views/componentes/login/VideoPersonagem.astro';
+
+// Quando receber o vídeo oficial, coloque-o no bucket do R2.
+// Lembre de configurar o caminho e a URL do vídeo definida.
+const video: string | null = null;
+---
+
+<LayoutAlien title="H1 - Produtora | Benê - arquivo interno">
+  <VideoPersonagem personagem="Benê" video={video} />
+</LayoutAlien>

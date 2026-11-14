@@ -1,0 +1,192 @@
+---
+import Layout from '../../views/layouts/Layout.astro';
+import PublicidadeFinal from '../../views/componentes/documentario/PublicidadeFinal.astro';
+import '../../recursos/css/pages/documentario/documentario.css';
+import '../../recursos/css/pages/documentario/menu.css';
+
+// Preencher quando a equipe disponibilizar as mídias oficiais.
+// Para vídeos maiores, utilizar a URL de hospedagem externa (ex.: R2 configurado).
+const midias: {
+  trailer: string | null;
+  poster: string | null;
+  trecho4: string | null;
+  trecho2: string | null;
+  trecho3: string | null;
+} = {
+  trailer: null,
+  poster: null,
+  trecho4: null,
+  trecho2: null,
+  trecho3: null,
+};
+
+const depoimentos = [
+  {
+    texto: 'Sabe, a sociedade é como o Frescobol, é multifunção, ótimo pra saúde, uma palavra de segurança forte, e reúne a todas as pessoas.',
+    autor: 'Jeff Grease',
+    cargo: 'Produtor Executivo',
+  },
+  {
+    texto: 'Gostei muito de ser apresentador do Fato Capital. Um dos melhores programas que eu já fiz, o único programa que eu já fiz também. Uma das minhas melhores produções como humano e como pessoa.',
+    autor: 'Matheus Delat',
+    cargo: 'Apresentador de Fato Capital',
+  },
+  {
+    texto: 'Reflexão sobre a vida e como ela é, o deleite de uma obra que pode mudar sua vida.',
+    autor: 'Caique Duarte',
+    cargo: 'Diretor de "Por que a Galinha Atravessou a Rua?"',
+  },
+] as const;
+---
+
+<Layout
+  title="H1 - Produtora | Fato Capital"
+  description="Conheça Fato Capital, documentário da H1 sobre o cotidiano e os comportamentos da sociedade humana."
+>
+  <main class="h1-doc" id="topo">
+    <div class="h1-doc__shell">
+      <div class="h1-doc__chrome" aria-hidden="true">
+        <span>✦ H1 PRODUTORA // ARQUIVO AUDIOVISUAL</span>
+        <span>_ □ ×</span>
+      </div>
+
+      <nav class="h1-doc__nav" aria-label="Navegação principal">
+        <a href="/home">⌂ HOME</a>
+        <a href="/blog/sobre">✧ SOBRE A H1</a>
+        <a href="/alienados">◉ ALIENADOS</a>
+        <span class="h1-doc__nav-current" aria-current="page">▣ FATO CAPITAL</span>
+        <a href="/forum">✉ FÓRUM</a>
+
+        <span class="h1-doc__nav-brand" aria-hidden="true">
+          <img
+            src="/imagens/h1/h1-vertical.png"
+            alt=""
+            width="1288"
+            height="621"
+            loading="eager"
+            decoding="async"
+          />
+        </span>
+      </nav>
+
+      <header class="h1-doc__intro">
+        <p class="h1-doc__eyebrow">✦ UMA PRODUÇÃO H1</p>
+        <h1>Fato <em>Capital</em></h1>
+        <p>
+          Fato Capital é um filme documentário que retrata os mais diversos comportamentos
+          da sociedade humana. O longa em suas mais de 6 horas de duração demonstra as
+          culturas, crenças, culinárias, ações e motivações que diversificam esse grande
+          grupo e dividem seus indivíduos da massa.
+        </p>
+        <p class="h1-doc__question">Até onde a moralidade e as vontades terráqueas se colidem?</p>
+      </header>
+
+      <section class="h1-doc__media-grid" aria-label="Trailer e pôster de Fato Capital">
+        <div class="h1-doc__window">
+          <h2 class="h1-doc__bar">▣ Trailer oficial</h2>
+          {midias.trailer ? (
+            <video controls preload="metadata" playsinline src={midias.trailer} aria-label="Trailer de Fato Capital">
+              Seu navegador não suporta vídeo HTML5.
+            </video>
+          ) : (
+            <div class="h1-doc__placeholder h1-doc__placeholder--video" role="status">
+              <span aria-hidden="true">▶</span>
+              <p>TRAILER EM PREPARAÇÃO</p>
+            </div>
+          )}
+        </div>
+
+        <div class="h1-doc__window">
+          <h2 class="h1-doc__bar">✧ Pôster</h2>
+          {midias.poster ? (
+            <img class="h1-doc__poster" src={midias.poster} alt="Pôster oficial de Fato Capital" loading="lazy" />
+          ) : (
+            <div class="h1-doc__placeholder h1-doc__placeholder--poster" role="status">
+              <span aria-hidden="true">▧</span>
+              <p>PÔSTER EM PREPARAÇÃO</p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <section class="h1-doc__story" aria-label="Sobre o documentário">
+        <p>
+          As explorações feitas pela equipe são apresentadas pelo ilustre Matheus Delat,
+          que caminhou pela grande São Paulo apresentando os fatos da modernidade mais
+          relevantes à convivência de sua população.
+        </p>
+
+        <div class="h1-doc__window h1-doc__clip">
+          <h2 class="h1-doc__bar">▣ Trecho 4 do documentário</h2>
+          {midias.trecho4 ? (
+            <video controls preload="metadata" playsinline src={midias.trecho4} aria-label="Trecho 4 de Fato Capital">
+              Seu navegador não suporta vídeo HTML5.
+            </video>
+          ) : (
+            <div class="h1-doc__placeholder h1-doc__placeholder--video" role="status">
+              ▶ TRECHO 4 EM PREPARAÇÃO
+            </div>
+          )}
+        </div>
+
+        <p>
+          A direção fica a cargo de um de nossos produtores principais, Leonardo Fábio,
+          caminhando lado a lado de Jeff Grease como produtor executivo.
+        </p>
+
+        <div class="h1-doc__window h1-doc__clip">
+          <h2 class="h1-doc__bar">▣ Trecho 2 do documentário</h2>
+          {midias.trecho2 ? (
+            <video controls preload="metadata" playsinline src={midias.trecho2} aria-label="Trecho 2 de Fato Capital">
+              Seu navegador não suporta vídeo HTML5.
+            </video>
+          ) : (
+            <div class="h1-doc__placeholder h1-doc__placeholder--video" role="status">
+              ▶ TRECHO 2 EM PREPARAÇÃO
+            </div>
+          )}
+        </div>
+
+        <p>
+          No meio da acelerada rotina imparável e infinita da grande metrópole, é fácil
+          perder o tato do que nos faz humanos. Por isso promovemos a aproximação e
+          observação do cotidiano do cidadão comum.
+        </p>
+
+        <div class="h1-doc__window h1-doc__clip">
+          <h2 class="h1-doc__bar">▣ Trecho 3 do documentário</h2>
+          {midias.trecho3 ? (
+            <video controls preload="metadata" playsinline src={midias.trecho3} aria-label="Trecho 3 de Fato Capital">
+              Seu navegador não suporta vídeo HTML5.
+            </video>
+          ) : (
+            <div class="h1-doc__placeholder h1-doc__placeholder--video" role="status">
+              ▶ TRECHO 3 EM PREPARAÇÃO
+            </div>
+          )}
+        </div>
+      </section>
+
+      <section class="h1-doc__testimonials" aria-labelledby="depoimentos-title">
+        <h2 id="depoimentos-title">✧ Vozes da produção</h2>
+
+        <div class="h1-doc__quotes">
+          {depoimentos.map((depoimento) => (
+            <blockquote>
+              <p>“{depoimento.texto}”</p>
+              <footer>— {depoimento.autor}, <span>{depoimento.cargo}</span></footer>
+            </blockquote>
+          ))}
+        </div>
+      </section>
+
+      <PublicidadeFinal>
+        <footer class="h1-doc__closing">
+          <h2>Assista já Fato Capital em nossas plataformas!</h2>
+          <p>Disponível em 4k, Bluray e dvd em nossa loja!</p>
+          <a href="/home">← Voltar à central H1</a>
+        </footer>
+      </PublicidadeFinal>
+    </div>
+  </main>
+</Layout>

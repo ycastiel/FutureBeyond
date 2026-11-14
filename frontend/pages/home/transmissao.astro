@@ -1,0 +1,64 @@
+---
+import Layout from '../../views/layouts/Layout.astro';
+import '../../recursos/css/pages/home/transmissao.css';
+---
+
+<Layout
+  title="H1Produtora | Recuperação de sessão"
+  description="Terminal de acesso de visitantes à H1 Produtora."
+>
+  <main class="signal-home">
+    <!-- Continuidade da queda: blackout e recuperação de sinal. -->
+    <div class="signal-boot" aria-hidden="true">
+      <span class="signal-boot__light signal-boot__light--one"></span>
+      <span class="signal-boot__light signal-boot__light--two"></span>
+      <span class="signal-boot__light signal-boot__light--three"></span>
+      <p class="signal-boot__message">&gt; RECUPERANDO SINAL <span>_</span></p>
+    </div>
+
+    <section class="signal-console" aria-labelledby="signal-title">
+      <header class="signal-console__titlebar">
+        <span class="signal-console__title" aria-label="H1-TC Prompt de Comando">
+          <span class="signal-console__app-icon" aria-hidden="true">&gt;_</span>
+          H1-TC — Prompt de Comando
+        </span>
+        <span class="signal-console__window-controls" aria-hidden="true">
+          <i>—</i><i>□</i><i>×</i>
+        </span>
+      </header>
+
+      <div class="signal-console__body">
+        <div class="signal-console__screen">
+          <div class="signal-console__screen-header">
+            <span>H1 - PRODUTORA / TERMINAL</span>
+            <span class="signal-console__screen-signal" aria-label="Sinal estabilizado">● ONLINE</span>
+          </div>
+
+          <p class="signal-console__intro">H1-TC [MODO CONVIDADO]</p>
+          <p class="signal-console__intro">Inicialização de acesso à H1 Produtora.</p>
+          <div class="signal-console__separator" aria-hidden="true"></div>
+
+          <p class="signal-console__line"><span class="signal-console__prompt">C:\H1-TC&gt;</span> session.init --guest</p>
+          <p class="signal-console__line"><span class="signal-console__ok">[ OK ]</span> Conexão estabelecida</p>
+          <p class="signal-console__line"><span class="signal-console__ok">[ OK ]</span> Permissões temporárias carregadas</p>
+          <p class="signal-console__line signal-console__line--warning"><span class="signal-console__warn">[ ! ]</span> Alguns registros estão incompletos</p>
+
+          <h1 id="signal-title" class="signal-console__result">ACESSO CONCEDIDO<span class="signal-console__cursor" aria-hidden="true">_</span></h1>
+          <p class="signal-console__line signal-console__ready"><span class="signal-console__prompt">C:\H1-TC&gt;</span> aguardando entrada<span class="signal-console__dots" aria-hidden="true">...</span></p>
+        </div>
+
+        <a class="signal-console__enter" href="/home">
+          <span><span class="signal-console__enter-command" aria-hidden="true">&gt;</span> Continuar para H1 Produtora</span>
+          <span aria-hidden="true">↵</span>
+        </a>
+      </div>
+
+      <footer class="signal-console__footer">
+        <span><i aria-hidden="true"></i> SESSÃO: CONVIDADO / ESTÁVEL</span>
+        <a href="/">← voltar ao acesso</a>
+      </footer>
+    </section>
+
+    <p class="signal-home__ambient" aria-hidden="true">H1-TC // TRANSMISSÃO ESTABELECIDA</p>
+  </main>
+</Layout>

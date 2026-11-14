@@ -1,0 +1,139 @@
+---
+import OvniTransicao from './OvniTransicao.astro';
+import GalaxiasAlien from './GalaxiasAlien.astro';
+import '../../../recursos/css/pages/login/fundo-alien.css';
+
+interface Props {
+  personagem: 'Benê' | 'Leonardo' | 'Wolftheus' | 'Jeff';
+  /** URL do vídeo oficial (ou null enquanto estiver pendente). */
+  video?: string | null;
+}
+
+const { personagem, video = null } = Astro.props;
+---
+
+<main
+  class="alien-stage alien-stage--video"
+  data-alien-stage
+  data-mode="video"
+  data-open="true"
+  data-character={personagem}
+>
+  <div class="alien-stage__world" aria-hidden="true">
+    <GalaxiasAlien modo="video" dourado={personagem === 'Benê'} />
+  </div>
+  <div class="alien-stage__vignette" aria-hidden="true"></div>
+
+  <section
+    class="alien-video alien-video--interativo"
+    aria-label={`Vídeo de ${personagem}`}
+  >
+    <div class="alien-video__media" data-alien-video-media>
+      {video ? (
+        <video
+          class="alien-video__player"
+          controls
+          preload="metadata"
+          playsinline
+          src={video}
+          aria-label={`Gravação de ${personagem}`}
+        >
+          Seu navegador não suporta vídeo HTML5.
+        </video>
+      ) : (
+        <div class="alien-video__pending" role="status">
+          <span aria-hidden="true">▣</span>
+          <p>ARQUIVO AINDA NÃO DISPONÍVEL</p>
+          <small>Vídeo individual de {personagem} aguardando envio da H1.</small>
+        </div>
+      )}
+    </div>
+
+    <div class="alien-video__actions">
+      <button
+        type="button"
+        class="alien-video__focus-button"
+        data-alien-focus-toggle
+        aria-pressed="false"
+        aria-label={`Centralizar o painel de mídia de ${personagem}`}
+      >
+        ◈ Centralizar mídia
+      </button>
+      <a class="alien-video__back" href="/" data-alien-fly>← Voltar ao login</a>
+    </div>
+  </section>
+
+  <OvniTransicao />
+</main>
+
+<script>
+  /**
+   * Compartilhado por todas as páginas de personagens.
+   * Inicial: moldura discreta à esquerda para não esconder o núcleo da arte.
+   * Seleção do painel / reprodução: vídeo ganha destaque e vai para o centro.
+   * Recolher/Escape: devolve o espaço central à ilustração.
+   */
+  function iniciarVideosAlien(): void {
+    document.querySelectorAll<HTMLElement>('.alien-video--interativo').forEach((painel) => {
+      if (painel.dataset.videoInicializado === 'true') return;
+
+      const midia = painel.querySelector<HTMLElement>('[data-alien-video-media]');
+      const botao = painel.querySelector<HTMLButtonElement>('[data-alien-focus-toggle]');
+      if (!midia || !botao) return;
+      painel.dataset.videoInicializado = 'true';
+
+      const video = midia.querySelector<HTMLVideoElement>('video');
+      const movimentoReduzido = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const nome = painel.closest<HTMLElement>('[data-character]')?.dataset.character ?? 'personagem';
+
+      function atualizar(focar: boolean): void {
+        if (!midia || !botao || painel.classList.contains('is-focused') === focar) return;
+
+        // FLIP: anima a mudança de tamanho/posição sem forçar o layout da página.
+        midia.getAnimations().forEach((animacao) => animacao.cancel());
+        const antes = midia.getBoundingClientRect();
+        painel.classList.toggle('is-focused', focar);
+        botao.setAttribute('aria-pressed', String(focar));
+        botao.setAttribute('aria-label', `${focar ? 'Recolher' : 'Centralizar'} o painel de mídia de ${nome}`);
+        botao.textContent = focar ? '◈ Recolher mídia' : '◈ Centralizar mídia';
+        const depois = midia.getBoundingClientRect();
+
+        if (movimentoReduzido.matches || typeof midia.animate !== 'function' || !depois.width || !depois.height) return;
+        midia.animate(
+          [
+            {
+              transformOrigin: 'top left',
+              transform: `translate(${antes.left - depois.left}px, ${antes.top - depois.top}px) scale(${antes.width / depois.width}, ${antes.height / depois.height})`,
+            },
+            { transformOrigin: 'top left', transform: 'translate(0px, 0px) scale(1)' },
+          ],
+          { duration: 620, easing: 'cubic-bezier(.22, .76, .2, 1)' },
+        );
+      }
+
+      botao.addEventListener('click', () => {
+        atualizar(!painel.classList.contains('is-focused'));
+      });
+
+      // Ao selecionar o quadro ele se destaca, sem exigir que o usuário ache um botão.
+      midia.addEventListener('click', () => {
+        if (!painel.classList.contains('is-focused')) atualizar(true);
+      });
+
+      // Reprodução pelo teclado, autoplay autorizado ou controles nativos também destaca.
+      video?.addEventListener('play', () => atualizar(true));
+
+      // Não recolhemos automaticamente ao pausar: evitaríamos deslocar controles
+      // enquanto a pessoa ajusta o tempo da reprodução.
+      painel.addEventListener('keydown', (evento) => {
+        if (evento.key === 'Escape' && painel.classList.contains('is-focused')) {
+          atualizar(false);
+          botao.focus();
+        }
+      });
+    });
+  }
+
+  iniciarVideosAlien();
+  document.addEventListener('astro:page-load', iniciarVideosAlien);
+</script>
